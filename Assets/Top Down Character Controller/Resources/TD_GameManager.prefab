@@ -1,0 +1,222 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1178184072443622}
+  m_IsPrefabParent: 1
+--- !u!1 &1178184072443622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4176763172318086}
+  - component: {fileID: 114402623304382728}
+  - component: {fileID: 114455583866123300}
+  - component: {fileID: 114722053858512654}
+  - component: {fileID: 114155576954062636}
+  - component: {fileID: 114800790755512440}
+  - component: {fileID: 114862353330930556}
+  m_Layer: 0
+  m_Name: TD_GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1762202480847520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4341671259429528}
+  - component: {fileID: 114473685964178774}
+  m_Layer: 0
+  m_Name: TD_Quests
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4176763172318086
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1178184072443622}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 55.871624, y: 0.06079466, z: 52.256607}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4341671259429528}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4341671259429528
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1762202480847520}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4176763172318086}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114155576954062636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1178184072443622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d8e47c69ebc6d4ba9ad49418a31962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCharacter: {fileID: 0}
+  activeCharacter: {fileID: 0}
+  oldActiveCharacter: {fileID: 0}
+  activeCharacters: []
+  characterButtonsUi: []
+  characterCamera: {fileID: 0}
+--- !u!114 &114402623304382728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1178184072443622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75bd9b870ef8c124498b243b740ffcb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryOpenAudio: {fileID: 1261714081643298, guid: 2dc51ebe6d7cf7e45b44196f9e334905,
+    type: 2}
+  inventoryItemPickupAudio: {fileID: 1691120987411388, guid: a638dd4d71a8bfe47a23d872c5f4989c,
+    type: 2}
+  inventoryItemUseAudio: {fileID: 1065124615080992, guid: 7f8263f89a991454aa52f6d35cb43013,
+    type: 2}
+  weaponSheatheAudio: {fileID: 1055903948332426, guid: c42c038edc8ce4b4ea03cf0483532b42,
+    type: 2}
+  meleeSwingAudio: {fileID: 1184932763503840, guid: f0c12981111fc964c844c65a3c4b2927,
+    type: 2}
+  meleeHitAudio: {fileID: 1546125265980378, guid: 2f868b9291e7f0c4d95594d66d6b6af4,
+    type: 2}
+  footstepAudio: {fileID: 1457073875665602, guid: e6c6d914c3db010468571fcb8d3593b6,
+    type: 2}
+--- !u!114 &114455583866123300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1178184072443622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b653e547cc73e548b57e8c3dd5ffb94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitParticle:
+  - {fileID: 1968266034467910, guid: 65d796af650f3b849aab1e0837ef0770, type: 2}
+--- !u!114 &114473685964178774
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1762202480847520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18aa95e15193df04aa9e3eb3e1b2bc47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questName: Goblincide!
+  questFinished: 0
+  questState: 1
+  questType: 0
+  questTarget: {fileID: 0}
+  questTargets:
+  - {fileID: 0}
+  - {fileID: 0}
+  questTargetsCards: []
+  questGiverDialog: {fileID: 0}
+  questFinishChoice: 
+  questFinichDialog: 
+  questFinishEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  questHub: {fileID: 0}
+--- !u!114 &114722053858512654
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1178184072443622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8791272506a5d4ca0ede03f6b32e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputType: 0
+  horizontalAxisName: Horizontal
+  verticalAxisName: Vertical
+  mouseXName: Mouse X
+  mouseScrollwheelName: Mouse ScrollWheel
+  pauseGameKey: 32
+  pausedGame: 0
+  interactKey: 323
+  inventoryKeyCode: 105
+  changeCamera: 99
+  rotateCamera: 324
+  currentKeyPressed: 0
+  horizontalAxis: 0
+  verticalAxis: 0
+  controllerType: 0
+  Xbox360_Controller: 0
+  XboxOne_Controller: 0
+  playerIndexSet: 0
+  playerIndex: 0
+  mobile: 0
+--- !u!114 &114800790755512440
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1178184072443622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b15a1349591284ebb0286860825e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allQuestsInScene: []
+  startedQuests: []
+  finishedQuests: []
+  failedQuests: []
+  activeQuest: {fileID: 0}
+--- !u!114 &114862353330930556
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1178184072443622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deeadb8ac43b07745b12166496408a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comment: This is our game manager. Here we store our audio clips, paritcles, manage
+    our input device and type and also manage all of our playable characters. We also
+    have a quest hub where all our quests are stored and managed.

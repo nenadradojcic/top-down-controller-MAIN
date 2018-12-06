@@ -1,0 +1,212 @@
+fileFormatVersion: 2
+guid: 2ca8585eca53d8e459f146760638603d
+timeCreated: 1531431481
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: anvil
+    100002: barrel
+    100004: book01
+    100006: book02
+    100008: box_wood
+    100010: candle_holder_01
+    100012: chain_hanging01
+    100014: chain_hanging02
+    100016: chronicle01
+    100018: Cube
+    100020: dungeonCollumn_01
+    100022: dungeonCollumn_02
+    100024: dungeonTable01
+    100026: fireplace
+    100028: FlagNorburg
+    100030: FlagWaterhold
+    100032: furnace
+    100034: //RootNode
+    100036: lamp
+    100038: rubbleStone
+    100040: selling_sign
+    100042: shrine
+    100044: streetlamp
+    100046: tent_small
+    100048: well
+    400000: anvil
+    400002: barrel
+    400004: book01
+    400006: book02
+    400008: box_wood
+    400010: candle_holder_01
+    400012: chain_hanging01
+    400014: chain_hanging02
+    400016: chronicle01
+    400018: Cube
+    400020: dungeonCollumn_01
+    400022: dungeonCollumn_02
+    400024: dungeonTable01
+    400026: fireplace
+    400028: FlagNorburg
+    400030: FlagWaterhold
+    400032: furnace
+    400034: //RootNode
+    400036: lamp
+    400038: rubbleStone
+    400040: selling_sign
+    400042: shrine
+    400044: streetlamp
+    400046: tent_small
+    400048: well
+    2100000: Cloth
+    2100002: Rope
+    2100004: No Name
+    2300000: anvil
+    2300002: barrel
+    2300004: book01
+    2300006: book02
+    2300008: box_wood
+    2300010: candle_holder_01
+    2300012: chain_hanging01
+    2300014: chain_hanging02
+    2300016: chronicle01
+    2300018: Cube
+    2300020: dungeonCollumn_01
+    2300022: dungeonCollumn_02
+    2300024: dungeonTable01
+    2300026: fireplace
+    2300028: FlagNorburg
+    2300030: FlagWaterhold
+    2300032: furnace
+    2300034: lamp
+    2300036: rubbleStone
+    2300038: selling_sign
+    2300040: shrine
+    2300042: streetlamp
+    2300044: tent_small
+    2300046: well
+    3300000: anvil
+    3300002: barrel
+    3300004: book01
+    3300006: book02
+    3300008: box_wood
+    3300010: candle_holder_01
+    3300012: chain_hanging01
+    3300014: chain_hanging02
+    3300016: chronicle01
+    3300018: Cube
+    3300020: dungeonCollumn_01
+    3300022: dungeonCollumn_02
+    3300024: dungeonTable01
+    3300026: fireplace
+    3300028: FlagNorburg
+    3300030: FlagWaterhold
+    3300032: furnace
+    3300034: lamp
+    3300036: rubbleStone
+    3300038: selling_sign
+    3300040: shrine
+    3300042: streetlamp
+    3300044: tent_small
+    3300046: well
+    4300000: Cube
+    4300002: selling_sign
+    4300004: box_wood
+    4300006: dungeonTable01
+    4300008: dungeonCollumn_02
+    4300010: dungeonCollumn_01
+    4300012: FlagNorburg
+    4300014: FlagWaterhold
+    4300016: chain_hanging02
+    4300018: chain_hanging01
+    4300020: rubbleStone
+    4300022: candle_holder_01
+    4300024: book02
+    4300026: lamp
+    4300028: shrine
+    4300030: furnace
+    4300032: anvil
+    4300034: streetlamp
+    4300036: chronicle01
+    4300038: book01
+    4300040: tent_small
+    4300042: fireplace
+    4300044: well
+    4300046: barrel
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
