@@ -20,7 +20,7 @@ public class TopDownControllerInteract : MonoBehaviour {
     public string chestTag = "Chest";
     public float enemyStopDistance = 2f;
     public float itemStopDistance = 1f;
-    public float chestStopDistance = 1.5f;
+    public float chestStopDistance = 2f;
     public float defaultStopDistance = 0.2f;
 
     public float faceEnemyRotSpeed = 6f;
@@ -258,6 +258,7 @@ public class TopDownControllerInteract : MonoBehaviour {
         }
         else if (focusObject.tag == chestTag) {
             tdcc_NavMeshAgent.stoppingDistance = chestStopDistance;
+            focusedTarget.GetComponent<TopDownInteractible>().OnFocused(transform);
         }
         else if (focusObject.tag == npcTag) {
             tdcc_NavMeshAgent.stoppingDistance = enemyStopDistance;
