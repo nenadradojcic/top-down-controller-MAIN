@@ -76,6 +76,8 @@ public class TopDownItemContainer : TopDownInteractible {
             itemName.nameText.text = string.Empty;
 
             itemName.transform.position = new Vector2(-100f, 0f);
+
+            this.enabled = false;
         }
     }
 
