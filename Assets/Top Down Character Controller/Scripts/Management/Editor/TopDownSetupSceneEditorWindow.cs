@@ -5,7 +5,7 @@ public class TopDownSetupSceneEditorWindow : EditorWindow {
 
     private static Texture TopDownIcon;
 
-    [MenuItem("Top Down RPG/Setup/Setup New Scene", false, 1)]
+    [MenuItem("Top Down RPG/Setup New Scene", false, 1)]
     static void Init() {
         TopDownSetupSceneEditorWindow window = (TopDownSetupSceneEditorWindow)EditorWindow.GetWindow(typeof(TopDownSetupSceneEditorWindow));
         window.Show();

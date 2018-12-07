@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 [RequireComponent(typeof(TopDownCharacterCard))]
 [RequireComponent(typeof(TopDownControllerMain))]
 public class TopDownAI : MonoBehaviour {

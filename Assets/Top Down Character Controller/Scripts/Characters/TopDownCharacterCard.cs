@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[DisallowMultipleComponent]
 public class TopDownCharacterCard : MonoBehaviour {
     // AI
     public string aiName;

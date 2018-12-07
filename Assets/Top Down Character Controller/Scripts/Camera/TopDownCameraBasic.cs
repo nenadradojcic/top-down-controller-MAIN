@@ -31,6 +31,8 @@ public class TopDownCameraBasic : MonoBehaviour {
     public float cameraAxis = 0f;
     public float cameraZoomAxis = 0f;
 
+    public LayerMask cameraHeightLayerMask;
+    public float freeCamRaycastDistanceCheck;
     public Transform invisibleTarget;
 
     float y = 0.0f;
@@ -137,12 +139,19 @@ public class TopDownCameraBasic : MonoBehaviour {
             }
 
             if(invisibleTarget != null) {
-
                 Vector3 movement = new Vector3(td_InputManager.horizontalAxis, 0f, td_InputManager.verticalAxis);
                 movement = transform.TransformDirection(movement);
                 movement.y = 0f;
 
                 invisibleTarget.Translate(movement * freeCameraSpeed * characterSize);
+                
+                Ray ray = new Ray(transform.position, Vector3.down);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, distanceDefault + 1f, cameraHeightLayerMask)) {
+                    Vector3 tmp = new Vector3(invisibleTarget.position.x, hit.point.y, invisibleTarget.position.z);
+                    invisibleTarget.position = tmp;
+                }
             }
         }
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
+[DisallowMultipleComponent]
 [AddComponentMenu("TDCC/Controller/Main Controller")]
 public class TopDownControllerMain : MonoBehaviour {
 

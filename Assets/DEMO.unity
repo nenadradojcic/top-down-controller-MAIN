@@ -1256,6 +1256,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114689134083187930, guid: 5ed6e0541c03fd7428fcae762ac5a7b8,
+        type: 2}
+      propertyPath: freeCamRaycastDistanceCheck
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114689134083187930, guid: 5ed6e0541c03fd7428fcae762ac5a7b8,
+        type: 2}
+      propertyPath: cameraHeightLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 0}
@@ -2768,7 +2778,7 @@ GameObject:
   m_Component:
   - component: {fileID: 532385907}
   - component: {fileID: 532385906}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: '[Vision]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8811,7 +8821,7 @@ Prefab:
     - target: {fileID: 224253142558063032, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -4.6757336
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224253142558063032, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
@@ -8821,12 +8831,12 @@ Prefab:
     - target: {fileID: 224253142558063032, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 9.351467
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224645252852507300, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 9.351467
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224446003954368504, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
@@ -16226,7 +16236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2147075577}
   - component: {fileID: 2147075576}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: '[Vision]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}

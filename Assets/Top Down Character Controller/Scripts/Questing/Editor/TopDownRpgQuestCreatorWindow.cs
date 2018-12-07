@@ -12,7 +12,7 @@ public class TopDownRpgQuestCreatorWindow : EditorWindow {
     private List<GameObject> questTargets;
     private string questFinishDialog;
 
-    [MenuItem("Top Down RPG/Setup/New Quest", false, 2)]
+    [MenuItem("Top Down RPG/New Quest", false, 4)]
     static void Init() {
         TopDownRpgQuestCreatorWindow window = (TopDownRpgQuestCreatorWindow)EditorWindow.GetWindow(typeof(TopDownRpgQuestCreatorWindow));
         window.Show();

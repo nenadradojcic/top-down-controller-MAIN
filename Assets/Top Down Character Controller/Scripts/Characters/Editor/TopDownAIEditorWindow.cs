@@ -8,7 +8,7 @@ public class TopDownAIEditorWindow : EditorWindow {
 
     private GameObject aiModel;
 
-    [MenuItem("Top Down RPG/Setup/Setup New AI", false, 3)]
+    [MenuItem("Top Down RPG/New AI", false, 3)]
     static void Init() {
         TopDownAIEditorWindow window = (TopDownAIEditorWindow)EditorWindow.GetWindow(typeof(TopDownAIEditorWindow));
         window.Show();
@@ -74,11 +74,29 @@ public class TopDownAIEditorWindow : EditorWindow {
                 charAgent.height = 1.5f;
 
                 charObject.AddComponent<TopDownAI>();
-                charObject.AddComponent<TopDownControllerMain>();
 
                 TopDownEquipmentManager charEquipManager = charObject.AddComponent<TopDownEquipmentManager>();
                 charEquipManager.itemsOnCharacter = charObject.GetComponentsInChildren<SkinnedMeshRenderer>();
 
+                if (charObject.transform.Find("[Vision]") == false) {
+                    GameObject vision = new GameObject();
+                    vision.name = "[Vision]";
+                    vision.transform.SetParent(charObject.transform);
+                    vision.transform.localPosition = Vector3.zero;
+                    vision.layer = 1 << 1;
+
+                    SphereCollider col = vision.AddComponent<SphereCollider>();
+                    col.isTrigger = true;
+                    col.center = Vector3.zero;
+                    col.radius = charObject.GetComponent<TopDownCharacterCard>().aiDetectRadius;
+                    col.gameObject.layer = 2;
+
+                    charObject.GetComponent<TopDownCharacterCard>().aiVision = col;
+
+                    //Debug.LogFormat("Setting up <b><color=yellow>Vision collider</color></b> as child of <b><color=red>" + charObject.gameObject.name + "</color></b>.");
+                }
+
+                Debug.LogFormat("New AI has been set up. You need to adjust weapon and shield mount and holster points for better visual. You should also setup basic values (name, health, voice set) inside TopDownAI component located on your new AI.");
                 Transform[] allChildren = charObject.GetComponentsInChildren<Transform>();
                 for (int i = 0; i < allChildren.Length; i++) {
                     if (charEquipManager.weaponMountPoint == null) {
@@ -125,9 +143,7 @@ public class TopDownAIEditorWindow : EditorWindow {
                     }
                 }
 
-                charObject.AddComponent<TopDownCharacterCard>();
-
-                Debug.LogFormat("New AI has been set up. You need to adjust weapon and shield mount and holster points for better visual. You should also setup basic values (name, health, voice set) inside TopDownAI component located on your new AI.");
+                aiModel.SetActive(false);
             }
         }
         else {

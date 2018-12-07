@@ -15,7 +15,7 @@ public enum WeaponHoldingType {
     OneHanded = 1,
     TwoHanded = 2,
 }
-
+[DisallowMultipleComponent]
 public class TopDownEquipmentManager : MonoBehaviour {
 
     public WeaponType weaponTypeUsed;

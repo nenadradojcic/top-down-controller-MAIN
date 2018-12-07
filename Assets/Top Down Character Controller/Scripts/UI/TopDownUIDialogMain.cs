@@ -18,6 +18,7 @@ public class TopDownUIDialogMain : MonoBehaviour {
 
     public static TopDownUIDialogMain instance;
 
+    public float cameraMoveSpeed = 1f;
     public TopDownCameraBasic cameraBasic;
 
     public void Awake() {
