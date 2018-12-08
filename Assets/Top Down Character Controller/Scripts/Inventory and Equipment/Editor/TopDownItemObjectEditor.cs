@@ -113,8 +113,8 @@ public class TopDownItemObjectEditor : Editor {
                 EditorGUILayout.HelpBox("Damage modifier represents how much damage this weapon will deal in combat.", MessageType.Info);
             }
 
-            if (td_target.itemType == ItemType.Amulet || td_target.itemType == ItemType.RingL || td_target.itemType == ItemType.RingR || td_target.itemType == ItemType.Chest ||
-               td_target.itemType == ItemType.Head || td_target.itemType == ItemType.Feet || td_target.itemType == ItemType.Legs || td_target.itemType == ItemType.Shield) {
+            if (td_target.itemType == ItemType.Neck || td_target.itemType == ItemType.RingL || td_target.itemType == ItemType.RingR || td_target.itemType == ItemType.Chest ||
+               td_target.itemType == ItemType.Head || td_target.itemType == ItemType.Hands || td_target.itemType == ItemType.Legs || td_target.itemType == ItemType.Shield) {
                 EditorGUILayout.LabelField("Armor Modifier:", simpleTitleLable);
                 td_target.armorModifier = EditorGUILayout.IntField(string.Empty, td_target.armorModifier);
                 EditorGUILayout.HelpBox("Armor modifier represents how much protection will this character have while in combat.", MessageType.Info);
@@ -168,7 +168,11 @@ public class TopDownItemObjectEditor : Editor {
                         EditorGUILayout.HelpBox("Determines how will this item be visualised on character when equiped. \n(It will be instantiated under Shield Mount Point set in Equipment Manager.)", MessageType.Info);
                     }
                 }
-                if (td_target.itemVisualisation == ItemVisualisation.FindSkinedMesh) {
+                if (td_target.itemVisualisation == ItemVisualisation.ReplaceMesh) {
+                    td_target.itemMesh = (Mesh)EditorGUILayout.ObjectField(string.Empty, td_target.itemMesh, typeof(Mesh), true);
+                    EditorGUILayout.HelpBox("Determines how will this item be visualised on character when equiped. \n(Game will replace mesh in SkinnedMeshComponent.)", MessageType.Info);
+                }
+                else if (td_target.itemVisualisation == ItemVisualisation.FindSkinedMesh) {
                     td_target.itemSkinnedMeshName = EditorGUILayout.TextField(td_target.itemSkinnedMeshName, GUILayout.MinHeight(30));
                     EditorGUILayout.HelpBox("Determines how will this item be visualised on character when equiped. \n(Game will look for skinned mesh named as set above under all character children game objects.)", MessageType.Info);
                 }

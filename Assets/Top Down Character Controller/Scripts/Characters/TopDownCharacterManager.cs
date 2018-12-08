@@ -62,7 +62,9 @@ public class TopDownCharacterManager : MonoBehaviour {
                     if (activeCharacter == null) {
                         activeCharacter = newCharacter;
                         activeCharacter.GetComponent<TopDownControllerInteract>().enabled = true;
-                        activeCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera.SetActive(true);
+                        if (activeCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera != null) {
+                            activeCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera.SetActive(true);
+                        }
 
                         TopDownUIInventory.instance.currentEquipmentManager = newCharacter.GetComponent<TopDownEquipmentManager>();
                         TopDownUIInventory.instance.currentEquipmentSlots = newCharacter.GetComponent<TopDownCharacterCard>().characterInventory;

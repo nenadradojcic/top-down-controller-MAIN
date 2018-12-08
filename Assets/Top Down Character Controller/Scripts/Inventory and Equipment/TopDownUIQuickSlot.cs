@@ -77,7 +77,7 @@ public class TopDownUIQuickSlot : TopDownUIItemSlot {
 
 
                 UseSlottedItem();
-                print(TopDownUIInventory.instance.currentEquipmentManager.gameObject.name);
+                //print(TopDownUIInventory.instance.currentEquipmentManager.gameObject.name);
                 //We need to move item from inventory slot to equipment slot
             }
         }

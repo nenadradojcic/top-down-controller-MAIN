@@ -7,6 +7,8 @@ Assets/AssetStoreTools*
 #Here we put all asset folders that we want to have only locally
 Assets/Polytope Studio*
 Assets/Polytope Studio.meta
+Assets/PostProcessing-2*
+Assets/PostProcessing-2.meta
 
 # Visual Studio cache directory
 .vs/

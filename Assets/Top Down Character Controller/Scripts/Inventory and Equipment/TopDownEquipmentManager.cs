@@ -15,6 +15,14 @@ public enum WeaponHoldingType {
     OneHanded = 1,
     TwoHanded = 2,
 }
+
+public enum CharacterEquipementType {
+    None = -1,
+    InstantiateMesh = 0,
+    ReplaceMesh = 1,
+    EnableMesh = 2,
+}
+
 [DisallowMultipleComponent]
 public class TopDownEquipmentManager : MonoBehaviour {
 
@@ -37,6 +45,22 @@ public class TopDownEquipmentManager : MonoBehaviour {
     public TopDownControllerInteract tcc_Interact;
     public TopDownCharacterCard td_characterCard;
 
+    [Tooltip("Equipment type means in which way will we equip items on our character.\n\n1. Instantiate Mesh will instantiate gameObject at runtime as child of set transform.\n" +
+        "\n2. Replace Mesh will replace mesh in SkinnedMesh Component. BEST USED IF ALL MESHES SHARE SAME MATERIAL.\n" +
+        "\n3. Enable Mesh will search for specified mesh name already part of character model to enable/disable it.\n")]
+    public CharacterEquipementType characterEquipmentType;
+
+    //Used for Instantiate Mesh Replace Mesh equipment type
+    public Mesh defaultBodyMesh; //We need to set this up so that we can revert to it back when unequiping armor.
+    public Mesh defaultHandsMesh;
+    public Mesh defaultLeggsMesh;
+    public SkinnedMeshRenderer bodyMesh;
+    public SkinnedMeshRenderer headMesh;
+    public SkinnedMeshRenderer neckMesh;
+    public SkinnedMeshRenderer handsMesh;
+    public SkinnedMeshRenderer leggsMesh;
+    public SkinnedMeshRenderer helmMesh;
+    //Used fot Enable Mesh equipment type
     public SkinnedMeshRenderer[] itemsOnCharacter;
 
     private void Awake() {
@@ -107,9 +131,28 @@ public class TopDownEquipmentManager : MonoBehaviour {
             }
         }
         else {
-            for (int i = 0; i < itemsOnCharacter.Length; i++) {
-                if (item.itemSkinnedMeshName == itemsOnCharacter[i].name) {
-                    itemsOnCharacter[i].enabled = true;
+            if (characterEquipmentType == CharacterEquipementType.EnableMesh) {
+                for (int i = 0; i < itemsOnCharacter.Length; i++) {
+                    if (item.itemSkinnedMeshName == itemsOnCharacter[i].name) {
+                        itemsOnCharacter[i].enabled = true;
+                    }
+                }
+            }
+            else if (characterEquipmentType == CharacterEquipementType.ReplaceMesh) {
+                if(item.itemType == ItemType.Chest) {
+                    bodyMesh.sharedMesh = item.itemMesh;
+                }
+                else if (item.itemType == ItemType.Head) {
+                    helmMesh.sharedMesh = item.itemMesh;
+                }
+                else if (item.itemType == ItemType.Legs) {
+                    leggsMesh.sharedMesh = item.itemMesh;
+                }
+                else if (item.itemType == ItemType.Hands) {
+                    handsMesh.sharedMesh = item.itemMesh;
+                }
+                else if (item.itemType == ItemType.Neck) {
+                    neckMesh.sharedMesh = item.itemMesh;
                 }
             }
         }
@@ -156,9 +199,28 @@ public class TopDownEquipmentManager : MonoBehaviour {
             }
         }
         else {
-            for (int i = 0; i < itemsOnCharacter.Length; i++) {
-                if (item.itemSkinnedMeshName == itemsOnCharacter[i].name) {
-                    itemsOnCharacter[i].enabled = false;
+            if (characterEquipmentType == CharacterEquipementType.EnableMesh) {
+                for (int i = 0; i < itemsOnCharacter.Length; i++) {
+                    if (item.itemSkinnedMeshName == itemsOnCharacter[i].name) {
+                        itemsOnCharacter[i].enabled = false;
+                    }
+                }
+            }
+            else if (characterEquipmentType == CharacterEquipementType.ReplaceMesh) {
+                if (item.itemType == ItemType.Chest) {
+                    bodyMesh.sharedMesh = defaultBodyMesh;
+                }
+                else if (item.itemType == ItemType.Head) {
+                    helmMesh.sharedMesh = null;
+                }
+                else if (item.itemType == ItemType.Legs) {
+                    leggsMesh.sharedMesh = defaultLeggsMesh;
+                }
+                else if (item.itemType == ItemType.Hands) {
+                    handsMesh.sharedMesh = defaultHandsMesh;
+                }
+                else if (item.itemType == ItemType.Neck) {
+                    neckMesh.sharedMesh = null;
                 }
             }
         }

@@ -8,10 +8,10 @@ public enum ItemType {
     Head = 4,
     Chest = 5,
     Legs = 6,
-    Feet = 7,
+    Hands = 7,
     RingL = 8,
     RingR = 9,
-    Amulet = 10,
+    Neck = 10,
     Scroll = 11,
 }
 
@@ -19,6 +19,7 @@ public enum ItemVisualisation {
     None = 0,
     InstantiateObject = 1,
     FindSkinedMesh = 2,
+    ReplaceMesh = 3,
 }
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Top Down RPG/Inventory/Item")]
@@ -46,6 +47,7 @@ public class TopDownItemObject : ScriptableObject {
     private TopDownEquipmentManager equipmentManager;
 
     public ItemVisualisation itemVisualisation;
+    public Mesh itemMesh;
     public GameObject itemGameObject;
     public string itemSkinnedMeshName; //Used for armor items
 

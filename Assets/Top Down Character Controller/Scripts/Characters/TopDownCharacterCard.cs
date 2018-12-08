@@ -97,8 +97,12 @@ public class TopDownCharacterCard : MonoBehaviour {
         }
 
         if(GetComponent<TopDownControllerInteract>()) {
+
             int layerInt = gameObject.layer;
-            inventoryCamera.GetComponent<Camera>().cullingMask = 1 << layerInt;
+
+            if (inventoryCamera != null) {
+                inventoryCamera.GetComponent<Camera>().cullingMask = 1 << layerInt;
+            }
 
             if (TopDownCharacterManager.instance != null) {
                 if (TopDownCharacterManager.instance.activeCharacter != gameObject) {
