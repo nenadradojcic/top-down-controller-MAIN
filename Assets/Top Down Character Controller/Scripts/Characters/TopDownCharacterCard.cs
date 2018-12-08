@@ -102,11 +102,11 @@ public class TopDownCharacterCard : MonoBehaviour {
 
             if (inventoryCamera != null) {
                 inventoryCamera.GetComponent<Camera>().cullingMask = 1 << layerInt;
-            }
 
-            if (TopDownCharacterManager.instance != null) {
-                if (TopDownCharacterManager.instance.activeCharacter != gameObject) {
-                    inventoryCamera.SetActive(false);
+                if (TopDownCharacterManager.instance != null) {
+                    if (TopDownCharacterManager.instance.activeCharacter != gameObject) {
+                        inventoryCamera.SetActive(false);
+                    }
                 }
             }
         }
