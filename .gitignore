@@ -4,6 +4,8 @@
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
+#Here we put all asset folders that we want to have only locally
+Assets/Polytope Studios*
 
 # Visual Studio cache directory
 .vs/
