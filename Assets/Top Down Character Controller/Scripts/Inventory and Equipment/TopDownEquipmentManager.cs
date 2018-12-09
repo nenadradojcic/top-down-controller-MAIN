@@ -50,7 +50,14 @@ public class TopDownEquipmentManager : MonoBehaviour {
         "\n3. Enable Mesh will search for specified mesh name already part of character model to enable/disable it.\n")]
     public CharacterEquipementType characterEquipmentType;
 
-    //Used for Instantiate Mesh Replace Mesh equipment type
+    //Used for Instantiate Mesh equipment type
+    public Transform bodyTransform;
+    public Transform headTransform;
+    public Transform neckTransform;
+    public Transform handsTransform;
+    public Transform leggsTransform;
+    public Transform helmTransform;
+    //Used for Replace Mesh equipment type
     public Mesh defaultBodyMesh; //We need to set this up so that we can revert to it back when unequiping armor.
     public Mesh defaultHandsMesh;
     public Mesh defaultLeggsMesh;
@@ -72,10 +79,6 @@ public class TopDownEquipmentManager : MonoBehaviour {
 
     private void Start() {
 
-        for(int i = 0; i < itemsOnCharacter.Length; i++) {
-            itemsOnCharacter[i].enabled = false;
-        }
-
         int numSlots = System.Enum.GetNames(typeof(ItemType)).Length;
 
         if (currentEquipment.Length != numSlots) {
@@ -86,6 +89,9 @@ public class TopDownEquipmentManager : MonoBehaviour {
             if (currentEquipment[2] != null) {
                 SetAIEquipment();
             }
+        }
+        for (int i = 0; i < itemsOnCharacter.Length; i++) {
+            itemsOnCharacter[i].enabled = false;
         }
     }
 

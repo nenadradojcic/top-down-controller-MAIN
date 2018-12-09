@@ -119,7 +119,13 @@ public class TopDownUIInventory : MonoBehaviour {
             Debug.Log("No more room in the inventory.");
         }
         else {
-            items.Add(item);
+            for (int i = 0; i < slots.Length; i++) {
+                if (slots[i].itemInSlot == null) {
+                    items.Add(item);
+                    slots[i].AddItemToSlot(item);
+                    return;
+                }
+            }
         }
     }
 

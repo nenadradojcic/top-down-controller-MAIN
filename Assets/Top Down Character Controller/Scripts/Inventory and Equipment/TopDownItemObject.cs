@@ -46,6 +46,8 @@ public class TopDownItemObject : ScriptableObject {
 
     private TopDownEquipmentManager equipmentManager;
 
+    public TopDownUIItemSlot slotOfThisItem;
+
     public ItemVisualisation itemVisualisation;
     public Mesh itemMesh;
     public GameObject itemGameObject;

@@ -3731,6 +3731,16 @@ MonoBehaviour:
   tcc_Main: {fileID: 616466916}
   tcc_Interact: {fileID: 0}
   td_characterCard: {fileID: 0}
+  characterEquipmentType: 0
+  defaultBodyMesh: {fileID: 0}
+  defaultHandsMesh: {fileID: 0}
+  defaultLeggsMesh: {fileID: 0}
+  bodyMesh: {fileID: 0}
+  headMesh: {fileID: 0}
+  neckMesh: {fileID: 0}
+  handsMesh: {fileID: 0}
+  leggsMesh: {fileID: 0}
+  helmMesh: {fileID: 0}
   itemsOnCharacter: []
 --- !u!114 &616466921
 MonoBehaviour:
@@ -8816,27 +8826,27 @@ Prefab:
     - target: {fileID: 224253142558063032, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 52.212357
+      value: 45.328465
       objectReference: {fileID: 0}
     - target: {fileID: 224253142558063032, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -5.4394155
       objectReference: {fileID: 0}
     - target: {fileID: 224253142558063032, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 104.42471
+      value: 90.65693
       objectReference: {fileID: 0}
     - target: {fileID: 224253142558063032, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 10.878831
       objectReference: {fileID: 0}
     - target: {fileID: 224645252852507300, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 10.878831
       objectReference: {fileID: 0}
     - target: {fileID: 224446003954368504, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
@@ -9141,7 +9151,7 @@ Prefab:
     - target: {fileID: 224426300164129556, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -187.91241
       objectReference: {fileID: 0}
     - target: {fileID: 224890055748159340, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
@@ -9151,7 +9161,7 @@ Prefab:
     - target: {fileID: 224775168138983618, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 36.62658
+      value: 36.26277
       objectReference: {fileID: 0}
     - target: {fileID: 224604607118595632, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
@@ -11522,6 +11532,16 @@ MonoBehaviour:
   tcc_Main: {fileID: 0}
   tcc_Interact: {fileID: 0}
   td_characterCard: {fileID: 0}
+  characterEquipmentType: 0
+  defaultBodyMesh: {fileID: 0}
+  defaultHandsMesh: {fileID: 0}
+  defaultLeggsMesh: {fileID: 0}
+  bodyMesh: {fileID: 0}
+  headMesh: {fileID: 0}
+  neckMesh: {fileID: 0}
+  handsMesh: {fileID: 0}
+  leggsMesh: {fileID: 0}
+  helmMesh: {fileID: 0}
   itemsOnCharacter:
   - {fileID: 241589526}
 --- !u!114 &1462408298
@@ -13512,6 +13532,16 @@ MonoBehaviour:
   tcc_Main: {fileID: 0}
   tcc_Interact: {fileID: 0}
   td_characterCard: {fileID: 0}
+  characterEquipmentType: 0
+  defaultBodyMesh: {fileID: 0}
+  defaultHandsMesh: {fileID: 0}
+  defaultLeggsMesh: {fileID: 0}
+  bodyMesh: {fileID: 0}
+  headMesh: {fileID: 0}
+  neckMesh: {fileID: 0}
+  handsMesh: {fileID: 0}
+  leggsMesh: {fileID: 0}
+  helmMesh: {fileID: 0}
   itemsOnCharacter:
   - {fileID: 612629564}
 --- !u!114 &1696328084
@@ -13861,6 +13891,16 @@ MonoBehaviour:
   tcc_Main: {fileID: 1723533254}
   tcc_Interact: {fileID: 0}
   td_characterCard: {fileID: 0}
+  characterEquipmentType: 0
+  defaultBodyMesh: {fileID: 0}
+  defaultHandsMesh: {fileID: 0}
+  defaultLeggsMesh: {fileID: 0}
+  bodyMesh: {fileID: 0}
+  headMesh: {fileID: 0}
+  neckMesh: {fileID: 0}
+  handsMesh: {fileID: 0}
+  leggsMesh: {fileID: 0}
+  helmMesh: {fileID: 0}
   itemsOnCharacter: []
 --- !u!114 &1723533253
 MonoBehaviour:

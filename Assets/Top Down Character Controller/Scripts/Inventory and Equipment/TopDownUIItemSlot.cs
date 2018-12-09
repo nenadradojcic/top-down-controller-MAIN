@@ -31,12 +31,14 @@ public class TopDownUIItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEn
     }
 
     public void AddItemToSlot(TopDownItemObject item) {
+        item.slotOfThisItem = this;
         itemInSlot = item;
         itemIcon.sprite = item.itemIcon;
         itemIcon.enabled = true;
     }
 
     public void ClearSlot(TopDownUIItemSlot slot) {
+        slot.itemInSlot.slotOfThisItem = null;
         slot.itemInSlot = null;
         slot.itemIcon.sprite = null;
         slot.itemIcon.enabled = false;
