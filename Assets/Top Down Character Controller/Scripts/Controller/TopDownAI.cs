@@ -7,6 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(TopDownControllerMain))]
 public class TopDownAI : MonoBehaviour {
 
+    public bool hostile;
+
     public new string name;
 
     public TopDownVoiceSet voiceSet;
@@ -92,7 +94,7 @@ public class TopDownAI : MonoBehaviour {
     }
 
     public void OnTriggerStay(Collider other) {
-        if(other.gameObject.tag == "Player") {
+        if(hostile == true && other.gameObject.tag == "Player") {
             playerInSight = false;
             focus = null;
 
@@ -111,7 +113,7 @@ public class TopDownAI : MonoBehaviour {
                         playerInSight = true;
                         focus = other.transform;
 
-                        if (detected == false) {
+                        if (detected == false && voiceSet != null) {
                             Instantiate(voiceSet.detectVoice, transform.position, Quaternion.identity);
                             detected = true;
                         }
@@ -123,7 +125,7 @@ public class TopDownAI : MonoBehaviour {
                     playerInSight = true;
                     focus = other.transform;
 
-                    if (detected == false) {
+                    if (detected == false && voiceSet != null) {
                         Instantiate(voiceSet.detectVoice, transform.position, Quaternion.identity);
                         detected = true;
                     }

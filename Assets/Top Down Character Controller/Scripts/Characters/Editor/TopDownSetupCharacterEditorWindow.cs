@@ -10,10 +10,11 @@ public class TopDownSetupCharacterEditorWindow : EditorWindow {
     private GameObject characterModel;
     private TopDownCharacter characterAsset;
 
-    [MenuItem("Top Down RPG/New Player Character", false, 2)]
+    [MenuItem("Top Down RPG/New Player Character  %#c", false, 2)]
     static void Init() {
         TopDownSetupCharacterEditorWindow window = (TopDownSetupCharacterEditorWindow)EditorWindow.GetWindow(typeof(TopDownSetupCharacterEditorWindow));
         window.Show();
+        window.minSize = new Vector2(450f, 250f);
 
         if (TopDownIcon == null) {
             TopDownIcon = Resources.Load("TopDownIcon") as Texture;

@@ -68,6 +68,9 @@ public class TopDownCharacterCard : MonoBehaviour {
             energy = character.energy;
             maxEnergy = character.energy;
         }
+        else {
+            name = aiName;
+        }
 
         main = GetComponent<TopDownControllerMain>();
         interact = GetComponent<TopDownControllerInteract>();

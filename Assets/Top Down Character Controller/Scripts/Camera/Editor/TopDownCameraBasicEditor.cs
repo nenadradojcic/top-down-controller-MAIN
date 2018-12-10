@@ -49,8 +49,10 @@ public class TopDownCameraBasicEditor : Editor {
         EditorGUILayout.LabelField("Camera Position", simpleTitleLable);
         td_target.yAxisOffset = EditorGUILayout.FloatField("Offset:", td_target.yAxisOffset);
         EditorGUILayout.HelpBox("Here we determine how much will camera be offset based on characters position at Y axis. (Used so the camera wont be centered on characters feet.)", MessageType.Info);
-        td_target.cameraAngle = EditorGUILayout.FloatField("Angle:", td_target.cameraAngle);
-        EditorGUILayout.HelpBox("Determines at what Y axis angle will camera look at character.)", MessageType.Info);
+        EditorGUILayout.Space();
+        td_target.cameraAngleMin = EditorGUILayout.FloatField("Minimum X Angle:", td_target.cameraAngleMin);
+        td_target.cameraAngleMax = EditorGUILayout.FloatField("Maximum X Angle:", td_target.cameraAngleMax);
+        EditorGUILayout.HelpBox("Determines minimum and maximum X axis angle.", MessageType.Info);
         EditorGUILayout.Space();
 
         EditorGUILayout.LabelField("Distance Options", simpleTitleLable);

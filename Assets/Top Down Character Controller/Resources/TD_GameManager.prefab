@@ -40,7 +40,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4341671259429528}
-  - component: {fileID: 114473685964178774}
   m_Layer: 0
   m_Name: TD_Quests
   m_TagString: Untagged
@@ -130,35 +129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitParticle:
   - {fileID: 1968266034467910, guid: 65d796af650f3b849aab1e0837ef0770, type: 2}
---- !u!114 &114473685964178774
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1762202480847520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18aa95e15193df04aa9e3eb3e1b2bc47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questName: Goblincide!
-  questFinished: 0
-  questState: 1
-  questType: 0
-  questTarget: {fileID: 0}
-  questTargets:
-  - {fileID: 0}
-  - {fileID: 0}
-  questTargetsCards: []
-  questGiverDialog: {fileID: 0}
-  questFinishChoice: 
-  questFinichDialog: 
-  questFinishEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  questHub: {fileID: 0}
 --- !u!114 &114722053858512654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -174,6 +144,7 @@ MonoBehaviour:
   horizontalAxisName: Horizontal
   verticalAxisName: Vertical
   mouseXName: Mouse X
+  mouseYName: Mouse Y
   mouseScrollwheelName: Mouse ScrollWheel
   pauseGameKey: 32
   pausedGame: 0

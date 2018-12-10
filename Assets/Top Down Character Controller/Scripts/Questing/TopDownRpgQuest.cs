@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -41,10 +40,13 @@ public class TopDownRpgQuest : MonoBehaviour {
     public UnityEvent questFinishEvent;
 
     public TopDownRpgQuestHub questHub;
+    public TopDownUIManager uiManager;
 
-    public void Start() {
+    private void Start() {
         questHub = TopDownRpgQuestHub.instance;
         questHub.allQuestsInScene.Add(this);
+
+        uiManager = TopDownUIManager.instance;
 
         if (questTargets.Count > 1) {
             for (int i = 0; i < questTargets.Count; i++) {
@@ -71,6 +73,21 @@ public class TopDownRpgQuest : MonoBehaviour {
         this.enabled = false;
     }
 
+    public void StartQuest() {
+        if (questHub != null && questFinished == false) {
+
+            this.enabled = true;
+
+            questState = QuestState.Started;
+
+            questHub.startedQuests.Add(this);
+            questHub.activeQuest = this;
+
+            //SOME NOTIFICATION THAT QUEST STARTED
+            uiManager.notificationText.GetComponent<TopDownUIShowNotification>().ShowNotification("Quest Started \n''" + questName + "''");
+        }
+    }
+
     public void StartQuest(TopDownUIDialog dialog) {
         if(questHub != null && questFinished == false) {
 
@@ -88,6 +105,7 @@ public class TopDownRpgQuest : MonoBehaviour {
             questHub.activeQuest = this;
 
             //SOME NOTIFICATION THAT QUEST STARTED
+            uiManager.notificationText.GetComponent<TopDownUIShowNotification>().ShowNotification("Quest Started \n''" + questName + "''");
         }
     }
 
@@ -107,10 +125,10 @@ public class TopDownRpgQuest : MonoBehaviour {
     }
 
     public void CheckQuestStatus() {
-        if(questType == QuestType.KillAllTargets) {
-            if(questTargetsCards.Count > 0) {
-                for(int i = questTargetsCards.Count - 1; i > -1; i--) {
-                    if(questTargetsCards[i] == null) {
+        if (questType == QuestType.KillAllTargets) {
+            if (questTargetsCards.Count > 0) {
+                for (int i = questTargetsCards.Count - 1; i > -1; i--) {
+                    if (questTargetsCards[i] == null) {
                         questTargetsCards.RemoveAt(i);
                         questTargets.RemoveAt(i);
                     }
@@ -124,7 +142,11 @@ public class TopDownRpgQuest : MonoBehaviour {
                         questGiverDialog = null;
                     }
                 }
+                else if (questEnding == QuestEnding.EndInPlace) {
+                }
             }
+        }
+        else if (questType == QuestType.TalkToNpc) {
         }
     }
 

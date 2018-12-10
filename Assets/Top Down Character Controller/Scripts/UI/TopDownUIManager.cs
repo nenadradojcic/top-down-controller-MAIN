@@ -23,6 +23,8 @@ public class TopDownUIManager : MonoBehaviour {
     public GameObject itemWorldName;
     public GameObject npcWorldName;
 
+    public GameObject notificationText;
+
     public bool pausedGame = false;
 
     public TopDownUICharacterButton[] characterPortraits;

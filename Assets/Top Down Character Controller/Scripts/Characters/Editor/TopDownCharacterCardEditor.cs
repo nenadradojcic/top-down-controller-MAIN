@@ -17,25 +17,7 @@ public class TopDownCharacterCardEditor : Editor {
             TopDownIcon = Resources.Load("TopDownIcon") as Texture;
         }
 
-        /*if (td_target.GetComponent<TopDownAI>()) {
-            if (td_target.transform.Find("[Vision]") == false) {
-                GameObject vision = new GameObject();
-                vision.name = "[Vision]";
-                vision.transform.SetParent(td_target.transform);
-                vision.transform.localPosition = Vector3.zero;
-                vision.layer = 1 << 1;
-
-                SphereCollider col = vision.AddComponent<SphereCollider>();
-                col.isTrigger = true;
-                col.center = Vector3.zero;
-                col.radius = td_target.aiDetectRadius;
-
-                td_target.aiVision = col;
-
-                Debug.LogFormat("Setting up <b><color=yellow>Vision collider</color></b> as child of <b><color=red>" + td_target.gameObject.name + "</color></b>.");
-            }
-        }
-        else if(td_target.GetComponent<TopDownControllerInteract>()) {
+        /*if(td_target.GetComponent<TopDownControllerInteract>()) {
             if (td_target.transform.Find("TD_CharacterCamera") == false) {
                 GameObject tmp = Resources.Load("TD_CharacterCamera") as GameObject;
                 GameObject inventoryCamera = Instantiate(tmp);
@@ -175,6 +157,9 @@ public class TopDownCharacterCardEditor : Editor {
             EditorGUILayout.EndVertical();
             GUILayout.FlexibleSpace();
             EditorGUILayout.EndHorizontal();
+        }
+        if(td_target.gameObject.tag == "NPC") {
+
         }
     }
 

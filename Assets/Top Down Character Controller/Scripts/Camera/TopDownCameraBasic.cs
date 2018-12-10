@@ -20,7 +20,8 @@ public class TopDownCameraBasic : MonoBehaviour {
 
     public float rotationSpeed = 60f;
 
-    public float cameraAngle = 55f;
+    public float cameraAngleMin = 30f;
+    public float cameraAngleMax = 70f;
 
     public float yAxisOffset = 1.25f;
 
@@ -28,13 +29,15 @@ public class TopDownCameraBasic : MonoBehaviour {
 
     private TopDownInputManager td_InputManager;
 
-    public float cameraAxis = 0f;
+    public float cameraAxisX = 0f;
+    public float cameraAxisY = 0f;
     public float cameraZoomAxis = 0f;
 
     public LayerMask cameraHeightLayerMask;
     public float freeCamRaycastDistanceCheck;
     public Transform invisibleTarget;
 
+    float x = 0.0f;
     float y = 0.0f;
     float characterSize = 1f;
 
@@ -59,6 +62,7 @@ public class TopDownCameraBasic : MonoBehaviour {
         td_InputManager = TopDownInputManager.instance;
 
         Vector3 angles = transform.eulerAngles;
+        x = angles.x;
         y = angles.y;
 
         if (td_Target != null) {
@@ -80,18 +84,22 @@ public class TopDownCameraBasic : MonoBehaviour {
             if (Input.GetKey(td_InputManager.rotateCamera)) {
                 if (TopDownUIManager.instance.checkUi != null) {
                     if (TopDownUIManager.instance.checkUi.IsPointerOverUIObject() == false) {
-                        cameraAxis = Input.GetAxis(td_InputManager.mouseXName);
+                        cameraAxisX = Input.GetAxis(td_InputManager.mouseYName);
+                        cameraAxisY = Input.GetAxis(td_InputManager.mouseXName);
                     }
                     else {
-                        cameraAxis = Mathf.Lerp(cameraAxis, 0f, 0.1f);
+                        cameraAxisX = Mathf.Lerp(cameraAxisX, 0f, 0.1f);
+                        cameraAxisY = Mathf.Lerp(cameraAxisY, 0f, 0.1f);
                     }
                 }
                 else {
-                    cameraAxis = Input.GetAxis(td_InputManager.mouseXName);
+                    cameraAxisX = Input.GetAxis(td_InputManager.mouseYName);
+                    cameraAxisY = Input.GetAxis(td_InputManager.mouseXName);
                 }
             }
             else {
-                cameraAxis = Mathf.Lerp(cameraAxis, 0f, 0.1f);
+                cameraAxisX = Mathf.Lerp(cameraAxisX, 0f, 0.1f);
+                cameraAxisY = Mathf.Lerp(cameraAxisY, 0f, 0.1f);
             }
 
             if (Input.GetKeyDown(td_InputManager.changeCamera)) {
@@ -110,9 +118,12 @@ public class TopDownCameraBasic : MonoBehaviour {
             }
 
             if (cameraType == CameraType.CharacterCamera) {
-                y += cameraAxis * rotationSpeed * distanceDefault * 0.02f;
+                x += -cameraAxisX * rotationSpeed * distanceDefault * 0.02f;
+                y += cameraAxisY * rotationSpeed * distanceDefault * 0.02f;
 
-                Quaternion rotation = Quaternion.Euler(cameraAngle, y, 0);
+                x = Mathf.Clamp(x, cameraAngleMin, cameraAngleMax);
+
+                Quaternion rotation = Quaternion.Euler(x, y, 0);
 
                 distanceDefault = Mathf.Clamp(distanceDefault - cameraZoomAxis * 5 * characterSize, distanceMin * characterSize, distanceMax * characterSize);
 
@@ -124,9 +135,12 @@ public class TopDownCameraBasic : MonoBehaviour {
                 transform.position = position;
             }
             else if(cameraType == CameraType.FreeCamera) {
-                y += cameraAxis * rotationSpeed * distanceDefault * 0.02f;
+                x += -cameraAxisX * rotationSpeed * distanceDefault * 0.02f;
+                y += cameraAxisY * rotationSpeed * distanceDefault * 0.02f;
 
-                Quaternion rotation = Quaternion.Euler(cameraAngle, y, 0);
+                x = Mathf.Clamp(x, cameraAngleMin, cameraAngleMax);
+
+                Quaternion rotation = Quaternion.Euler(x, y, 0);
 
                 distanceDefault = Mathf.Clamp(distanceDefault - cameraZoomAxis * 5 * characterSize, distanceMin * characterSize, distanceMax * characterSize);
 

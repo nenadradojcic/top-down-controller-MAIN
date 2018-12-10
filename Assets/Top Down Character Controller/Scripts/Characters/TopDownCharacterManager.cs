@@ -33,8 +33,8 @@ public class TopDownCharacterManager : MonoBehaviour {
         }
 
         if (defaultCharacter == null && activeCharacters.Count < 1) {
-            if (GameObject.FindObjectOfType<TopDownControllerMain>()) {
-                AddCharacterToParty(GameObject.FindObjectOfType<TopDownControllerMain>().gameObject);
+            if (GameObject.FindGameObjectWithTag("Player")) {
+                AddCharacterToParty(GameObject.FindGameObjectWithTag("Player").gameObject);
             }
             else {
                 Debug.LogError("No character with TopDownControllerMain.cs found in scene!");

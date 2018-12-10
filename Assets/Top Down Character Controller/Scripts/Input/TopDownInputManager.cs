@@ -19,6 +19,7 @@ public class TopDownInputManager : MonoBehaviour {
     public string horizontalAxisName = "Horizontal";
     public string verticalAxisName = "Vertical";
     public string mouseXName = "Mouse X";
+    public string mouseYName = "Mouse Y";
     public string mouseScrollwheelName = "Mouse ScrollWheel";
 
     public KeyCode pauseGameKey = KeyCode.Space;
@@ -110,6 +111,15 @@ public class TopDownInputManager : MonoBehaviour {
         if (inputType == InputType.KeyboardAndMouse) {
             horizontalAxis = Input.GetAxisRaw(horizontalAxisName);
             verticalAxis = Input.GetAxisRaw(verticalAxisName);
+
+            if(Input.GetKey(interactKey) && Input.GetKey(rotateCamera)) {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+            else {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }
         else if (inputType == InputType.Xbox360Gamepad) {
             /*horizontalAxis = state.ThumbSticks.Left.X;

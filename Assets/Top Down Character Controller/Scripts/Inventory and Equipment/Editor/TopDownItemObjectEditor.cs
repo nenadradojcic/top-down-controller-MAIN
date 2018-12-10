@@ -25,6 +25,8 @@ public class TopDownItemObjectEditor : Editor {
 
     public override void OnInspectorGUI() {
 
+        EditorUtility.SetDirty(td_target);
+
         GUIStyle boldCenteredLabel = new GUIStyle(EditorStyles.boldLabel) { alignment = TextAnchor.MiddleCenter };
 
         GUIStyle simpleTitleLable = new GUIStyle(EditorStyles.boldLabel) { alignment = TextAnchor.MiddleLeft };

@@ -13,6 +13,8 @@ Assets/PostProcessing Profiles*
 Assets/PostProcessing Profiles.meta
 Assets/PolygonNature*
 Assets/PolygonNature.meta
+Assets/ScreenSpaceCloudShadow*
+Assets/ScreenSpaceCloudShadow.meta
 
 # Visual Studio cache directory
 .vs/

@@ -7,11 +7,13 @@ public class TopDownAIEditorWindow : EditorWindow {
     private static Texture TopDownIcon;
 
     private GameObject aiModel;
+    private bool aiHostile;
 
-    [MenuItem("Top Down RPG/New AI", false, 3)]
+    [MenuItem("Top Down RPG/New AI NPC %#n", false, 3)]
     static void Init() {
         TopDownAIEditorWindow window = (TopDownAIEditorWindow)EditorWindow.GetWindow(typeof(TopDownAIEditorWindow));
         window.Show();
+        window.minSize = new Vector2(450f, 250f);
 
         if (TopDownIcon == null) {
             TopDownIcon = Resources.Load("TopDownIcon") as Texture;
@@ -36,17 +38,12 @@ public class TopDownAIEditorWindow : EditorWindow {
         EditorGUILayout.EndHorizontal();
 
         aiModel = (GameObject)EditorGUILayout.ObjectField("AI Model:", aiModel, typeof(GameObject), true);
-
+        aiHostile = EditorGUILayout.Toggle("Is AI Hostile?", aiHostile);
 
         if (aiModel != null) {
             if (GUILayout.Button("Create AI")) {
 
                 GameObject charObject = Instantiate(aiModel);
-
-                charObject.name = "New AI";
-
-                charObject.tag = "Enemy";
-                charObject.layer = 0;
 
                 if (charObject.GetComponent<Animator>() == null) {
                     Animator charAnimator = charObject.AddComponent<Animator>();
@@ -73,10 +70,9 @@ public class TopDownAIEditorWindow : EditorWindow {
                 charAgent.stoppingDistance = 0.2f;
                 charAgent.height = 1.5f;
 
-                charObject.AddComponent<TopDownAI>();
+                TopDownAI ai = charObject.AddComponent<TopDownAI>();
 
                 TopDownEquipmentManager charEquipManager = charObject.AddComponent<TopDownEquipmentManager>();
-                charEquipManager.itemsOnCharacter = charObject.GetComponentsInChildren<SkinnedMeshRenderer>();
 
                 if (charObject.transform.Find("[Vision]") == false) {
                     GameObject vision = new GameObject();
@@ -141,6 +137,19 @@ public class TopDownAIEditorWindow : EditorWindow {
                             charEquipManager.shieldHolsterMountPoint = shieldHolsterPoint.transform;
                         }
                     }
+                }
+
+                if (aiHostile == true) {
+                    charObject.name = "Top Down Enemy";
+                    charObject.tag = "Enemy";
+                    charObject.layer = 0;
+                    ai.hostile = true;
+                }
+                else {
+                    charObject.name = "Top Down NPC";
+                    charObject.tag = "NPC";
+                    charObject.layer = 0;
+                    ai.hostile = false;
                 }
 
                 aiModel.SetActive(false);

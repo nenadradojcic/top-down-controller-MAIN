@@ -5,10 +5,11 @@ public class TopDownSetupSceneEditorWindow : EditorWindow {
 
     private static Texture TopDownIcon;
 
-    [MenuItem("Top Down RPG/Setup New Scene", false, 1)]
+    [MenuItem("Top Down RPG/Setup New Scene %#t", false, 1)]
     static void Init() {
         TopDownSetupSceneEditorWindow window = (TopDownSetupSceneEditorWindow)EditorWindow.GetWindow(typeof(TopDownSetupSceneEditorWindow));
         window.Show();
+        window.minSize = new Vector2(250f, 150f);
 
         if (TopDownIcon == null) {
             TopDownIcon = Resources.Load("TopDownIcon") as Texture;
