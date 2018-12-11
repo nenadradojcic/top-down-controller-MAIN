@@ -52,6 +52,7 @@ public class TopDownCharacterCard : MonoBehaviour {
     public TopDownControllerInteract interact;
     public TopDownEquipmentManager equipmentManager;
     public TopDownCharacterManager characterManager;
+    public TopDownUIManager uiManager;
     public TopDownUINpcNameBar npcBar;
 
     public bool mouseOver;
@@ -88,6 +89,7 @@ public class TopDownCharacterCard : MonoBehaviour {
         if (TopDownUIManager.instance != null) {
             npcBar = TopDownUIManager.instance.npcWorldName.GetComponent<TopDownUINpcNameBar>();
             placeBarOverHead = npcBar.placeBarOverHead;
+            uiManager = TopDownUIManager.instance;
         }
 
         if (GameObject.FindGameObjectWithTag("MainCamera")) {
@@ -128,7 +130,7 @@ public class TopDownCharacterCard : MonoBehaviour {
             }
         }
 
-        if (TopDownUIManager.instance.characterPortraitType == CharacterPortraitType.Runtime) {
+        if (uiManager.characterPortraitType == CharacterPortraitType.Runtime) {
             if (portraitCamera != null) {
                 portraitCamera.enabled = false;
                 if (portraitLight != null) {
@@ -310,7 +312,7 @@ public class TopDownCharacterCard : MonoBehaviour {
     }
 
     public void OnMouseOver() {
-        if (TopDownUIManager.instance != null) {
+        if (uiManager != null) {
             mouseOver = true;
             if (gameObject.tag == "Enemy") {
                 npcBar.nameText.text = aiName;
@@ -330,8 +332,10 @@ public class TopDownCharacterCard : MonoBehaviour {
                             npcBar.healthBar.fillAmount = health / maxHealth;
                             npcBar.energyBar.enabled = true;
                             npcBar.energyBar.fillAmount = energy / maxEnergy;
-                            npcBar.portraitImage.enabled = true;
-                            npcBar.portraitImage.sprite = character.icon;
+                            if (uiManager.characterPortraitType == CharacterPortraitType.Static) {
+                                npcBar.portraitImage.enabled = true;
+                                npcBar.portraitImage.sprite = character.icon;
+                            }
                         }
                     }
                     else {
@@ -340,8 +344,10 @@ public class TopDownCharacterCard : MonoBehaviour {
                         npcBar.healthBar.fillAmount = health / maxHealth;
                         npcBar.energyBar.enabled = true;
                         npcBar.energyBar.fillAmount = energy / maxEnergy;
-                        npcBar.portraitImage.enabled = true;
-                        npcBar.portraitImage.sprite = character.icon;
+                        if (uiManager.characterPortraitType == CharacterPortraitType.Static) {
+                            npcBar.portraitImage.enabled = true;
+                            npcBar.portraitImage.sprite = character.icon;
+                        }
                     }
                 }
             }
@@ -359,7 +365,7 @@ public class TopDownCharacterCard : MonoBehaviour {
     }
 
     public void OnMouseExit() {
-        if (TopDownUIManager.instance != null) {
+        if (uiManager != null) {
             mouseOver = false;
             npcBar.nameText.text = string.Empty;
             npcBar.healthBar.enabled = false;
