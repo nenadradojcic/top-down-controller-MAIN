@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4122781175898638}
   - component: {fileID: 198316265673720508}
   - component: {fileID: 199792203245872126}
-  - component: {fileID: 114144836579878820}
+  - component: {fileID: 114906912632816448}
   m_Layer: 0
   m_Name: TD_HitParticle
   m_TagString: Untagged
@@ -42,7 +42,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114144836579878820
+--- !u!114 &114906912632816448
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -50,11 +50,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1968266034467910}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37fac21d1f093d344816942d1abce94e, type: 3}
+  m_Script: {fileID: 11500000, guid: e1777c96bff1fb549811cd0723b05bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TimeOut: 1.25
-  m_DetachChildren: 0
+  destroyAfter: 1
 --- !u!198 &198316265673720508
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -115,7 +114,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2057929105
+  randomSeed: -1525181040
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -267,7 +266,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -580,7 +579,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.5
+      value: 0.3
       mode: 0
       spread: 0
       speed:

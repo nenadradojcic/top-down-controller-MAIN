@@ -28,7 +28,7 @@ public class TopDownUIDialogChoice : MonoBehaviour {
         }
 
         if(type == DialogType.CloseDialog) {
-            TopDownUIDialogMain.instance.CloseDialogPerType("Of we go then!");
+            TopDownUIDialogMain.instance.CloseDialogPerType("[Exit]");
         }
         else if(type == DialogType.ImmediateClose) {
             CloseTheDialog();

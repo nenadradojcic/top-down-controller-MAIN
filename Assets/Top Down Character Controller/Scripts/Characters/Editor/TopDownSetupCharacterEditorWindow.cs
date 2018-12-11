@@ -143,6 +143,37 @@ public class TopDownSetupCharacterEditorWindow : EditorWindow {
                 TopDownCharacterCard charCard = charObject.AddComponent<TopDownCharacterCard>();
                 charCard.character = characterAsset;
 
+                GameObject goCamTmp = new GameObject();
+                goCamTmp.name = "Profile Camera";
+                Camera cam = goCamTmp.AddComponent<Camera>();
+                cam.clearFlags = CameraClearFlags.SolidColor;
+                cam.backgroundColor = Color.black;
+                cam.orthographic = false;
+                cam.fieldOfView = 40f;
+                cam.nearClipPlane = 0.15f;
+                cam.farClipPlane = 0.9f;
+                cam.depth = 10;
+
+                GameObject goLightTmp = new GameObject();
+                goLightTmp.transform.SetParent(cam.transform);
+                goLightTmp.transform.localPosition = Vector3.zero;
+                Light light = goLightTmp.AddComponent<Light>();
+                light.type = LightType.Point;
+                light.range = 10f;
+                light.intensity = 0.5f;
+                light.bounceIntensity = 0f;
+
+                for (int i = 0; i < allChildren.Length; i++) {
+                    if (allChildren[i].name.Contains("head") || allChildren[i].name.Contains("HEAD") || allChildren[i].name.Contains("Head")) {
+                        goCamTmp.transform.SetParent(allChildren[i].transform);
+                        Debug.Log("Setting up camera for Runtime Profile support. Be sure to check that camera game object is set as a child of Head Bone of your characters skeleton and to adjust it to your liking.");
+                        break;
+                    }
+                }
+
+                charCard.portraitCamera = cam;
+                charCard.portraitLight = light;
+
                 if (charObject.GetComponent<TopDownAI>()) {
                     if (charObject.transform.Find("[Vision]") == false) {
                         GameObject vision = new GameObject();

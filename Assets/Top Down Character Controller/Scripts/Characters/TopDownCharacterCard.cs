@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 [DisallowMultipleComponent]
 public class TopDownCharacterCard : MonoBehaviour {
@@ -58,6 +59,12 @@ public class TopDownCharacterCard : MonoBehaviour {
 
     public bool placeBarOverHead = false;
     public Transform nameBarPosition;
+
+    //Variables for rendering profile picture at runtime
+    public Camera portraitCamera;
+    public Light portraitLight;
+    public Texture2D currentPortrait;
+    public RawImage portraitImage;
 
     private void Start() {
 
@@ -118,6 +125,17 @@ public class TopDownCharacterCard : MonoBehaviour {
         for(int i = 0; i < allChildren.Length; i ++) {
             if (allChildren[i].name.Contains("head") || allChildren[i].name.Contains("HEAD") || allChildren[i].name.Contains("Head")) {
                 nameBarPosition = allChildren[i];
+            }
+        }
+
+        if (TopDownUIManager.instance.characterPortraitType == CharacterPortraitType.Runtime) {
+            if (portraitCamera != null) {
+                portraitCamera.enabled = false;
+                if (portraitLight != null) {
+                    portraitLight.enabled = false;
+                }
+
+                UpdatePortrait();
             }
         }
     }
@@ -355,5 +373,38 @@ public class TopDownCharacterCard : MonoBehaviour {
 
             //Debug.LogFormat("<b>" + gameObject.name + "</b> called OnMouseExit in <i>TopDownCharacterCard.cs</i>.");
         }
+    }
+
+    public void UpdatePortrait() {
+        StartCoroutine(UpdatePortraitTimer());
+    }
+
+    private IEnumerator UpdatePortraitTimer() {
+        yield return new WaitForEndOfFrame();
+
+        portraitLight.enabled = true;
+        portraitCamera.enabled = true;
+
+        //currentPortrait = ScreenCapture.CaptureScreenshotAsTexture(1);
+
+        var currentRT = RenderTexture.active;
+        RenderTexture.active = portraitCamera.targetTexture;
+
+        // Render the camera's view.
+        portraitCamera.Render();
+
+        // Make a new texture and read the active Render Texture into it.
+        Texture2D image = new Texture2D(portraitCamera.targetTexture.width, portraitCamera.targetTexture.height);
+        image.ReadPixels(new Rect(0, 0, portraitCamera.targetTexture.width, portraitCamera.targetTexture.height), 0, 0);
+        image.Apply();
+
+        // Replace the original active Render Texture.
+        RenderTexture.active = currentRT;
+        currentPortrait = image;
+
+        portraitCamera.enabled = false;
+        portraitLight.enabled = false;
+
+        portraitImage.texture = currentPortrait;
     }
 }

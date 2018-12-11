@@ -9,7 +9,9 @@ public class TopDownUICharacterButton : MonoBehaviour {
 
     public GameObject holder;
     public new Text name;
-    public Image portrait;
+    public Image portraitPrechosen;
+    public RawImage portraitRuntime;
+
     public Image health;
     public Image energy;
 
@@ -21,6 +23,8 @@ public class TopDownUICharacterButton : MonoBehaviour {
     public TopDownCharacterManager characterManager;
     public TopDownCameraBasic cameraBasic;
 
+    public TopDownUIManager uiManager;
+
     private void Start() {
         if(characterInSlot != null) {
             SetCharacterUI();
@@ -28,6 +32,7 @@ public class TopDownUICharacterButton : MonoBehaviour {
         }
 
         characterManager = TopDownCharacterManager.instance;
+        uiManager = TopDownUIManager.instance;
         cameraBasic = GameObject.FindObjectOfType<TopDownCameraBasic>();
     }
 
@@ -35,8 +40,16 @@ public class TopDownUICharacterButton : MonoBehaviour {
         if(characterInSlot != null) {
             if(characterInSlot.GetComponent<TopDownCharacterCard>().character != null) {
                 name.text = characterInSlot.GetComponent<TopDownCharacterCard>().character.name;
-                portrait.enabled = true;
-                portrait.sprite = characterInSlot.GetComponent<TopDownCharacterCard>().character.icon;
+                if (uiManager.characterPortraitType == CharacterPortraitType.Static) {
+                    portraitRuntime.enabled = false;
+                    portraitPrechosen.enabled = true;
+                    portraitPrechosen.sprite = characterInSlot.GetComponent<TopDownCharacterCard>().character.icon;
+                }
+                else if(uiManager.characterPortraitType == CharacterPortraitType.Runtime) {
+                    portraitPrechosen.enabled = false;
+                    portraitRuntime.enabled = true;
+                    characterInSlot.GetComponent<TopDownCharacterCard>().portraitImage = portraitRuntime;
+                }
                 holder.SetActive(true);
 
                 if (thisSlotInventory != null) {
@@ -54,8 +67,13 @@ public class TopDownUICharacterButton : MonoBehaviour {
         occupied = false;
         characterInSlot = null;
         name.text = string.Empty;
-        portrait.sprite = null;
-        portrait.enabled = false;
+        if (uiManager.characterPortraitType == CharacterPortraitType.Static) {
+            portraitPrechosen.sprite = null;
+            portraitPrechosen.enabled = false;
+        }
+        else if (uiManager.characterPortraitType == CharacterPortraitType.Runtime) {
+            portraitRuntime.enabled = false;
+        }
         if (thisSlotInventory != null) {
             inventory = null;
             thisSlotInventory.SetActive(false);

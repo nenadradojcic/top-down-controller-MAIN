@@ -174,6 +174,9 @@ public class TopDownEquipmentManager : MonoBehaviour {
         }
 
         AddPointModifiers(item);
+        if (TopDownUIManager.instance.characterPortraitType == CharacterPortraitType.Runtime) {
+            GetComponent<TopDownCharacterCard>().UpdatePortrait();
+        }
     }
 
     public void UnequipItem(TopDownItemObject item) {
@@ -235,6 +238,10 @@ public class TopDownEquipmentManager : MonoBehaviour {
             if (TopDownUIInventory.instance.slots[i].itemInSlot == item) {
                 //TopDownUIInventory.instance.slots[i].GetComponent<Image>().color = TopDownUIInventory.instance.slots[i].normalSlotColor;
             }
+        }
+
+        if (TopDownUIManager.instance.characterPortraitType == CharacterPortraitType.Runtime) {
+            GetComponent<TopDownCharacterCard>().UpdatePortrait();
         }
     }
 
@@ -358,8 +365,7 @@ public class TopDownEquipmentManager : MonoBehaviour {
                             td_characterCard.health -= finalDamage;
                         }
                         else {
-                            print("Damage value is too low to deal any real damage.");
-
+                            //Debug.Log("Damage value is too low to deal any damage, so we are just going to deal 1 point damage.");
                             td_characterCard.health -= 1f;
                         }
                     }
@@ -383,7 +389,7 @@ public class TopDownEquipmentManager : MonoBehaviour {
 
     public void AttackFocusedTarget() {
         if(tcc_Interact != null) {
-            print("This is player character.");
+            //print("This is player character.");
             if (tcc_Interact.focusedTarget != null && td_characterCard.enemyFocus == null) {
                 DealDamage(tcc_Interact.focusedTarget.gameObject, damagePointsValue);
                 if (TopDownAudioManager.instance != null && TopDownAudioManager.instance.meleeHitAudio != null) {
@@ -442,7 +448,7 @@ public class TopDownEquipmentManager : MonoBehaviour {
         else {
             if(GetComponent<TopDownAI>()) {
 
-                print("This is AI character.");
+                //print("This is AI character.");
 
                 TopDownAI ai = GetComponent<TopDownAI>();
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CharacterPortraitType { Static = 0, Runtime = 1}
 public class TopDownUIManager : MonoBehaviour {
 
     public float uiSpeed = 1f;
@@ -27,6 +28,7 @@ public class TopDownUIManager : MonoBehaviour {
 
     public bool pausedGame = false;
 
+    public CharacterPortraitType characterPortraitType;
     public TopDownUICharacterButton[] characterPortraits;
 
     public TopDownCheckUI checkUi;
