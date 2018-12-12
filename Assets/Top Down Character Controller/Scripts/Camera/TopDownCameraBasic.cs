@@ -16,7 +16,7 @@ public class TopDownCameraBasic : MonoBehaviour {
     public Transform td_Target;
 
     public float distanceDefault = 8f;
-    public float distanceMin = 2f;
+    public float distanceMin = 4f;
     public float distanceMax = 10f;
 
     public float rotationSpeed = 60f;

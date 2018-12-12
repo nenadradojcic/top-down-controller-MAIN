@@ -83,17 +83,25 @@ public class TopDownUIDialogMain : MonoBehaviour {
             dialogInUse = dialog;
 
             if (dialogCameraPosition == DialogCameraPosition.OnNpc) {
-                cameraBasic.td_Target = dialog.transform;
+                if (cameraBasic.td_Target == dialog.transform) {
+                    cameraBasic.td_Target = dialog.transform;
+                    }
             }
             else if (dialogCameraPosition == DialogCameraPosition.Between) {
                 Vector3 pointInBetween = (TopDownCharacterManager.instance.activeCharacter.transform.position + dialog.transform.position) * 0.5f;
                 GameObject pointGo = new GameObject();
                 pointGo.name = "TempCameraBetweenPosition";
                 pointGo.transform.position = pointInBetween + -Vector3.up;
-                cameraBasic.td_Target = pointGo.transform;
+                if (cameraBasic.td_Target == pointGo.transform) {
+                    cameraBasic.td_Target = pointGo.transform;
+                }
             }
-            Quaternion targetRotation = Quaternion.LookRotation(TopDownCharacterManager.instance.activeCharacter.transform.position - dialog.transform.position);
-            dialog.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 600f);
+
+            Quaternion npcRotation = Quaternion.LookRotation(TopDownCharacterManager.instance.activeCharacter.transform.position - dialog.transform.position);
+            dialog.transform.rotation = Quaternion.Slerp(transform.rotation, npcRotation, Time.deltaTime * 600f);
+
+            Quaternion playerRotation = Quaternion.LookRotation(dialog.transform.position - TopDownCharacterManager.instance.activeCharacter.transform.position);
+            TopDownCharacterManager.instance.activeCharacter.transform.rotation = Quaternion.Slerp(TopDownCharacterManager.instance.activeCharacter.transform.rotation, playerRotation, Time.deltaTime * 600f);
 
             dialogChoices[0].dialogTxt.text = dialog.welcomeDialog;
 

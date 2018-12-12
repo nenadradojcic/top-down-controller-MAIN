@@ -51,15 +51,15 @@ public class TopDownUIDialog : TopDownInteractible {
 
     public int numberOfChoices = 0;
 
-    public void Reset() {
+    private void Reset() {
         interactDistance = 2f;
     }
 
-    public void Awake() {
+    private void Awake() {
 
         interactDistance = 2.5f;
 
-        if(choiceOne != string.Empty) {
+        if (choiceOne != string.Empty) {
             numberOfChoices = 1;
         }
         else {
@@ -83,6 +83,9 @@ public class TopDownUIDialog : TopDownInteractible {
         else {
             return;
         }
+    }
+
+    private void Start() {
 
         if(choiceOneType == DialogType.BranchDialog && choiceOneDialog != string.Empty) {
             branchOneDialog.welcomeDialog = choiceOneDialog;
@@ -97,6 +100,7 @@ public class TopDownUIDialog : TopDownInteractible {
             branchFourDialog.welcomeDialog = choiceFourDialog;
         }
     }
+
 
     public override void Interact() {
         base.Interact();

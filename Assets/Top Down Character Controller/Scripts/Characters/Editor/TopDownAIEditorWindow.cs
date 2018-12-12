@@ -67,7 +67,7 @@ public class TopDownAIEditorWindow : EditorWindow {
 
                 NavMeshAgent charAgent = charObject.AddComponent<NavMeshAgent>();
                 charAgent.speed = 1f;
-                charAgent.stoppingDistance = 1f;
+                charAgent.stoppingDistance = 1.5f;
                 charAgent.height = 1.5f;
 
                 TopDownAI ai = charObject.AddComponent<TopDownAI>();

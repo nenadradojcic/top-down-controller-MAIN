@@ -148,7 +148,6 @@ public class TopDownUIDialogChoice : MonoBehaviour {
 
         yield return new WaitForEndOfFrame();
 
-        print(dialogTmp);
         dialogTxt.text = dialogTmp;
         dialogMain.ShowDialog(branch);
     }
