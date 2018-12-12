@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum DialogCameraPosition {
-    OnPlayer = 0,
-    OnNpc = 1,
-    Between = 2,
+    None = 0,
+    OnPlayer = 1,
+    OnNpc = 2,
+    Between = 3,
 }
 
 public class TopDownUIDialogMain : MonoBehaviour {
@@ -105,6 +106,7 @@ public class TopDownUIDialogMain : MonoBehaviour {
                         dialogChoices[i - 1].dialog = dialog.choiceOneDialog;
                         dialogChoices[i - 1].type = dialog.choiceOneType;
                         dialogChoices[i - 1].remove = dialog.removeOnChoiceOne;
+                        dialogChoices[i - 1].branch = dialog.branchOneDialog;
                         dialogChoices[i - 1].response = dialog.typeOneResponse;
                         dialogChoices[i - 1].events = dialog.choiceOneEvent;
                         dialogChoices[i - 1].index = i;
@@ -116,6 +118,7 @@ public class TopDownUIDialogMain : MonoBehaviour {
                         dialogChoices[i - 1].dialog = dialog.choiceTwoDialog;
                         dialogChoices[i - 1].type = dialog.choiceTwoType;
                         dialogChoices[i - 1].remove = dialog.removeOnChoiceTwo;
+                        dialogChoices[i - 1].branch = dialog.branchTwoDialog;
                         dialogChoices[i - 1].response = dialog.typeTwoResponse;
                         dialogChoices[i - 1].events = dialog.choiceTwoEvent;
                         dialogChoices[i - 1].index = 2;
@@ -127,6 +130,7 @@ public class TopDownUIDialogMain : MonoBehaviour {
                         dialogChoices[i - 1].dialog = dialog.choiceThreeDialog;
                         dialogChoices[i - 1].type = dialog.choiceThreeType;
                         dialogChoices[i - 1].remove = dialog.removeOnChoiceThree;
+                        dialogChoices[i - 1].branch = dialog.branchThreeDialog;
                         dialogChoices[i - 1].response = dialog.typeThreeResponse;
                         dialogChoices[i - 1].events = dialog.choiceThreeEvent;
                         dialogChoices[i - 1].index = 3;
@@ -138,6 +142,7 @@ public class TopDownUIDialogMain : MonoBehaviour {
                         dialogChoices[i - 1].dialog = dialog.choiceFourDialog;
                         dialogChoices[i - 1].type = dialog.choiceFourType;
                         dialogChoices[i - 1].remove = dialog.removeOnChoiceFour;
+                        dialogChoices[i - 1].branch = dialog.branchFourDialog;
                         dialogChoices[i - 1].response = dialog.typeFourResponse;
                         dialogChoices[i - 1].events = dialog.choiceFourEvent;
                         dialogChoices[i - 1].index = 4;
@@ -185,6 +190,7 @@ public class TopDownUIDialogMain : MonoBehaviour {
                     dialog.choiceFourDialog = dialog.choiceThreeDialog;
                     dialog.choiceFourType = dialog.choiceThreeType;
                     dialog.removeOnChoiceFour = dialog.removeOnChoiceThree;
+                    dialog.branchFourDialog = dialog.branchThreeDialog;
                     dialog.typeFourResponse = dialog.typeThreeResponse;
                     dialog.choiceFourEvent = dialog.choiceThreeEvent;
                 }
@@ -193,6 +199,7 @@ public class TopDownUIDialogMain : MonoBehaviour {
                     dialog.choiceThreeDialog = dialog.choiceTwoDialog;
                     dialog.choiceThreeType = dialog.choiceTwoType;
                     dialog.removeOnChoiceThree = dialog.removeOnChoiceTwo;
+                    dialog.branchThreeDialog = dialog.branchTwoDialog;
                     dialog.typeThreeResponse = dialog.typeTwoResponse;
                     dialog.choiceThreeEvent = dialog.choiceTwoEvent;
                 }
@@ -201,6 +208,7 @@ public class TopDownUIDialogMain : MonoBehaviour {
                     dialog.choiceTwoDialog = dialog.choiceOneDialog;
                     dialog.choiceTwoType = dialog.choiceOneType;
                     dialog.removeOnChoiceTwo = dialog.removeOnChoiceOne;
+                    dialog.branchTwoDialog = dialog.branchOneDialog;
                     dialog.typeTwoResponse = dialog.typeOneResponse;
                     dialog.choiceTwoEvent = dialog.choiceOneEvent;
                 }
@@ -209,6 +217,7 @@ public class TopDownUIDialogMain : MonoBehaviour {
                     dialog.choiceOneDialog = dialogText;
                     dialog.choiceOneType = DialogType.None;
                     dialog.removeOnChoiceOne = true;
+                    dialog.branchOneDialog = null;
                     dialog.typeOneResponse = string.Empty;
                     dialog.choiceOneEvent = null;
                     if(quest == null) {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using XInputDotNetPure;
 using UnityEngine;
+using UnityEditor;
 
 public enum InputType {
     KeyboardAndMouse = 0,
@@ -9,7 +10,7 @@ public enum InputType {
     Mobile = 3,
 }
 
-[AddComponentMenu("TDCC/Input/Input Manager")]
+[AddComponentMenu("Top Down RPG/Input/Input Manager")]
 public class TopDownInputManager : MonoBehaviour {
 
     #region Variables
@@ -111,15 +112,6 @@ public class TopDownInputManager : MonoBehaviour {
         if (inputType == InputType.KeyboardAndMouse) {
             horizontalAxis = Input.GetAxisRaw(horizontalAxisName);
             verticalAxis = Input.GetAxisRaw(verticalAxisName);
-
-            if(Input.GetKey(interactKey) && Input.GetKey(rotateCamera)) {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-            else {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
         }
         else if (inputType == InputType.Xbox360Gamepad) {
             /*horizontalAxis = state.ThumbSticks.Left.X;

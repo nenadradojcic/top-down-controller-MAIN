@@ -154,35 +154,40 @@ public class TopDownUIItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEn
                 if (inventory.holdingItem != null) {
                     if (GetComponent<TopDownUIItemSlot>().slotType == SlotType.Equipment) {
                         if (GetComponent<TopDownUIEquipmentSlot>().equipmentType == inventory.holdingItem.itemType) {
+                            if (GetComponent<TopDownUIEquipmentSlot>().itemInSlot != inventory.holdingItem) {
+                                TopDownItemObject tmpItem = inventory.currentEquipmentManager.currentEquipment[(int)inventory.holdingItem.itemType];
 
-                            TopDownItemObject tmpItem = inventory.currentEquipmentManager.currentEquipment[(int)inventory.holdingItem.itemType];
+                                if (inventory.previousSlot.slottedInQuick != null) {
+                                    slottedInQuick = inventory.previousSlot.slottedInQuick;
+                                    inventory.previousSlot.slottedInQuick = null;
+                                }
+                                ClearSlot(inventory.previousSlot);
+                                inventory.previousSlot = null;
+                                if (itemInSlot != null) {
+                                    inventory.currentEquipmentManager.UnequipItem(itemInSlot);
+                                }
+                                AddItemToSlot(inventory.holdingItem);
+                                UseSlottedItem();
+                                //print(inventory.currentEquipmentManager.gameObject.name);
 
-                            if (inventory.previousSlot.slottedInQuick != null) {
-                                slottedInQuick = inventory.previousSlot.slottedInQuick;
-                                inventory.previousSlot.slottedInQuick = null;
-                            }
-                            ClearSlot(inventory.previousSlot);
-                            inventory.previousSlot = null;
-                            if (itemInSlot != null) {
-                                inventory.currentEquipmentManager.UnequipItem(itemInSlot);
-                            }
-                            AddItemToSlot(inventory.holdingItem);
-                            UseSlottedItem();
-                            //print(inventory.currentEquipmentManager.gameObject.name);
-
-                            if (tmpItem != null) {
-                                inventory.holdingItem = tmpItem;
-                                inventory.holdingItemSlot.GetComponent<TopDownUIHoldingItemSlot>().itemIconImage.sprite = inventory.holdingItem.itemIcon;
+                                if (tmpItem != null) {
+                                    inventory.holdingItem = tmpItem;
+                                    inventory.holdingItemSlot.GetComponent<TopDownUIHoldingItemSlot>().itemIconImage.sprite = inventory.holdingItem.itemIcon;
+                                }
+                                else {
+                                    inventory.holdingItem = null;
+                                    inventory.holdingItemSlot.GetComponent<TopDownUIHoldingItemSlot>().itemIconImage.sprite = null;
+                                    inventory.holdingItemSlot.GetComponent<CanvasGroup>().alpha = 0f;
+                                }
                             }
                             else {
                                 inventory.holdingItem = null;
                                 inventory.holdingItemSlot.GetComponent<TopDownUIHoldingItemSlot>().itemIconImage.sprite = null;
                                 inventory.holdingItemSlot.GetComponent<CanvasGroup>().alpha = 0f;
                             }
-
                         }
                         else {
-                            print("This is NOT the same equipment type");
+                            //Debug.Log("This is NOT the same equipment type");
                         }
                     }
                     else if (GetComponent<TopDownUIItemSlot>().slotType == SlotType.Inventory) {

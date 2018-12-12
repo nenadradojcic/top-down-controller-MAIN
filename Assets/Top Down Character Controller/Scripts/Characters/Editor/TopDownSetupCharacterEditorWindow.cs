@@ -59,7 +59,7 @@ public class TopDownSetupCharacterEditorWindow : EditorWindow {
                 charObject.name = "Top Down Character Controller";
 
                 charObject.tag = "Player";
-                charObject.layer = 8;
+                charObject.layer = 2;
 
                 if (charObject.GetComponent<Animator>() == null) {
                     Animator charAnimator = charObject.AddComponent<Animator>();
@@ -153,6 +153,7 @@ public class TopDownSetupCharacterEditorWindow : EditorWindow {
                 cam.nearClipPlane = 0.15f;
                 cam.farClipPlane = 0.9f;
                 cam.depth = 10;
+                cam.targetTexture = Resources.Load("TD_CharacterPortrait") as RenderTexture;
 
                 GameObject goLightTmp = new GameObject();
                 goLightTmp.transform.SetParent(cam.transform);
@@ -203,18 +204,6 @@ public class TopDownSetupCharacterEditorWindow : EditorWindow {
 
                         charObject.GetComponent<TopDownCharacterCard>().inventoryCamera = inventoryCamera;
                         //Debug.LogFormat("Setting up <b><color=yellow>Inventory Camera</color></b> as a child of <b><color=blue>" + charObject.gameObject.name + "</color></b> player character.");
-                    }
-
-                    if (charObject.gameObject.layer == 8) {
-                        TopDownControllerInteract[] allCharacters = GameObject.FindObjectsOfType<TopDownControllerInteract>();
-
-                        for (int i = 0; i < allCharacters.Length; i++) {
-                            if (charObject.gameObject.layer == allCharacters[i].gameObject.layer) {
-                                if (charObject.name != allCharacters[i].name) {
-                                    //Debug.LogFormat("You need to change layer of <b><color=yellow>" + charObject.gameObject.name + "</color></b> because <b><color=blue>" + allCharacters[i].name + "</color></b> is already set to that layer. If you do not change it <b><color=red>charObject.inventoryCamera</color></b> will render both characters.");
-                                }
-                            }
-                        }
                     }
                 }
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class TopDownUIDialogChoice : MonoBehaviour {
     public string dialog;
     public DialogType type;
     public bool remove;
+    public TopDownUIDialog branch;
     public string response;
     public UnityEvent events;
 
@@ -35,7 +37,7 @@ public class TopDownUIDialogChoice : MonoBehaviour {
         }
 
         if (type == DialogType.BranchDialog) {
-            //Here we close current dialog and open one from branch
+            StartCoroutine(SetupBranchingDialog());
         }
         else {
             if(remove == true) {
@@ -51,6 +53,7 @@ public class TopDownUIDialogChoice : MonoBehaviour {
                                 choice[i].dialog = choice[i + 1].dialog;
                                 choice[i].type = choice[i + 1].type;
                                 choice[i].remove = choice[i + 1].remove;
+                                choice[i].branch = choice[i + 1].branch;
                                 choice[i].response = choice[i + 1].response;
                                 choice[i].events = choice[i + 1].events;
 
@@ -60,6 +63,7 @@ public class TopDownUIDialogChoice : MonoBehaviour {
                                 choice[i + 1].dialog = string.Empty;
                                 choice[i + 1].type = DialogType.None;
                                 choice[i + 1].remove = false;
+                                choice[i + 1].branch = null;
                                 choice[i + 1].response = string.Empty;
                                 choice[i + 1].events = null;
 
@@ -68,6 +72,7 @@ public class TopDownUIDialogChoice : MonoBehaviour {
                                     dialogMain.dialogInUse.choiceOneDialog = choice[i].dialog;
                                     dialogMain.dialogInUse.choiceOneType = choice[i].type;
                                     dialogMain.dialogInUse.removeOnChoiceOne = choice[i].remove;
+                                    dialogMain.dialogInUse.branchOneDialog = choice[i].branch;
                                     dialogMain.dialogInUse.typeOneResponse = choice[i].response;
                                     dialogMain.dialogInUse.choiceOneEvent = choice[i].events;
                                 }
@@ -76,6 +81,7 @@ public class TopDownUIDialogChoice : MonoBehaviour {
                                     dialogMain.dialogInUse.choiceTwoDialog = choice[i].dialog;
                                     dialogMain.dialogInUse.choiceTwoType = choice[i].type;
                                     dialogMain.dialogInUse.removeOnChoiceTwo = choice[i].remove;
+                                    dialogMain.dialogInUse.branchTwoDialog = choice[i].branch;
                                     dialogMain.dialogInUse.typeTwoResponse = choice[i].response;
                                     dialogMain.dialogInUse.choiceTwoEvent = choice[i].events;
 
@@ -83,6 +89,7 @@ public class TopDownUIDialogChoice : MonoBehaviour {
                                     dialogMain.dialogInUse.choiceThreeDialog = string.Empty;
                                     dialogMain.dialogInUse.choiceThreeType = DialogType.None;
                                     dialogMain.dialogInUse.removeOnChoiceThree = false;
+                                    dialogMain.dialogInUse.branchThreeDialog = choice[i].branch;
                                     dialogMain.dialogInUse.typeThreeResponse = string.Empty;
                                     dialogMain.dialogInUse.choiceThreeEvent = null;
                                 }
@@ -91,6 +98,7 @@ public class TopDownUIDialogChoice : MonoBehaviour {
                                     dialogMain.dialogInUse.choiceThreeDialog = choice[i].dialog;
                                     dialogMain.dialogInUse.choiceThreeType = choice[i].type;
                                     dialogMain.dialogInUse.removeOnChoiceThree = choice[i].remove;
+                                    dialogMain.dialogInUse.branchThreeDialog = choice[i].branch;
                                     dialogMain.dialogInUse.typeThreeResponse = choice[i].response;
                                     dialogMain.dialogInUse.choiceThreeEvent = choice[i].events;
 
@@ -98,6 +106,7 @@ public class TopDownUIDialogChoice : MonoBehaviour {
                                     dialogMain.dialogInUse.choiceFourDialog = string.Empty;
                                     dialogMain.dialogInUse.choiceFourType = DialogType.None;
                                     dialogMain.dialogInUse.removeOnChoiceFour = false;
+                                    dialogMain.dialogInUse.branchFourDialog = choice[i].branch;
                                     dialogMain.dialogInUse.typeFourResponse = string.Empty;
                                     dialogMain.dialogInUse.choiceFourEvent = null;
                                 }
@@ -106,6 +115,7 @@ public class TopDownUIDialogChoice : MonoBehaviour {
                                     dialogMain.dialogInUse.choiceFourDialog = choice[i].dialog;
                                     dialogMain.dialogInUse.choiceFourType = choice[i].type;
                                     dialogMain.dialogInUse.removeOnChoiceFour = choice[i].remove;
+                                    dialogMain.dialogInUse.branchFourDialog = choice[i].branch;
                                     dialogMain.dialogInUse.typeFourResponse = choice[i].response;
                                     dialogMain.dialogInUse.choiceFourEvent = choice[i].events;
                                 }
@@ -118,12 +128,28 @@ public class TopDownUIDialogChoice : MonoBehaviour {
     }
 
     public void CloseTheDialog() {
-        TopDownUIDialogMain.instance.ClearDialog();
+        dialogMain.ClearDialog();
 
         TopDownUIManager.instance.SetUIState(TopDownUIManager.instance.dialog);
         TopDownUIManager.instance.SetUIState(TopDownUIManager.instance.uiHolder);
 
         TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownControllerInteract>().tempDisable = false;
 
+    }
+
+    IEnumerator SetupBranchingDialog() {
+
+        string dialogTmp = dialog;
+
+        if (branch.cameraPosition == DialogCameraPosition.None) {
+            branch.cameraPosition = dialogMain.dialogInUse.cameraPosition;
+        }
+        dialogMain.ClearDialog();
+
+        yield return new WaitForEndOfFrame();
+
+        print(dialogTmp);
+        dialogTxt.text = dialogTmp;
+        dialogMain.ShowDialog(branch);
     }
 }

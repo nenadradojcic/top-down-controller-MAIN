@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[AddComponentMenu("Top Down RPG/Controller/Third Person Interact")]
 public class TopDownControllerInteract : MonoBehaviour {
 
     public bool tempDisable = false;

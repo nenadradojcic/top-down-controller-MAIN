@@ -312,7 +312,7 @@ public class TopDownCharacterCard : MonoBehaviour {
     }
 
     public void OnMouseOver() {
-        if (uiManager != null) {
+        if (uiManager != null && uiManager.checkUi.IsPointerOverUIObject() == false) {
             mouseOver = true;
             if (gameObject.tag == "Enemy") {
                 npcBar.nameText.text = aiName;
@@ -362,6 +362,18 @@ public class TopDownCharacterCard : MonoBehaviour {
             }
             //Debug.LogFormat("<b>" + gameObject.name + "</b> called OnMouseOver in <i>TopDownCharacterCard.cs</i>.");
         }
+        else {
+            mouseOver = false;
+            npcBar.nameText.text = string.Empty;
+            npcBar.healthBar.enabled = false;
+            npcBar.healthBar.fillAmount = 0f;
+            npcBar.energyBar.enabled = false;
+            npcBar.energyBar.fillAmount = 0f;
+            npcBar.portraitImage.enabled = false;
+            npcBar.portraitImage.sprite = null;
+
+            npcBar.transform.position = new Vector2(-100f, 0f);
+        }
     }
 
     public void OnMouseExit() {
@@ -382,7 +394,14 @@ public class TopDownCharacterCard : MonoBehaviour {
     }
 
     public void UpdatePortrait() {
-        StartCoroutine(UpdatePortraitTimer());
+        if (portraitCamera != null) {
+            StartCoroutine(UpdatePortraitTimer());
+        }
+        else {
+            if(uiManager.characterPortraitType == CharacterPortraitType.Runtime) {
+                Debug.Log("You need to setup portrait camera for '" + gameObject.name + "' or to change portrait type in Ui Manager.");
+            }
+        }
     }
 
     private IEnumerator UpdatePortraitTimer() {

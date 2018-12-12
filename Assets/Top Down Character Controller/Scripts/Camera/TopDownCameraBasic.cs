@@ -7,6 +7,7 @@ public enum CameraType {
     FreeCamera = 1,
 }
 
+[AddComponentMenu("Top Down RPG/Camera/Camera Basic")]
 public class TopDownCameraBasic : MonoBehaviour {
 
     #region Variables
@@ -81,9 +82,23 @@ public class TopDownCameraBasic : MonoBehaviour {
 
             cameraZoomAxis = Input.GetAxis(td_InputManager.mouseScrollwheelName);
 
-            if (Input.GetKey(td_InputManager.rotateCamera)) {
-                if (TopDownUIManager.instance.checkUi != null) {
-                    if (TopDownUIManager.instance.checkUi.IsPointerOverUIObject() == false) {
+            if (TopDownUIManager.instance.checkUi != null) {
+                if (TopDownUIManager.instance.checkUi.IsPointerOverUIObject() == false) {
+
+                    if (Input.GetKey(td_InputManager.interactKey) && Input.GetKey(td_InputManager.rotateCamera)) {
+                        Cursor.lockState = CursorLockMode.Locked;
+                        Cursor.visible = false;
+                    }
+                    else if (!Input.GetKey(td_InputManager.interactKey) && Input.GetKey(td_InputManager.rotateCamera)) {
+                        Cursor.lockState = CursorLockMode.Confined;
+                        Cursor.visible = false;
+                    }
+                    else {
+                        Cursor.lockState = CursorLockMode.None;
+                        Cursor.visible = true;
+                    }
+
+                    if (Input.GetKey(td_InputManager.rotateCamera)) {
                         cameraAxisX = Input.GetAxis(td_InputManager.mouseYName);
                         cameraAxisY = Input.GetAxis(td_InputManager.mouseXName);
                     }
@@ -93,13 +108,13 @@ public class TopDownCameraBasic : MonoBehaviour {
                     }
                 }
                 else {
-                    cameraAxisX = Input.GetAxis(td_InputManager.mouseYName);
-                    cameraAxisY = Input.GetAxis(td_InputManager.mouseXName);
+                    cameraAxisX = Mathf.Lerp(cameraAxisX, 0f, 0.1f);
+                    cameraAxisY = Mathf.Lerp(cameraAxisY, 0f, 0.1f);
                 }
             }
             else {
-                cameraAxisX = Mathf.Lerp(cameraAxisX, 0f, 0.1f);
-                cameraAxisY = Mathf.Lerp(cameraAxisY, 0f, 0.1f);
+                cameraAxisX = Input.GetAxis(td_InputManager.mouseYName);
+                cameraAxisY = Input.GetAxis(td_InputManager.mouseXName);
             }
 
             if (Input.GetKeyDown(td_InputManager.changeCamera)) {

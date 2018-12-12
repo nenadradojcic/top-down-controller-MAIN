@@ -12,7 +12,7 @@ public enum DialogType {
 }
 
 public class TopDownUIDialog : TopDownInteractible {
-
+    
     public DialogCameraPosition cameraPosition;
 
     public string welcomeDialog;
@@ -21,6 +21,7 @@ public class TopDownUIDialog : TopDownInteractible {
     public string choiceOneDialog;
     public DialogType choiceOneType;
     public bool removeOnChoiceOne;
+    public TopDownUIDialog branchOneDialog;
     public string typeOneResponse;
     public UnityEvent choiceOneEvent;
 
@@ -28,6 +29,7 @@ public class TopDownUIDialog : TopDownInteractible {
     public string choiceTwoDialog;
     public DialogType choiceTwoType;
     public bool removeOnChoiceTwo;
+    public TopDownUIDialog branchTwoDialog;
     public string typeTwoResponse;
     public UnityEvent choiceTwoEvent;
 
@@ -35,6 +37,7 @@ public class TopDownUIDialog : TopDownInteractible {
     public string choiceThreeDialog;
     public DialogType choiceThreeType;
     public bool removeOnChoiceThree;
+    public TopDownUIDialog branchThreeDialog;
     public string typeThreeResponse;
     public UnityEvent choiceThreeEvent;
 
@@ -42,10 +45,15 @@ public class TopDownUIDialog : TopDownInteractible {
     public string choiceFourDialog;
     public DialogType choiceFourType;
     public bool removeOnChoiceFour;
+    public TopDownUIDialog branchFourDialog;
     public string typeFourResponse;
     public UnityEvent choiceFourEvent;
 
     public int numberOfChoices = 0;
+
+    public void Reset() {
+        interactDistance = 2f;
+    }
 
     public void Awake() {
 
@@ -74,6 +82,19 @@ public class TopDownUIDialog : TopDownInteractible {
         }
         else {
             return;
+        }
+
+        if(choiceOneType == DialogType.BranchDialog && choiceOneDialog != string.Empty) {
+            branchOneDialog.welcomeDialog = choiceOneDialog;
+        }
+        if (choiceTwoType == DialogType.BranchDialog && choiceTwoDialog != string.Empty) {
+            branchTwoDialog.welcomeDialog = choiceTwoDialog;
+        }
+        if (choiceThreeType == DialogType.BranchDialog && choiceThreeDialog != string.Empty) {
+            branchThreeDialog.welcomeDialog = choiceThreeDialog;
+        }
+        if (choiceFourType == DialogType.BranchDialog && choiceFourDialog != string.Empty) {
+            branchFourDialog.welcomeDialog = choiceFourDialog;
         }
     }
 

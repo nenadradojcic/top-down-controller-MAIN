@@ -204,7 +204,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 44500036}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_pink2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 49116657}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_knee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 51950997}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Joint_3_2_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 60657481}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_thumb3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 63367925}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,7 +388,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 66289189}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_thumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -613,7 +613,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 114183198}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -632,7 +632,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 992733983}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &114891412
 GameObject:
@@ -643,7 +643,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 114891413}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_point1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1195,7 +1195,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 204716208}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_point3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1339,7 +1339,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 231957284}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: chestcontrol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1452,7 +1452,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 272185041}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_point2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1545,7 +1545,7 @@ GameObject:
   m_Component:
   - component: {fileID: 307392888}
   - component: {fileID: 307392889}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MoveVegetation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1618,7 +1618,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 311576986}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1681,7 +1681,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 325667098}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_thumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1740,7 +1740,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 333825974}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_elbow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1771,7 +1771,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 337858618}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1885,6 +1885,74 @@ Transform:
   m_Father: {fileID: 1646751503}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &387964881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1589528499043816, guid: 36cfcb3ef0201bd4f9bfbff37facd5c6,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 387964883}
+  - component: {fileID: 387964882}
+  m_Layer: 2
+  m_Name: Point light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &387964882
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 108446894178661642, guid: 36cfcb3ef0201bd4f9bfbff37facd5c6,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 387964881}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 1, g: 0.9534483, b: 0.8014706, a: 1}
+  m_Intensity: 0.5
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 0
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &387964883
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4871349484115908, guid: 36cfcb3ef0201bd4f9bfbff37facd5c6,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 387964881}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.019, y: 0.032, z: -0.181}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1288300649}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &395130354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1951,7 +2019,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 397192751}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_thumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2227,7 +2295,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 458682772}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_wrist_Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2257,7 +2325,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 459621831}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_wrist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2411,7 +2479,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 485785405}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_leg_Pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2472,7 +2540,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 487230717}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: headcontrol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2592,7 +2660,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 514758675}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_arm_Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2819,7 +2887,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 533169106}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_wrist_Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2849,7 +2917,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 533450925}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WEAPON_HOLSTER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2968,7 +3036,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 556122468}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: spinecontrol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3338,7 +3406,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 578191388}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_ring1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3492,7 +3560,7 @@ GameObject:
   m_Component:
   - component: {fileID: 612629563}
   - component: {fileID: 612629564}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ItemLeggsChainmail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3732,6 +3800,12 @@ MonoBehaviour:
   tcc_Interact: {fileID: 0}
   td_characterCard: {fileID: 0}
   characterEquipmentType: 0
+  bodyTransform: {fileID: 0}
+  headTransform: {fileID: 0}
+  neckTransform: {fileID: 0}
+  handsTransform: {fileID: 0}
+  leggsTransform: {fileID: 0}
+  helmTransform: {fileID: 0}
   defaultBodyMesh: {fileID: 0}
   defaultHandsMesh: {fileID: 0}
   defaultLeggsMesh: {fileID: 0}
@@ -3753,6 +3827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6925dfed6b24e92479476cc838007712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hostile: 0
   name: Goblin Grunt
   voiceSet: {fileID: 11400000, guid: 4a98aa30ea986854599cfad7533b14fc, type: 2}
   detected: 0
@@ -3812,11 +3887,16 @@ MonoBehaviour:
   interact: {fileID: 0}
   equipmentManager: {fileID: 0}
   characterManager: {fileID: 0}
+  uiManager: {fileID: 0}
   npcBar: {fileID: 0}
   mouseOver: 0
   mainCamera: {fileID: 0}
   placeBarOverHead: 0
   nameBarPosition: {fileID: 0}
+  portraitCamera: {fileID: 0}
+  portraitLight: {fileID: 0}
+  currentPortrait: {fileID: 0}
+  portraitImage: {fileID: 0}
 --- !u!1 &619792668
 GameObject:
   m_ObjectHideFlags: 0
@@ -3855,7 +3935,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 635009586}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_shoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3920,7 +4000,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 647443541}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_ring3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3951,7 +4031,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 667672813}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Joint_3_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3981,7 +4061,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 667717835}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_thumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4091,7 +4171,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1538819131911512, guid: 6f68f042f1965d34b8538b987292aaff, type: 2}
       propertyPath: m_Layer
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f68f042f1965d34b8538b987292aaff, type: 2}
@@ -4230,7 +4310,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 734349376}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_middle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4261,7 +4341,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 753251427}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Joint_3_5_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4569,7 +4649,7 @@ Prefab:
         type: 2}
       propertyPath: finishQuestEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1014666526}
+      objectReference: {fileID: 0}
     - target: {fileID: 114473685964178774, guid: fc67d72010b01b240833259579592de2,
         type: 2}
       propertyPath: finishQuestEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -4601,7 +4681,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 799691783}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WEAPON_MOUNTPOINT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4631,7 +4711,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 806756097}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4662,7 +4742,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 813445597}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_middle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4693,7 +4773,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 816023850}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_point2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4845,7 +4925,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 869204031}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_point3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5018,6 +5098,35 @@ Transform:
   m_Father: {fileID: 408934373}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &890840948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 890840949}
+  m_Layer: 0
+  m_Name: '[DialogBranches]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &890840949
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 890840948}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1373237371}
+  m_Father: {fileID: 1462408304}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &905004330
 GameObject:
   m_ObjectHideFlags: 0
@@ -5027,7 +5136,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 905004331}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_anke_Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5057,7 +5166,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 910384747}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Joint_3_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5176,7 +5285,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 917376793}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5263,7 +5372,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 939126110}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_middle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5294,7 +5403,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 939543580}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_anke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5325,7 +5434,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 942416973}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: neckcontrol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5355,7 +5464,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 964386282}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_anke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6981,7 +7090,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 992733983}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6999,6 +7108,7 @@ Transform:
   m_LocalPosition: {x: 0.0000006149378, y: 0.000040478935, z: -0.09684229}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1288300649}
   - {fileID: 114183198}
   m_Father: {fileID: 806756097}
   m_RootOrder: 0
@@ -7130,7 +7240,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1013357450}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_point1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7152,12 +7262,6 @@ Transform:
   m_Father: {fileID: 1111944433}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1014666526 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114473685964178774, guid: fc67d72010b01b240833259579592de2,
-    type: 2}
-  m_PrefabInternal: {fileID: 797976126}
-  m_Script: {fileID: 11500000, guid: 18aa95e15193df04aa9e3eb3e1b2bc47, type: 3}
 --- !u!1 &1021711849
 GameObject:
   m_ObjectHideFlags: 0
@@ -7167,7 +7271,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1021711850}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_ring1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7198,7 +7302,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1023152270}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7257,7 +7361,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1033989828}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Joint_3_2_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7363,7 +7467,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1048593010}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_arm_Pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7575,7 +7679,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1111944433}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_wrist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7769,7 +7873,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1158825502}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7916,7 +8020,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1220795539}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_ring3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8003,7 +8107,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1236110300}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_arm_Pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8061,7 +8165,7 @@ Terrain:
   serializedVersion: 3
   m_TerrainData: {fileID: 15600000, guid: 80ef1eda722afa94d9fbfe106c87901f, type: 2}
   m_TreeDistance: 2000
-  m_TreeBillboardDistance: 50
+  m_TreeBillboardDistance: 150
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 80
@@ -8104,7 +8208,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1242958199}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Joint_3_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8351,6 +8455,72 @@ Transform:
   m_Father: {fileID: 301601106}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1288300648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1288300649}
+  - component: {fileID: 1288300650}
+  m_Layer: 2
+  m_Name: ProfileRuntime
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1288300649
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1288300648}
+  m_LocalRotation: {x: -0.5993043, y: 0.020889523, z: -0.10482366, w: 0.7933536}
+  m_LocalPosition: {x: -0.039, y: -0.267, z: -0.115}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 387964883}
+  m_Father: {fileID: 992733983}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -71.181, y: 29.488, z: -36.386}
+--- !u!20 &1288300650
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1288300648}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.15
+  far clip plane: 0.4
+  field of view: 90
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 10
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 8400000, guid: f33bd4ee0ca2b9b4db8b4a39fa6ec7d9, type: 2}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 0
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &1290052409
 GameObject:
   m_ObjectHideFlags: 0
@@ -8360,7 +8530,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1290052410}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_pink1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8633,7 +8803,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1342082796}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SHIELD_MOUNTPOINT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8663,7 +8833,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1347481831}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8694,7 +8864,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1356433905}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_ring2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8826,27 +8996,27 @@ Prefab:
     - target: {fileID: 224253142558063032, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 45.328465
+      value: 48.558556
       objectReference: {fileID: 0}
     - target: {fileID: 224253142558063032, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -5.4394155
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224253142558063032, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 90.65693
+      value: 97.11711
       objectReference: {fileID: 0}
     - target: {fileID: 224253142558063032, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 10.878831
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224645252852507300, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 10.878831
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224446003954368504, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
@@ -9151,7 +9321,7 @@ Prefab:
     - target: {fileID: 224426300164129556, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: -187.91241
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224890055748159340, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
@@ -9161,7 +9331,7 @@ Prefab:
     - target: {fileID: 224775168138983618, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 36.26277
+      value: 57.857002
       objectReference: {fileID: 0}
     - target: {fileID: 224604607118595632, guid: c8bac2ae766033e4f9429c65b7c9c43f,
         type: 2}
@@ -11113,9 +11283,125 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: -4.5
       objectReference: {fileID: 0}
+    - target: {fileID: 224667524603846158, guid: c8bac2ae766033e4f9429c65b7c9c43f,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 224667524603846158, guid: c8bac2ae766033e4f9429c65b7c9c43f,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224667524603846158, guid: c8bac2ae766033e4f9429c65b7c9c43f,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114780119772301284, guid: c8bac2ae766033e4f9429c65b7c9c43f,
+        type: 2}
+      propertyPath: characterPortraitType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224083466103426208, guid: c8bac2ae766033e4f9429c65b7c9c43f,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 91.9513
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c8bac2ae766033e4f9429c65b7c9c43f, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1373237369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1373237371}
+  - component: {fileID: 1373237370}
+  m_Layer: 0
+  m_Name: Branch1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1373237370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1373237369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c0a5bc16e88b74c9a0a1822dd33177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 2
+  playerTransform: {fileID: 0}
+  isFocus: 0
+  hasInteracted: 0
+  cameraPosition: 0
+  welcomeDialog: 
+  choiceOne: Branch choice one
+  choiceOneDialog: You set ti right.
+  choiceOneType: 0
+  removeOnChoiceOne: 0
+  branchOneDialog: {fileID: 0}
+  typeOneResponse: 
+  choiceOneEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  choiceTwo: '[Return to previous branch]'
+  choiceTwoDialog: 
+  choiceTwoType: 0
+  removeOnChoiceTwo: 0
+  branchTwoDialog: {fileID: 1462408306}
+  typeTwoResponse: 
+  choiceTwoEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  choiceThree: 
+  choiceThreeDialog: 
+  choiceThreeType: 0
+  removeOnChoiceThree: 0
+  branchThreeDialog: {fileID: 0}
+  typeThreeResponse: 
+  choiceThreeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  choiceFour: 
+  choiceFourDialog: 
+  choiceFourType: 0
+  removeOnChoiceFour: 0
+  branchFourDialog: {fileID: 0}
+  typeFourResponse: 
+  choiceFourEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  numberOfChoices: 0
+--- !u!4 &1373237371
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1373237369}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 890840949}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1374471561
 GameObject:
   m_ObjectHideFlags: 0
@@ -11155,7 +11441,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1380978836}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_pink1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11243,7 +11529,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1417950140}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_arm_Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11277,7 +11563,7 @@ GameObject:
   - component: {fileID: 1421044946}
   - component: {fileID: 1421044948}
   - component: {fileID: 1421044947}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: daggercase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11533,6 +11819,12 @@ MonoBehaviour:
   tcc_Interact: {fileID: 0}
   td_characterCard: {fileID: 0}
   characterEquipmentType: 0
+  bodyTransform: {fileID: 0}
+  headTransform: {fileID: 0}
+  neckTransform: {fileID: 0}
+  handsTransform: {fileID: 0}
+  leggsTransform: {fileID: 0}
+  helmTransform: {fileID: 0}
   defaultBodyMesh: {fileID: 0}
   defaultHandsMesh: {fileID: 0}
   defaultLeggsMesh: {fileID: 0}
@@ -11701,6 +11993,7 @@ Transform:
   - {fileID: 1907398344}
   - {fileID: 770400759}
   - {fileID: 883677083}
+  - {fileID: 890840949}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 90.706, z: 0}
@@ -11749,11 +12042,16 @@ MonoBehaviour:
   interact: {fileID: 0}
   equipmentManager: {fileID: 0}
   characterManager: {fileID: 0}
+  uiManager: {fileID: 0}
   npcBar: {fileID: 0}
   mouseOver: 0
   mainCamera: {fileID: 0}
   placeBarOverHead: 0
   nameBarPosition: {fileID: 0}
+  portraitCamera: {fileID: 0}
+  portraitLight: {fileID: 0}
+  currentPortrait: {fileID: 0}
+  portraitImage: {fileID: 0}
 --- !u!114 &1462408306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11765,72 +12063,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9c0a5bc16e88b74c9a0a1822dd33177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 2.5
+  interactDistance: 2
   playerTransform: {fileID: 0}
   isFocus: 0
   hasInteracted: 0
-  cameraPosition: 1
-  welcomeDialog: It is not advised to traverse these lands alone. Be on your guard,
-    goblins are skulking around.
-  choiceOne: Goblins?
-  choiceOneDialog: Yes! A bunch of them! Crazy little buggers! They will cut out your
-    eyes even before you see them coming. It would be convenient if someone would
-    get rid of them...
-  choiceOneType: 0
-  removeOnChoiceOne: 1
+  cameraPosition: 2
+  welcomeDialog: Hey there partner, what is happening?
+  choiceOne: '[Exit Immediately Choice]'
+  choiceOneDialog: 
+  choiceOneType: 2
+  removeOnChoiceOne: 0
+  branchOneDialog: {fileID: 0}
   typeOneResponse: 
   choiceOneEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1014666526}
-        m_MethodName: StartQuest
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1462408306}
-          m_ObjectArgumentAssemblyTypeName: TopDownUIDialog, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  choiceTwo: What is this land?
-  choiceTwoDialog: Huh? Have you fallen from the sky? This is TopDownRpg Testing Scene!
-  choiceTwoType: 0
-  removeOnChoiceTwo: 1
+  choiceTwo: '[Exit After Comment Choice]'
+  choiceTwoDialog: Choice Two Dialog
+  choiceTwoType: 1
+  removeOnChoiceTwo: 0
+  branchTwoDialog: {fileID: 0}
   typeTwoResponse: 
   choiceTwoEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  choiceThree: Would you join me in my adventures?
-  choiceThreeDialog: Well, I had something else in mind, but since you are so nice
-    and polite I will join you. Lets go!
-  choiceThreeType: 1
+  choiceThree: '[Remove On Choice]'
+  choiceThreeDialog: Choice Three Dialog
+  choiceThreeType: 0
   removeOnChoiceThree: 0
-  typeThreeResponse: '[Exit]'
+  branchThreeDialog: {fileID: 0}
+  typeThreeResponse: 
   choiceThreeEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2052969281}
-        m_MethodName: AddCharacterToParty
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1462408295}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  choiceFour: Farewell!
-  choiceFourDialog: 
-  choiceFourType: 2
+  choiceFour: '[Branch1]'
+  choiceFourDialog: Yep.
+  choiceFourType: 3
   removeOnChoiceFour: 0
+  branchFourDialog: {fileID: 1373237370}
   typeFourResponse: 
   choiceFourEvent:
     m_PersistentCalls:
@@ -11935,7 +12211,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1503780531}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_leg_Pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11966,7 +12242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1509197513}
   - component: {fileID: 1509197514}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12234,7 +12510,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1514326074}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Joint_3_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12264,7 +12540,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1516397190}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_pink2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12503,7 +12779,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1542534748}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_pink3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12534,7 +12810,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1551066019}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_thumb3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12565,7 +12841,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1563621328}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12720,7 +12996,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1592619219}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_middle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12996,7 +13272,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1639855539}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Joint_3_3_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13026,7 +13302,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1645923769}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_toes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13085,7 +13361,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1652071313}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_anke_Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13268,7 +13544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1673740303}
   - component: {fileID: 1673740302}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TD_CharacterCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13292,23 +13568,23 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 1.3
   field of view: 60
   orthographic: 1
   orthographic size: 1
-  m_Depth: 0
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 2e06769b032b1d24d908707c6066b865, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!4 &1673740303
@@ -13318,7 +13594,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1673740301}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
-  m_LocalPosition: {x: 0, y: 0.9, z: 2}
+  m_LocalPosition: {x: 0, y: 0.9, z: 0.942}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 31712073}
@@ -13423,7 +13699,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1689369453}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Joint_3_4_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13453,7 +13729,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1691546904}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_middle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13493,7 +13769,7 @@ GameObject:
   - component: {fileID: 1696328083}
   - component: {fileID: 1696328092}
   - component: {fileID: 1696328085}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TD_CharacterController
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -13533,6 +13809,12 @@ MonoBehaviour:
   tcc_Interact: {fileID: 0}
   td_characterCard: {fileID: 0}
   characterEquipmentType: 0
+  bodyTransform: {fileID: 0}
+  headTransform: {fileID: 0}
+  neckTransform: {fileID: 0}
+  handsTransform: {fileID: 0}
+  leggsTransform: {fileID: 0}
+  helmTransform: {fileID: 0}
   defaultBodyMesh: {fileID: 0}
   defaultHandsMesh: {fileID: 0}
   defaultLeggsMesh: {fileID: 0}
@@ -13570,7 +13852,7 @@ MonoBehaviour:
   enemyStopDistance: 2
   itemStopDistance: 1
   chestStopDistance: 2
-  defaultStopDistance: 0
+  defaultStopDistance: 0.2
   faceEnemyRotSpeed: 6
   sheathWeaponAfterSeconds: 12
   noFocusWalkPoint: {fileID: 1269616226411656, guid: cc255a89b2d8e90449ad45df632b3e95,
@@ -13627,11 +13909,16 @@ MonoBehaviour:
   interact: {fileID: 0}
   equipmentManager: {fileID: 0}
   characterManager: {fileID: 0}
+  uiManager: {fileID: 0}
   npcBar: {fileID: 0}
   mouseOver: 0
   mainCamera: {fileID: 0}
   placeBarOverHead: 0
   nameBarPosition: {fileID: 0}
+  portraitCamera: {fileID: 1288300650}
+  portraitLight: {fileID: 387964882}
+  currentPortrait: {fileID: 0}
+  portraitImage: {fileID: 0}
 --- !u!114 &1696328086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13892,6 +14179,12 @@ MonoBehaviour:
   tcc_Interact: {fileID: 0}
   td_characterCard: {fileID: 0}
   characterEquipmentType: 0
+  bodyTransform: {fileID: 0}
+  headTransform: {fileID: 0}
+  neckTransform: {fileID: 0}
+  handsTransform: {fileID: 0}
+  leggsTransform: {fileID: 0}
+  helmTransform: {fileID: 0}
   defaultBodyMesh: {fileID: 0}
   defaultHandsMesh: {fileID: 0}
   defaultLeggsMesh: {fileID: 0}
@@ -13947,11 +14240,16 @@ MonoBehaviour:
   interact: {fileID: 0}
   equipmentManager: {fileID: 0}
   characterManager: {fileID: 0}
+  uiManager: {fileID: 0}
   npcBar: {fileID: 0}
   mouseOver: 0
   mainCamera: {fileID: 0}
   placeBarOverHead: 0
   nameBarPosition: {fileID: 0}
+  portraitCamera: {fileID: 0}
+  portraitLight: {fileID: 0}
+  currentPortrait: {fileID: 0}
+  portraitImage: {fileID: 0}
 --- !u!114 &1723533254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13991,6 +14289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6925dfed6b24e92479476cc838007712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hostile: 0
   name: Goblin Grunt
   voiceSet: {fileID: 11400000, guid: 4a98aa30ea986854599cfad7533b14fc, type: 2}
   detected: 0
@@ -14097,7 +14396,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1724256086}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ArmorMeshes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14234,7 +14533,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1728773037}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Joint_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14378,7 +14677,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1751933425}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_elbow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14409,7 +14708,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1759935758}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: hipcontrol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14587,7 +14886,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1787431225}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_toes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15025,7 +15324,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1878392059}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SHIELD_HOLSTER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15132,7 +15431,7 @@ GameObject:
   - component: {fileID: 1902500408}
   - component: {fileID: 1902500410}
   - component: {fileID: 1902500409}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: dagger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15263,7 +15562,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1923032367}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15354,7 +15653,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1939480563}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_shoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15561,7 +15860,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1990481850}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_pink3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15793,7 +16092,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2042829597}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_middle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15880,12 +16179,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &2052969281 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114155576954062636, guid: fc67d72010b01b240833259579592de2,
-    type: 2}
-  m_PrefabInternal: {fileID: 797976126}
-  m_Script: {fileID: 11500000, guid: c5d8e47c69ebc6d4ba9ad49418a31962, type: 3}
 --- !u!1 &2055665067
 GameObject:
   m_ObjectHideFlags: 0
@@ -16214,7 +16507,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2146128658}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L_knee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16245,7 +16538,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2146402335}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_ring2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

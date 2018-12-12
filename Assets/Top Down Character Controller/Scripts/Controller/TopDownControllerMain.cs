@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 
 [DisallowMultipleComponent]
-[AddComponentMenu("TDCC/Controller/Main Controller")]
+[AddComponentMenu("Top Down RPG/Controller/Third Person Controller")]
 public class TopDownControllerMain : MonoBehaviour {
 
     public float tdcm_turningSpeed = 560;
