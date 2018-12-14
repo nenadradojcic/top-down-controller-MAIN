@@ -17,6 +17,7 @@ public class TopDownUIDialog : TopDownInteractible {
 
     public string welcomeDialog;
 
+    public bool showChoiceOne;
     public string choiceOne;
     public string choiceOneDialog;
     public DialogType choiceOneType;
@@ -25,6 +26,7 @@ public class TopDownUIDialog : TopDownInteractible {
     public string typeOneResponse;
     public UnityEvent choiceOneEvent;
 
+    public bool showChoiceTwo;
     public string choiceTwo;
     public string choiceTwoDialog;
     public DialogType choiceTwoType;
@@ -33,6 +35,7 @@ public class TopDownUIDialog : TopDownInteractible {
     public string typeTwoResponse;
     public UnityEvent choiceTwoEvent;
 
+    public bool showChoiceThree;
     public string choiceThree;
     public string choiceThreeDialog;
     public DialogType choiceThreeType;
@@ -41,6 +44,7 @@ public class TopDownUIDialog : TopDownInteractible {
     public string typeThreeResponse;
     public UnityEvent choiceThreeEvent;
 
+    public bool showChoiceFour;
     public string choiceFour;
     public string choiceFourDialog;
     public DialogType choiceFourType;
