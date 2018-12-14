@@ -50,6 +50,8 @@ public class TopDownUIDialog : TopDownInteractible {
     public UnityEvent choiceFourEvent;
 
     public int numberOfChoices = 0;
+    
+    public TopDownUIDialog branchedFrom;
 
     private void Reset() {
         interactDistance = 2f;

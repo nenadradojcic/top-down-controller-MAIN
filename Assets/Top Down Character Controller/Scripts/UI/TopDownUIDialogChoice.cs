@@ -140,6 +140,8 @@ public class TopDownUIDialogChoice : MonoBehaviour {
     IEnumerator SetupBranchingDialog() {
 
         string dialogTmp = dialog;
+        
+        branch.branchedFrom = dialogMain.dialogInUse;
 
         if (branch.cameraPosition == DialogCameraPosition.None) {
             branch.cameraPosition = dialogMain.dialogInUse.cameraPosition;

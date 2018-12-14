@@ -82,17 +82,15 @@ public class TopDownUIDialogMain : MonoBehaviour {
         if (dialog != null) {
             dialogInUse = dialog;
 
-            if (dialogCameraPosition == DialogCameraPosition.OnNpc) {
-                if (cameraBasic.td_Target == dialog.transform) {
+            if (dialog.branchedFrom == null) {
+                if (dialogCameraPosition == DialogCameraPosition.OnNpc) {
                     cameraBasic.td_Target = dialog.transform;
-                    }
-            }
-            else if (dialogCameraPosition == DialogCameraPosition.Between) {
-                Vector3 pointInBetween = (TopDownCharacterManager.instance.activeCharacter.transform.position + dialog.transform.position) * 0.5f;
-                GameObject pointGo = new GameObject();
-                pointGo.name = "TempCameraBetweenPosition";
-                pointGo.transform.position = pointInBetween + -Vector3.up;
-                if (cameraBasic.td_Target == pointGo.transform) {
+                }
+                else if (dialogCameraPosition == DialogCameraPosition.Between) {
+                    Vector3 pointInBetween = (TopDownCharacterManager.instance.activeCharacter.transform.position + dialog.transform.position) * 0.5f;
+                    GameObject pointGo = new GameObject();
+                    pointGo.name = "TempCameraBetweenPosition";
+                    pointGo.transform.position = pointInBetween + -Vector3.up;
                     cameraBasic.td_Target = pointGo.transform;
                 }
             }
