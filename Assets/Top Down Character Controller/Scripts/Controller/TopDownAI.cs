@@ -142,4 +142,9 @@ public class TopDownAI : MonoBehaviour {
             detected = false;
         }
     }
+
+    public void TurnHostile() {
+        hostile = true;
+        gameObject.tag = "Enemy";
+    }
 }

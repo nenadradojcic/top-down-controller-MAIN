@@ -35,6 +35,10 @@ public class TopDownUIDialogChoice : MonoBehaviour {
         else if(type == DialogType.ImmediateClose) {
             CloseTheDialog();
         }
+        else if (type == DialogType.CombatDialog) {
+            //dialogMain.dialogInUse.GetComponent<TopDownAI>().TurnHostile();
+            //TopDownUIDialogMain.instance.CloseDialogPerType("[Start Combat]");
+        }
 
         if (type == DialogType.BranchDialog) {
             StartCoroutine(SetupBranchingDialog());
