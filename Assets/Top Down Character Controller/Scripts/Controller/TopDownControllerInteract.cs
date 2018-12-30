@@ -20,6 +20,7 @@ public class TopDownControllerInteract : MonoBehaviour {
     public string itemTag = "Item";
     public string chestTag = "Chest";
     public float enemyStopDistance = 2f;
+    public float enemyStopDistanceRanged = 8f;
     public float itemStopDistance = 1f;
     public float chestStopDistance = 2f;
     public float defaultStopDistance = 0.2f;
@@ -251,7 +252,12 @@ public class TopDownControllerInteract : MonoBehaviour {
         focusedTarget = focusObject;
 
         if (focusObject.tag == enemyTag) {
-            tdcc_NavMeshAgent.stoppingDistance = enemyStopDistance;
+            if (tdcc_EquipmentManager.weaponTypeUsed == WeaponType.Ranged) {
+                tdcc_NavMeshAgent.stoppingDistance = enemyStopDistanceRanged;
+            }
+            else {
+                tdcc_NavMeshAgent.stoppingDistance = enemyStopDistance;
+            }
         }
         else if (focusObject.tag == itemTag) {
             tdcc_NavMeshAgent.stoppingDistance = itemStopDistance;

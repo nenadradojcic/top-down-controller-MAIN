@@ -74,7 +74,8 @@ public class TopDownControllerInteractEditor : Editor {
             EditorGUILayout.LabelField("Non-player Characters", simpleTitleLable);
             td_target.npcTag = EditorGUILayout.TextField("Friendly NPC Tag:", td_target.npcTag);
             td_target.enemyTag = EditorGUILayout.TextField("Hostile NPC Tag:", td_target.enemyTag);
-            td_target.enemyStopDistance = EditorGUILayout.FloatField("Stop Distance:", td_target.enemyStopDistance);
+            td_target.enemyStopDistance = EditorGUILayout.FloatField("Stop Distance Melee:", td_target.enemyStopDistance);
+            td_target.enemyStopDistanceRanged = EditorGUILayout.FloatField("Stop Distance Ranged:", td_target.enemyStopDistanceRanged);
             EditorGUILayout.HelpBox("This tag will be used for non-player characters (npcs). The stopping distance is used to tell when will player stop and interact with npc, or start fight with enemy.", MessageType.Info);
             EditorGUILayout.EndVertical();
 
