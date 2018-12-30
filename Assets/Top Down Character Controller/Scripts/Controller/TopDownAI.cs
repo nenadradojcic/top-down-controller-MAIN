@@ -42,8 +42,9 @@ public class TopDownAI : MonoBehaviour {
     public void Update() {
 
         if (tdc_Main != null) {
-
-            velocity = tdc_Main.tdcm_animator.GetFloat("Forward");
+            if (tdc_Main.tdcm_animator != null) {
+                velocity = tdc_Main.tdcm_animator.GetFloat("Forward");
+            }
 
             if (focus != null) {
 
@@ -76,17 +77,21 @@ public class TopDownAI : MonoBehaviour {
                 }
             }
             else {
-                tdc_Main.tdcm_NavMeshAgent.SetDestination(startPos);
+                if (tdc_Main.tdcm_NavMeshAgent != null) {
+                    tdc_Main.tdcm_NavMeshAgent.SetDestination(startPos);
 
-                if (tdc_Main.tdcm_NavMeshAgent.remainingDistance > tdc_Main.tdcm_NavMeshAgent.stoppingDistance) {
-                    tdc_Main.TDCC_MoveCharacter(tdc_Main.tdcm_NavMeshAgent.velocity);
-                }
-                else {
-                    tdc_Main.TDCC_MoveCharacter(Vector3.zero);
+                    if (tdc_Main.tdcm_NavMeshAgent.remainingDistance > tdc_Main.tdcm_NavMeshAgent.stoppingDistance) {
+                        tdc_Main.TDCC_MoveCharacter(tdc_Main.tdcm_NavMeshAgent.velocity);
+                    }
+                    else {
+                        tdc_Main.TDCC_MoveCharacter(Vector3.zero);
+                    }
                 }
 
-                tdc_Main.tdcm_animator.SetBool("Attacking", false);
-                tdc_Main.tdcm_animator.SetBool("TargetInFront", false);
+                if (tdc_Main.tdcm_animator != null) {
+                    tdc_Main.tdcm_animator.SetBool("Attacking", false);
+                    tdc_Main.tdcm_animator.SetBool("TargetInFront", false);
+                }
             }
 
             distToStartPos = Vector3.Distance(transform.position, startPos);

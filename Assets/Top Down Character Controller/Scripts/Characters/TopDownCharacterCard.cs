@@ -259,9 +259,11 @@ public class TopDownCharacterCard : MonoBehaviour {
                     npcBar.transform.position = namePos;
                 }
                 else {
-                    Vector2 tmp = mainCamera.WorldToScreenPoint(nameBarPosition.position);
-                    Vector2 namePos = new Vector3(tmp.x, tmp.y + (npcBar.yOffsetOverHead * npcBar.screenY));
-                    npcBar.transform.position = namePos;
+                    if (nameBarPosition != null) {
+                        Vector2 tmp = mainCamera.WorldToScreenPoint(nameBarPosition.position);
+                        Vector2 namePos = new Vector3(tmp.x, tmp.y + (npcBar.yOffsetOverHead * npcBar.screenY));
+                        npcBar.transform.position = namePos;
+                    }
                 }
             }
         }
@@ -296,8 +298,26 @@ public class TopDownCharacterCard : MonoBehaviour {
         main.onDeadEvent.Invoke();
 
         Destroy(main.tdcm_rigidbody);
-        Destroy(GetComponent<TopDownAI>());
-        Destroy(GetComponent<TopDownEquipmentManager>());
+        Destroy(GetComponent<CapsuleCollider>());
+        Destroy(GetComponent<NavMeshAgent>());
+        if (GetComponent<TopDownAI>()) {
+            Destroy(GetComponent<TopDownAI>());
+        }
+        if (GetComponent<TopDownEquipmentManager>()) {
+            Destroy(GetComponent<TopDownEquipmentManager>());
+        }
+        if (GetComponent<TopDownControllerMain>()) {
+            Destroy(GetComponent<TopDownControllerMain>());
+        }
+        if (GetComponent<TopDownUIDialog>()) {
+            Destroy(GetComponent<TopDownUIDialog>());
+        }
+        if(transform.Find("[Vision]")) {
+            Destroy(transform.Find("[Vision]").gameObject);
+        }
+        if (GetComponent<TopDownDecompose>()) {
+            GetComponent<TopDownDecompose>().decompose = true;
+        }
         Destroy(this);
 
         return;

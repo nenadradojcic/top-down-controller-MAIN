@@ -45,7 +45,6 @@ public class TopDownUIInventory : MonoBehaviour {
         if (previousSlot != null) {
             if (TopDownUIManager.instance.checkUi.IsPointerOverUIObject() == false) {
                 if (Input.GetKeyDown(TopDownInputManager.instance.interactKey)) {
-                    print("We are clicking outside UI");
                     if (previousSlot.slotType == SlotType.Inventory) {
                         slots[0].ClearSlot(previousSlot);
                         holdingItem = null;

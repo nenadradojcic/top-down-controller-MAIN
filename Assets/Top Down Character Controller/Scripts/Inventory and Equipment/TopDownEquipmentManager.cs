@@ -111,15 +111,28 @@ public class TopDownEquipmentManager : MonoBehaviour {
         //Instantiate weapon model as weapon mount points child
 
         if (item.itemType == ItemType.Weapon) {
-            if (item.itemGameObject != null) {
-                GameObject itemGo = Instantiate(item.itemGameObject) as GameObject;
-                for(int i = 0; i < itemGo.transform.childCount; i++) {
-                    itemGo.transform.GetChild(i).gameObject.layer = gameObject.layer;
-                    //print(itemGo.transform.GetChild(i).gameObject.name + " new layer is " + gameObject.layer);
+            if (item.weaponType == WeaponType.Melee) {
+                if (item.itemGameObject != null) {
+                    GameObject itemGo = Instantiate(item.itemGameObject) as GameObject;
+                    for (int i = 0; i < itemGo.transform.childCount; i++) {
+                        itemGo.transform.GetChild(i).gameObject.layer = gameObject.layer;
+                        //print(itemGo.transform.GetChild(i).gameObject.name + " new layer is " + gameObject.layer);
+                    }
+                    itemGo.transform.SetParent(weaponHolsterMountPoint);
+                    itemGo.transform.localPosition = Vector3.zero;
+                    itemGo.transform.localEulerAngles = Vector3.zero;
                 }
-                itemGo.transform.SetParent(weaponHolsterMountPoint);
-                itemGo.transform.localPosition = Vector3.zero;
-                itemGo.transform.localEulerAngles = Vector3.zero;
+            }
+            else if(item.weaponType == WeaponType.Ranged) {
+                if (item.itemGameObject != null) {
+                    GameObject itemGo = Instantiate(item.itemGameObject) as GameObject;
+                    for (int i = 0; i < itemGo.transform.childCount; i++) {
+                        itemGo.transform.GetChild(i).gameObject.layer = gameObject.layer;
+                    }
+                    itemGo.transform.SetParent(shieldHolsterMountPoint);
+                    itemGo.transform.localPosition = Vector3.zero;
+                    itemGo.transform.localEulerAngles = Vector3.zero;
+                }
             }
             weaponTypeUsed = item.weaponType;
             weaponHoldingType = item.weaponHoldingType;
@@ -194,9 +207,18 @@ public class TopDownEquipmentManager : MonoBehaviour {
         weaponHoldingType = WeaponHoldingType.None;
 
         if (item.itemType == ItemType.Weapon) {
-            if (weaponHolsterMountPoint.childCount > 0) {
-                foreach (Transform itemGo in weaponHolsterMountPoint) {
-                    Destroy(itemGo.gameObject);
+            if (item.weaponType == WeaponType.Melee) {
+                if (weaponHolsterMountPoint.childCount > 0) {
+                    foreach (Transform itemGo in weaponHolsterMountPoint) {
+                        Destroy(itemGo.gameObject);
+                    }
+                }
+            }
+            else if(item.weaponType == WeaponType.Ranged) {
+                if (shieldHolsterMountPoint.childCount > 0) {
+                    foreach (Transform itemGo in shieldHolsterMountPoint) {
+                        Destroy(itemGo.gameObject);
+                    }
                 }
             }
         }
@@ -274,32 +296,52 @@ public class TopDownEquipmentManager : MonoBehaviour {
     public IEnumerator HolsterWeaponCoroutine(int holster) {
         if (weaponHolsterMountPoint != null && shieldHolsterMountPoint != null) {
             if (holster == 1) {
-                for (int i = 0; i < weaponMountPoint.childCount; i++) {
-                    Transform weapon = weaponMountPoint.GetChild(i).transform;
-                    weapon.SetParent(weaponHolsterMountPoint);
-                    weapon.localPosition = Vector3.zero;
-                    weapon.localEulerAngles = Vector3.zero;
+                if (weaponTypeUsed == WeaponType.Ranged) {
+                    for (int i = 0; i < shieldMountPoint.childCount; i++) {
+                        Transform shield = shieldMountPoint.GetChild(i).transform;
+                        shield.SetParent(shieldHolsterMountPoint);
+                        shield.localPosition = Vector3.zero;
+                        shield.localEulerAngles = Vector3.zero;
+                    }
                 }
-                for (int i = 0; i < shieldMountPoint.childCount; i++) {
-                    Transform shield = shieldMountPoint.GetChild(i).transform;
-                    shield.SetParent(shieldHolsterMountPoint);
-                    shield.localPosition = Vector3.zero;
-                    shield.localEulerAngles = Vector3.zero;
+                else {
+                    for (int i = 0; i < weaponMountPoint.childCount; i++) {
+                        Transform weapon = weaponMountPoint.GetChild(i).transform;
+                        weapon.SetParent(weaponHolsterMountPoint);
+                        weapon.localPosition = Vector3.zero;
+                        weapon.localEulerAngles = Vector3.zero;
+                    }
+                    for (int i = 0; i < shieldMountPoint.childCount; i++) {
+                        Transform shield = shieldMountPoint.GetChild(i).transform;
+                        shield.SetParent(shieldHolsterMountPoint);
+                        shield.localPosition = Vector3.zero;
+                        shield.localEulerAngles = Vector3.zero;
+                    }
                 }
                 tcc_Main.tdcm_animator.SetBool("WeaponInHands", false);
             }
             else if (holster == 0) {
-                for (int i = 0; i < weaponHolsterMountPoint.childCount; i++) {
-                    Transform weapon = weaponHolsterMountPoint.GetChild(i).transform;
-                    weapon.SetParent(weaponMountPoint);
-                    weapon.localPosition = Vector3.zero;
-                    weapon.localEulerAngles = Vector3.zero;
+                if (weaponTypeUsed == WeaponType.Ranged) {
+                    for (int i = 0; i < shieldHolsterMountPoint.childCount; i++) {
+                        Transform shield = shieldHolsterMountPoint.GetChild(i).transform;
+                        shield.SetParent(shieldMountPoint);
+                        shield.localPosition = Vector3.zero;
+                        shield.localEulerAngles = Vector3.zero;
+                    }
                 }
-                for (int i = 0; i < shieldHolsterMountPoint.childCount; i++) {
-                    Transform shield = shieldHolsterMountPoint.GetChild(i).transform;
-                    shield.SetParent(shieldMountPoint);
-                    shield.localPosition = Vector3.zero;
-                    shield.localEulerAngles = Vector3.zero;
+                else {
+                    for (int i = 0; i < weaponHolsterMountPoint.childCount; i++) {
+                        Transform weapon = weaponHolsterMountPoint.GetChild(i).transform;
+                        weapon.SetParent(weaponMountPoint);
+                        weapon.localPosition = Vector3.zero;
+                        weapon.localEulerAngles = Vector3.zero;
+                    }
+                    for (int i = 0; i < shieldHolsterMountPoint.childCount; i++) {
+                        Transform shield = shieldHolsterMountPoint.GetChild(i).transform;
+                        shield.SetParent(shieldMountPoint);
+                        shield.localPosition = Vector3.zero;
+                        shield.localEulerAngles = Vector3.zero;
+                    }
                 }
                 tcc_Main.tdcm_animator.SetBool("WeaponInHands", true);
             }
@@ -365,13 +407,17 @@ public class TopDownEquipmentManager : MonoBehaviour {
                             td_characterCard.health -= finalDamage;
                         }
                         else {
-                            //Debug.Log("Damage value is too low to deal any damage, so we are just going to deal 1 point damage.");
-                            td_characterCard.health -= 1f;
+                            td_characterCard.health -= 0.9f;
                         }
                     }
                     else {
-                        float finalDamage = damage + (damage * 0.5f);
-                        td_characterCard.health -= finalDamage;
+                        if (damage > 0) {
+                            float finalDamage = damage + (damage * 0.5f);
+                            td_characterCard.health -= finalDamage;
+                        }
+                        else {
+                            td_characterCard.health -= 0.9f;
+                        }
                     }
                 }
                 else {
@@ -389,7 +435,6 @@ public class TopDownEquipmentManager : MonoBehaviour {
 
     public void AttackFocusedTarget() {
         if(tcc_Interact != null) {
-            //print("This is player character.");
             if (tcc_Interact.focusedTarget != null && td_characterCard.enemyFocus == null) {
                 DealDamage(tcc_Interact.focusedTarget.gameObject, damagePointsValue);
                 if (TopDownAudioManager.instance != null && TopDownAudioManager.instance.meleeHitAudio != null) {

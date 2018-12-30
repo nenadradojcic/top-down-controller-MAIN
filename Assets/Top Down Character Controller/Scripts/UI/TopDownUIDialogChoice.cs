@@ -39,7 +39,6 @@ public class TopDownUIDialogChoice : MonoBehaviour {
             CloseTheDialog();
         }
         else if (type == DialogType.CombatDialog) {
-            print(dialogMain.dialogInUse.gameObject.name);
             if (dialogMain.dialogInUse.GetComponent<TopDownAI>()) {
                 dialogMain.dialogInUse.GetComponent<TopDownAI>().TurnHostile();
             }

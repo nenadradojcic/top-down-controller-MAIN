@@ -37,8 +37,9 @@ public class TopDownControllerMain : MonoBehaviour {
         else if (GameObject.FindObjectOfType<Camera>()) {
             tdcm_Camera = GameObject.FindObjectOfType<Camera>();
         }
-        tdcm_rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-
+        if (tdcm_rigidbody != null) {
+            tdcm_rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+        }
         if(GetComponentInChildren<WindZone>()) {
             vegetationMoveWindZone = GetComponentInChildren<WindZone>();
         }
