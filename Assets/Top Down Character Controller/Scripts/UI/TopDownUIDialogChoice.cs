@@ -29,19 +29,21 @@ public class TopDownUIDialogChoice : MonoBehaviour {
             events.Invoke();
         }
 
-        if(type == DialogType.CloseDialog) {
+        if (type == DialogType.BranchDialog) {
+            StartCoroutine(SetupBranchingDialog());
+        }
+        else if (type == DialogType.CloseDialog) {
             TopDownUIDialogMain.instance.CloseDialogPerType("[Exit]");
         }
         else if(type == DialogType.ImmediateClose) {
             CloseTheDialog();
         }
         else if (type == DialogType.CombatDialog) {
-            //dialogMain.dialogInUse.GetComponent<TopDownAI>().TurnHostile();
-            //TopDownUIDialogMain.instance.CloseDialogPerType("[Start Combat]");
-        }
-
-        if (type == DialogType.BranchDialog) {
-            StartCoroutine(SetupBranchingDialog());
+            print(dialogMain.dialogInUse.gameObject.name);
+            if (dialogMain.dialogInUse.GetComponent<TopDownAI>()) {
+                dialogMain.dialogInUse.GetComponent<TopDownAI>().TurnHostile();
+            }
+            CloseTheDialog();
         }
         else {
             if(remove == true) {

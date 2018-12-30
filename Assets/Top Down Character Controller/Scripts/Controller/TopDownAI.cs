@@ -146,5 +146,8 @@ public class TopDownAI : MonoBehaviour {
     public void TurnHostile() {
         hostile = true;
         gameObject.tag = "Enemy";
+        if(GetComponent<UnityEngine.AI.NavMeshAgent>()) {
+            GetComponent<UnityEngine.AI.NavMeshAgent>().stoppingDistance = 1.5f;
+        }
     }
 }
