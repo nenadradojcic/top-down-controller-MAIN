@@ -24,7 +24,7 @@ public class TopDownCameraBasic : MonoBehaviour {
     public float cameraAngleMin = 30f;
     public float cameraAngleMax = 70f;
 
-    public float yAxisOffset = 1.25f;
+    public float yAxisOffset = 1.35f;
 
     public float freeCameraSpeed = 0.5f;
 
