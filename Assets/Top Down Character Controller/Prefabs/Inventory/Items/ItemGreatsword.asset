@@ -25,5 +25,9 @@ MonoBehaviour:
   dexterityModifier: 0
   constitutionModifier: 0
   willpowerModifier: 0
+  slotOfThisItem: {fileID: 0}
+  itemVisualisation: 1
+  itemMesh: {fileID: 0}
   itemGameObject: {fileID: 1496748517701950, guid: 87086af8902e20740bb10775a6475434,
     type: 2}
+  itemSkinnedMeshName: 

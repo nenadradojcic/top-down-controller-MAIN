@@ -70,5 +70,7 @@ public class TopDownVoiceSetEditor : Editor {
         EditorGUILayout.EndVertical();
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();
+
+        serializedObject.ApplyModifiedProperties();
     }
 }

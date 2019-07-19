@@ -24,5 +24,8 @@ MonoBehaviour:
   dexterityModifier: 0
   constitutionModifier: 0
   willpowerModifier: 0
+  slotOfThisItem: {fileID: 0}
+  itemVisualisation: 0
+  itemMesh: {fileID: 0}
   itemGameObject: {fileID: 0}
   itemSkinnedMeshName: ItemLeggsChainmail

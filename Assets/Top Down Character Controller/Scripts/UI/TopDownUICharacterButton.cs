@@ -83,7 +83,9 @@ public class TopDownUICharacterButton : MonoBehaviour {
     public void SetActiveCharacter() {
         if (characterManager.activeCharacter == null) {
             characterInSlot.GetComponent<TopDownControllerInteract>().enabled = true;
-            characterInSlot.GetComponent<TopDownCharacterCard>().inventoryCamera.SetActive(true);
+            if (characterManager.activeCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera != null) {
+                characterInSlot.GetComponent<TopDownCharacterCard>().inventoryCamera.SetActive(true);
+            }
             characterManager.activeCharacter = characterInSlot.gameObject;
             TopDownUIInventory.instance.currentEquipmentManager = characterInSlot.GetComponent<TopDownEquipmentManager>();
             cameraBasic.td_Target = characterInSlot.transform;
@@ -93,10 +95,14 @@ public class TopDownUICharacterButton : MonoBehaviour {
 
             characterManager.activeCharacter.GetComponent<TopDownControllerInteract>().focusedTarget = null;
             characterManager.activeCharacter.GetComponent<TopDownControllerInteract>().enabled = false;
-            characterManager.activeCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera.SetActive(false);
+            if (characterManager.activeCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera != null) {
+                characterManager.activeCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera.SetActive(false);
+            }
 
             characterInSlot.GetComponent<TopDownControllerInteract>().enabled = true;
-            characterInSlot.GetComponent<TopDownCharacterCard>().inventoryCamera.SetActive(true);
+            if (characterManager.activeCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera != null) {
+                characterInSlot.GetComponent<TopDownCharacterCard>().inventoryCamera.SetActive(true);
+            }
             characterInSlot.GetComponent<TopDownCharacterCard>().DeactivateAi();
             characterManager.activeCharacter = characterInSlot.gameObject;
 

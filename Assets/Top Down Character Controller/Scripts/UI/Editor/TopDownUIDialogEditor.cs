@@ -72,21 +72,19 @@ public class TopDownUIDialogEditor : Editor {
                 EditorGUILayout.BeginVertical("Box", GUILayout.Width(90 * Screen.width / 100));
 
                 td_target.choiceOneType = (DialogType)EditorGUILayout.EnumPopup("Response Type", td_target.choiceOneType);
+                td_target.choiceOne = EditorGUILayout.TextField(string.Empty, td_target.choiceOne, GUILayout.Height(80));
                 if (td_target.choiceOneType == DialogType.None) {
                     EditorGUILayout.LabelField("Response Line:");
-                    td_target.choiceOne = EditorGUILayout.TextField(string.Empty, td_target.choiceOne, GUILayout.Height(80));
                     EditorGUILayout.LabelField("Dialog Line:");
                     td_target.choiceOneDialog = EditorGUILayout.TextField(string.Empty, td_target.choiceOneDialog, GUILayout.Height(80));
                 }
                 else if (td_target.choiceOneType == DialogType.CloseDialog) {
                     EditorGUILayout.LabelField("Response Line:");
-                    td_target.choiceOne = EditorGUILayout.TextField(string.Empty, td_target.choiceOne, GUILayout.Height(80));
                     EditorGUILayout.LabelField("Dialog Line:");
                     td_target.choiceOneDialog = EditorGUILayout.TextField(string.Empty, td_target.choiceOneDialog, GUILayout.Height(80));
                 }
                 else if (td_target.choiceOneType == DialogType.BranchDialog) {
                     EditorGUILayout.LabelField("Response Line:");
-                    td_target.choiceOne = EditorGUILayout.TextField(string.Empty, td_target.choiceOne, GUILayout.Height(80));
                     EditorGUILayout.LabelField("Dialog Line:");
                     td_target.choiceOneDialog = EditorGUILayout.TextField(string.Empty, td_target.choiceOneDialog, GUILayout.Height(80));
                     if (td_target.branchOneDialog == null) {
@@ -224,21 +222,19 @@ public class TopDownUIDialogEditor : Editor {
                     GUILayout.FlexibleSpace();
                     EditorGUILayout.BeginVertical("Box", GUILayout.Width(90 * Screen.width / 100));
                     td_target.choiceTwoType = (DialogType)EditorGUILayout.EnumPopup("Response Type", td_target.choiceTwoType);
+                    td_target.choiceTwo = EditorGUILayout.TextField(string.Empty, td_target.choiceTwo, GUILayout.Height(80));
                     if (td_target.choiceTwoType == DialogType.None) {
                         EditorGUILayout.LabelField("Response Line:");
-                        td_target.choiceTwo = EditorGUILayout.TextField(string.Empty, td_target.choiceTwo, GUILayout.Height(80));
                         EditorGUILayout.LabelField("Dialog Line:");
                         td_target.choiceTwoDialog = EditorGUILayout.TextField(string.Empty, td_target.choiceTwoDialog, GUILayout.Height(80));
                     }
                     else if (td_target.choiceTwoType == DialogType.CloseDialog) {
                         EditorGUILayout.LabelField("Response Line:");
-                        td_target.choiceTwo = EditorGUILayout.TextField(string.Empty, td_target.choiceTwo, GUILayout.Height(80));
                         EditorGUILayout.LabelField("Dialog Line:");
                         td_target.choiceTwoDialog = EditorGUILayout.TextField(string.Empty, td_target.choiceTwoDialog, GUILayout.Height(80));
                     }
                     else if (td_target.choiceTwoType == DialogType.BranchDialog) {
                         EditorGUILayout.LabelField("Response Line:");
-                        td_target.choiceTwo = EditorGUILayout.TextField(string.Empty, td_target.choiceTwo, GUILayout.Height(80));
                         EditorGUILayout.LabelField("Dialog Line:");
                         td_target.choiceTwoDialog = EditorGUILayout.TextField(string.Empty, td_target.choiceTwoDialog, GUILayout.Height(80));
                         if (td_target.branchTwoDialog == null) {
@@ -346,21 +342,19 @@ public class TopDownUIDialogEditor : Editor {
                         GUILayout.FlexibleSpace();
                         EditorGUILayout.BeginVertical("Box", GUILayout.Width(90 * Screen.width / 100));
                         td_target.choiceThreeType = (DialogType)EditorGUILayout.EnumPopup("Response Type", td_target.choiceThreeType);
+                        td_target.choiceThree = EditorGUILayout.TextField(string.Empty, td_target.choiceThree, GUILayout.Height(80));
                         if (td_target.choiceThreeType == DialogType.None) {
                             EditorGUILayout.LabelField("Response Line:");
-                            td_target.choiceThree = EditorGUILayout.TextField(string.Empty, td_target.choiceThree, GUILayout.Height(80));
                             EditorGUILayout.LabelField("Dialog Line:");
                             td_target.choiceThreeDialog = EditorGUILayout.TextField(string.Empty, td_target.choiceThreeDialog, GUILayout.Height(80));
                         }
                         else if (td_target.choiceThreeType == DialogType.CloseDialog) {
                             EditorGUILayout.LabelField("Response Line:");
-                            td_target.choiceThree = EditorGUILayout.TextField(string.Empty, td_target.choiceThree, GUILayout.Height(80));
                             EditorGUILayout.LabelField("Dialog Line:");
                             td_target.choiceThreeDialog = EditorGUILayout.TextField(string.Empty, td_target.choiceThreeDialog, GUILayout.Height(80));
                         }
                         else if (td_target.choiceThreeType == DialogType.BranchDialog) {
                             EditorGUILayout.LabelField("Response Line:");
-                            td_target.choiceThree = EditorGUILayout.TextField(string.Empty, td_target.choiceThree, GUILayout.Height(80));
                             EditorGUILayout.LabelField("Dialog Line:");
                             td_target.choiceThreeDialog = EditorGUILayout.TextField(string.Empty, td_target.choiceThreeDialog, GUILayout.Height(80));
                             if (td_target.branchThreeDialog == null) {
@@ -432,21 +426,19 @@ public class TopDownUIDialogEditor : Editor {
                             GUILayout.FlexibleSpace();
                             EditorGUILayout.BeginVertical("Box", GUILayout.Width(90 * Screen.width / 100));
                             td_target.choiceFourType = (DialogType)EditorGUILayout.EnumPopup("Response Type", td_target.choiceFourType);
+                            td_target.choiceFour = EditorGUILayout.TextField(string.Empty, td_target.choiceFour, GUILayout.Height(80));
                             if (td_target.choiceFourType == DialogType.None) {
                                 EditorGUILayout.LabelField("Response Line:");
-                                td_target.choiceFour = EditorGUILayout.TextField(string.Empty, td_target.choiceFour, GUILayout.Height(80));
                                 EditorGUILayout.LabelField("Dialog Line:");
                                 td_target.choiceFourDialog = EditorGUILayout.TextField(string.Empty, td_target.choiceFourDialog, GUILayout.Height(80));
                             }
                             else if (td_target.choiceFourType == DialogType.CloseDialog) {
                                 EditorGUILayout.LabelField("Response Line:");
-                                td_target.choiceFour = EditorGUILayout.TextField(string.Empty, td_target.choiceFour, GUILayout.Height(80));
                                 EditorGUILayout.LabelField("Dialog Line:");
                                 td_target.choiceFourDialog = EditorGUILayout.TextField(string.Empty, td_target.choiceFourDialog, GUILayout.Height(80));
                             }
                             else if (td_target.choiceFourType == DialogType.BranchDialog) {
                                 EditorGUILayout.LabelField("Response Line:");
-                                td_target.choiceFour = EditorGUILayout.TextField(string.Empty, td_target.choiceFour, GUILayout.Height(80));
                                 EditorGUILayout.LabelField("Dialog Line:");
                                 td_target.choiceFourDialog = EditorGUILayout.TextField(string.Empty, td_target.choiceFourDialog, GUILayout.Height(80));
                                 if (td_target.branchFourDialog == null) {
@@ -492,5 +484,7 @@ public class TopDownUIDialogEditor : Editor {
         EditorGUILayout.EndVertical();
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();
+
+        serializedObject.ApplyModifiedProperties();
     }
 }

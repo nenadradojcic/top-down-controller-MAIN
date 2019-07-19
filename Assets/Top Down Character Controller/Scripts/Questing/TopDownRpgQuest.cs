@@ -153,5 +153,8 @@ public class TopDownRpgQuest : MonoBehaviour {
     public void FinishQuest() {
         questState = QuestState.Finished;
         questFinished = true;
+
+        //SOME NOTIFICATION THAT QUEST STARTED
+        uiManager.notificationText.GetComponent<TopDownUIShowNotification>().ShowNotification("Quest Finished \n''" + questName + "''");
     }
 }

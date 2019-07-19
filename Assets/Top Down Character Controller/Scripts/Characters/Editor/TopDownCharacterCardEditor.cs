@@ -63,7 +63,7 @@ public class TopDownCharacterCardEditor : Editor {
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();
 
-        if(td_target.gameObject.GetComponent<TopDownAI>()) {
+        if (td_target.gameObject.GetComponent<TopDownAI>()) {
             EditorGUILayout.LabelField("AI COMPONENT DETECTED.", boldCenteredLabel);
 
             EditorGUILayout.BeginHorizontal();
@@ -161,6 +161,9 @@ public class TopDownCharacterCardEditor : Editor {
         if(td_target.gameObject.tag == "NPC") {
 
         }
+
+
+        serializedObject.ApplyModifiedProperties();
     }
 
     protected virtual void OnSceneGUI() {

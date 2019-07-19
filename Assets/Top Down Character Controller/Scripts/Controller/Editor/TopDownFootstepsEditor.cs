@@ -34,5 +34,7 @@ public class TopDownFootstepsEditor : Editor {
         EditorGUILayout.EndVertical();
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();
+
+        serializedObject.ApplyModifiedProperties();
     }
 }

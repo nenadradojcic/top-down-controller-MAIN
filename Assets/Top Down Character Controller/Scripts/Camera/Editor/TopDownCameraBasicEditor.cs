@@ -71,5 +71,7 @@ public class TopDownCameraBasicEditor : Editor {
         EditorGUILayout.EndVertical();
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();
+
+        serializedObject.ApplyModifiedProperties();
     }
 }

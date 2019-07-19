@@ -170,6 +170,7 @@ public class TopDownUIDialogMain : MonoBehaviour {
                 dialogChoices[0].GetComponent<Button>().interactable = true;
                 dialogChoices[0].choiceTxt.text = buttonText;
                 dialogChoices[0].type = DialogType.ImmediateClose;
+                dialogChoices[0].events = null;
             }
             else {
                 dialogChoices[i].GetComponent<Button>().interactable = false;

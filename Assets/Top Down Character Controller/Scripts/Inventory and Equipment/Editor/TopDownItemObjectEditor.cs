@@ -183,5 +183,7 @@ public class TopDownItemObjectEditor : Editor {
             GUILayout.FlexibleSpace();
             EditorGUILayout.EndHorizontal();
         }
+
+        serializedObject.ApplyModifiedProperties();
     }
 }

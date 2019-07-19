@@ -46,5 +46,7 @@ public class TopDownControllerMainEditor : Editor {
         EditorGUILayout.EndVertical();
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();
+
+        serializedObject.ApplyModifiedProperties();
     }
 }

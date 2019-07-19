@@ -17,10 +17,15 @@ MonoBehaviour:
   itemDescription: A simple chainmail coif.
   itemType: 4
   weaponType: 1
+  weaponHoldingType: 0
   armorModifier: 1
   damageModifier: 0
   strengthModifier: 0
   dexterityModifier: 0
   constitutionModifier: 0
   willpowerModifier: 0
+  slotOfThisItem: {fileID: 0}
+  itemVisualisation: 0
+  itemMesh: {fileID: 0}
   itemGameObject: {fileID: 0}
+  itemSkinnedMeshName: 

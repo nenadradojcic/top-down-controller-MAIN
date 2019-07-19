@@ -38,10 +38,14 @@ public class TopDownUIItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEn
     }
 
     public void ClearSlot(TopDownUIItemSlot slot) {
-        slot.itemInSlot.slotOfThisItem = null;
-        slot.itemInSlot = null;
-        slot.itemIcon.sprite = null;
-        slot.itemIcon.enabled = false;
+        if (slot != null) {
+            if (slot.itemInSlot != null) {
+                slot.itemInSlot.slotOfThisItem = null;
+                slot.itemInSlot = null;
+            }
+            slot.itemIcon.sprite = null;
+            slot.itemIcon.enabled = false;
+        }
     }
 
     public void UseSlottedItem() {
@@ -77,74 +81,75 @@ public class TopDownUIItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEn
         if (main.tdcm_animator.GetBool("TargetInFront") == false) { //We should be able to use slots only when out of combat
             if (eventData.button == PointerEventData.InputButton.Right) {
                 if (itemInSlot != null && inventory.holdingItem == null) {
+                    if (GetComponent<TopDownUIItemSlot>().slotType != SlotType.Quickslot) {
+                        //If item we are trying to equip is two handed weapon, we want to check if there is a shield equipped and to deequip it
+                        if (itemInSlot.weaponHoldingType == WeaponHoldingType.TwoHanded) {
+                            if (inventory.currentEquipmentSlots.equipmentSlots[3].itemInSlot != null) {
 
-                    //If item we are trying to equip is two handed weapon, we want to check if there is a shield equipped and to deequip it
-                    if (itemInSlot.weaponHoldingType == WeaponHoldingType.TwoHanded) {
-                        if (inventory.currentEquipmentSlots.equipmentSlots[3].itemInSlot != null) {
+                                inventory.currentEquipmentSlots.equipmentSlots[3].UseSlottedItem();
+                                //print(inventory.currentEquipmentManager.gameObject.name);
 
-                            inventory.currentEquipmentSlots.equipmentSlots[3].UseSlottedItem();
+                                inventory.MoveItemToInventory(inventory.currentEquipmentSlots.equipmentSlots[3]);
+                                ClearSlot(inventory.currentEquipmentSlots.equipmentSlots[3]);
+                            }
+                        }
+
+                        //If item we are trying to equip is shield, we want to check if there is a two handed weapon equipped and to deequip it
+                        if (itemInSlot.itemType == ItemType.Shield) {
+                            if (inventory.currentEquipmentSlots.equipmentSlots[2].itemInSlot != null && inventory.currentEquipmentSlots.equipmentSlots[2].itemInSlot.weaponHoldingType == WeaponHoldingType.TwoHanded) {
+
+                                inventory.currentEquipmentSlots.equipmentSlots[2].UseSlottedItem();
+                                //print(inventory.currentEquipmentManager.gameObject.name);
+
+                                inventory.MoveItemToInventory(inventory.currentEquipmentSlots.equipmentSlots[2]);
+                                ClearSlot(inventory.currentEquipmentSlots.equipmentSlots[2]);
+                            }
+                        }
+
+                        if (inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].itemInSlot == null) {
+
+                            //Debug.Log("No item equiped.");
+
+                            UseSlottedItem();
                             //print(inventory.currentEquipmentManager.gameObject.name);
 
-                            inventory.MoveItemToInventory(inventory.currentEquipmentSlots.equipmentSlots[3]);
-                            ClearSlot(inventory.currentEquipmentSlots.equipmentSlots[3]);
+                            inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
+                            if (slottedInQuick != null) {
+                                inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].slottedInQuick = slottedInQuick;
+                                slottedInQuick = null;
+                            }
+                            inventory.RemoveItem(itemInSlot);
                         }
-                    }
+                        else if (inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].itemInSlot == itemInSlot) {
 
-                    //If item we are trying to equip is shield, we want to check if there is a two handed weapon equipped and to deequip it
-                    if (itemInSlot.itemType == ItemType.Shield) {
-                        if (inventory.currentEquipmentSlots.equipmentSlots[2].itemInSlot != null && inventory.currentEquipmentSlots.equipmentSlots[2].itemInSlot.weaponHoldingType == WeaponHoldingType.TwoHanded) {
+                            //Debug.Log("This item is equiped.");
 
-                            inventory.currentEquipmentSlots.equipmentSlots[2].UseSlottedItem();
+                            UseSlottedItem();
                             //print(inventory.currentEquipmentManager.gameObject.name);
 
-                            inventory.MoveItemToInventory(inventory.currentEquipmentSlots.equipmentSlots[2]);
-                            ClearSlot(inventory.currentEquipmentSlots.equipmentSlots[2]);
+                            inventory.MoveItemToInventory(inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType]);
+                            inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
                         }
-                    }
+                        else if (inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].itemInSlot != itemInSlot) {
 
-                    if (inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].itemInSlot == null) {
+                            //Debug.Log("Other item is equiped.");
 
-                        //Debug.Log("No item equiped.");
+                            inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].UseSlottedItem();
+                            //print(inventory.currentEquipmentManager.gameObject.name);
 
-                        UseSlottedItem();
-                        //print(inventory.currentEquipmentManager.gameObject.name);
+                            inventory.MoveItemToInventory(inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType]);
+                            inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
 
-                        inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
-                        if (slottedInQuick != null) {
-                            inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].slottedInQuick = slottedInQuick;
-                            slottedInQuick = null;
+                            UseSlottedItem();
+                            //print(inventory.currentEquipmentManager.gameObject.name);
+
+                            inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
+                            if (slottedInQuick != null) {
+                                inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].slottedInQuick = slottedInQuick;
+                                slottedInQuick = null;
+                            }
+                            inventory.RemoveItem(itemInSlot);
                         }
-                        inventory.RemoveItem(itemInSlot);
-                    }
-                    else if (inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].itemInSlot == itemInSlot) {
-
-                        //Debug.Log("This item is equiped.");
-
-                        UseSlottedItem();
-                        //print(inventory.currentEquipmentManager.gameObject.name);
-
-                        inventory.MoveItemToInventory(inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType]);
-                        inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
-                    }
-                    else if (inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].itemInSlot != itemInSlot) {
-
-                        //Debug.Log("Other item is equiped.");
-
-                        inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].UseSlottedItem();
-                        //print(inventory.currentEquipmentManager.gameObject.name);
-
-                        inventory.MoveItemToInventory(inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType]);
-                        inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
-
-                        UseSlottedItem();
-                        //print(inventory.currentEquipmentManager.gameObject.name);
-
-                        inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
-                        if (slottedInQuick != null) {
-                            inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].slottedInQuick = slottedInQuick;
-                            slottedInQuick = null;
-                        }
-                        inventory.RemoveItem(itemInSlot);
                     }
 
                     ClearSlot(this);

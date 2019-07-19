@@ -6,7 +6,7 @@ public class TopDownDecompose : MonoBehaviour {
 
     public bool decompose = false;
 
-    public float decomposeSpeed = 0.0001f;
+    public float decomposeSpeed = 0.00015f;
 
     public float startingY = 0f;
     public float currentY = 0f;
@@ -31,7 +31,7 @@ public class TopDownDecompose : MonoBehaviour {
 
         difference = startingY - currentY;
 
-        if (difference <= 1f) {
+        if (difference <= 0.2f) {
             transform.Translate(Vector3.down * decomposeSpeed);
         }
         else {

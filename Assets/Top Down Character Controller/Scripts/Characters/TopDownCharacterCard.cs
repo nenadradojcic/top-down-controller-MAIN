@@ -318,6 +318,10 @@ public class TopDownCharacterCard : MonoBehaviour {
         if (GetComponent<TopDownDecompose>()) {
             GetComponent<TopDownDecompose>().decompose = true;
         }
+
+        TopDownDecompose decompose = gameObject.AddComponent<TopDownDecompose>();
+        decompose.decompose = true;
+
         Destroy(this);
 
         return;
