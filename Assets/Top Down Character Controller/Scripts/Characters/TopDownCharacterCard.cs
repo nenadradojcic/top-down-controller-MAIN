@@ -130,7 +130,7 @@ public class TopDownCharacterCard : MonoBehaviour {
             }
         }
 
-        if (uiManager.characterPortraitType == CharacterPortraitType.Runtime) {
+        /*if (uiManager.characterPortraitType == CharacterPortraitType.Runtime) {
             if (portraitCamera != null) {
                 portraitCamera.enabled = false;
                 if (portraitLight != null) {
@@ -139,7 +139,7 @@ public class TopDownCharacterCard : MonoBehaviour {
 
                 UpdatePortrait();
             }
-        }
+        }*/
     }
 
     public void SetAiActive() {

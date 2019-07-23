@@ -16,10 +16,13 @@ public class TopDownCharacterManager : MonoBehaviour {
 
     public TopDownCameraBasic characterCamera;
 
+    private TopDownUIInventory td_Inventory;
+
     public static TopDownCharacterManager instance;
 
     public void Awake() {
         instance = this;
+        td_Inventory = TopDownUIInventory.instance;
     }
 
     public void Start() {
@@ -56,8 +59,43 @@ public class TopDownCharacterManager : MonoBehaviour {
                     characterButtonsUi[i].SetCharacterUI();
 
                     newCharacter.GetComponent<TopDownCharacterCard>().td_characterIndex = i;
-                    newCharacter.GetComponent<TopDownCharacterCard>().characterInventory = TopDownUIInventory.instance.charEquipmentSlots[i];
+                    newCharacter.GetComponent<TopDownCharacterCard>().characterInventory = td_Inventory.charEquipmentSlots[i];
                     newCharacter.GetComponent<TopDownCharacterCard>().characterInventory.SetUpInventory(newCharacter.GetComponent<TopDownCharacterCard>());
+                    newCharacter.GetComponent<TopDownCharacterCard>().UpdatePortrait();
+
+                    
+                    //With this method we are adding equipment to usable equipment manager and inventory from npc
+                    if (td_Inventory.currentEquipmentSlots != null && td_Inventory.currentEquipmentManager != null) {
+                        TopDownCharacterEquipmentSlots lastSlots = td_Inventory.currentEquipmentSlots;
+                        TopDownEquipmentManager lastManager = td_Inventory.currentEquipmentManager;
+
+                        lastManager.gameObject.GetComponent<TopDownCharacterCard>().characterInventory.gameObject.SetActive(false);
+
+                        td_Inventory.currentEquipmentSlots = newCharacter.GetComponent<TopDownCharacterCard>().characterInventory;
+                        td_Inventory.currentEquipmentManager = newCharacter.GetComponent<TopDownCharacterCard>().equipmentManager;
+
+                        //Check if NPC has equipment on himself, so we can add it to character inventory window.
+                        if (newCharacter.GetComponent<TopDownStartupItemsSetup>()) {
+                            TopDownStartupItemsSetup startUpItems = newCharacter.GetComponent<TopDownStartupItemsSetup>();
+
+                            if (startUpItems.itemsEquipped.Count > 0) {
+                                for (int s = 0; s < startUpItems.itemsEquipped.Count; s++) {
+
+                                    TopDownItemObject tmp = startUpItems.itemsEquipped[s];
+                                    td_Inventory.AddItemJustAsset(startUpItems.itemsEquipped[s]);
+                                    newCharacter.GetComponent<TopDownCharacterCard>().characterInventory.equipmentSlots[(int)startUpItems.itemsEquipped[s].itemType].ClearSlot(startUpItems.itemsEquipped[s].slotOfThisItem);
+                                    newCharacter.GetComponent<TopDownCharacterCard>().characterInventory.equipmentSlots[(int)startUpItems.itemsEquipped[s].itemType].AddItemToSlot(tmp);
+                                }
+                            }
+                        }
+
+                        td_Inventory.currentEquipmentSlots = lastSlots;
+                        td_Inventory.currentEquipmentManager = lastManager;
+
+                        lastManager.gameObject.GetComponent<TopDownCharacterCard>().characterInventory.gameObject.SetActive(true);
+                    }
+
+                    newCharacter.GetComponent<TopDownCharacterCard>().characterInventory.gameObject.SetActive(false);
 
                     if (activeCharacter == null) {
                         activeCharacter = newCharacter;

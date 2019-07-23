@@ -107,7 +107,6 @@ public class TopDownUIDialog : TopDownInteractible {
         }
     }
 
-
     public override void Interact() {
         base.Interact();
 

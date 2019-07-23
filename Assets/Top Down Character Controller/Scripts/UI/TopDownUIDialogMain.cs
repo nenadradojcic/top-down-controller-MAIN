@@ -76,6 +76,8 @@ public class TopDownUIDialogMain : MonoBehaviour {
 
             dialogInUse = null;
         }
+
+        cameraBasic.enabled = true;
     }
 
     public void ShowDialog(TopDownUIDialog dialog) {
@@ -161,6 +163,8 @@ public class TopDownUIDialogMain : MonoBehaviour {
                 }
             }
         }
+
+        cameraBasic.enabled = false;
     }
 
     public void CloseDialogPerType(string buttonText) {
@@ -178,6 +182,8 @@ public class TopDownUIDialogMain : MonoBehaviour {
                 dialogChoices[i - 1].index = 0;
             }
         }
+
+        cameraBasic.enabled = true;
     }
 
     public enum ChoicePosition { Top = 0, Bottom = 1}

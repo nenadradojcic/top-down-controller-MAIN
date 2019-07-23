@@ -98,13 +98,13 @@ public class TopDownEquipmentManager : MonoBehaviour {
     public void EquipItem(TopDownItemObject item) {
         int slotIndex = (int)item.itemType;
 
-        if (currentEquipment[slotIndex] != null) {
+        /*if (currentEquipment[slotIndex] != null) {
             for (int i = 0; i < TopDownUIInventory.instance.slots.Length; i++) {
                 if (TopDownUIInventory.instance.slots[i].itemInSlot == currentEquipment[slotIndex]) {
-                    //TopDownUIInventory.instance.slots[i].GetComponent<Image>().color = TopDownUIInventory.instance.slots[i].normalSlotColor;
+                    TopDownUIInventory.instance.slots[i].GetComponent<Image>().color = TopDownUIInventory.instance.slots[i].normalSlotColor;
                 }
             }
-        }
+        }*/
 
         currentEquipment[slotIndex] = item;
 
@@ -116,7 +116,6 @@ public class TopDownEquipmentManager : MonoBehaviour {
                     GameObject itemGo = Instantiate(item.itemGameObject) as GameObject;
                     for (int i = 0; i < itemGo.transform.childCount; i++) {
                         itemGo.transform.GetChild(i).gameObject.layer = gameObject.layer;
-                        //print(itemGo.transform.GetChild(i).gameObject.name + " new layer is " + gameObject.layer);
                     }
                     itemGo.transform.SetParent(weaponHolsterMountPoint);
                     itemGo.transform.localPosition = Vector3.zero;
@@ -142,7 +141,6 @@ public class TopDownEquipmentManager : MonoBehaviour {
                 GameObject itemGo = Instantiate(item.itemGameObject) as GameObject;
                 for (int i = 0; i < itemGo.transform.childCount; i++) {
                     itemGo.transform.GetChild(i).gameObject.layer = gameObject.layer;
-                    //print(itemGo.transform.GetChild(i).gameObject.name + " new layer is " + gameObject.layer);
                 }
                 itemGo.transform.SetParent(shieldHolsterMountPoint);
                 itemGo.transform.localPosition = Vector3.zero;
@@ -176,19 +174,91 @@ public class TopDownEquipmentManager : MonoBehaviour {
             }
         }
 
-        for (int i = 0; i < TopDownUIInventory.instance.slots.Length; i++) {
+        /*for (int i = 0; i < TopDownUIInventory.instance.slots.Length; i++) {
             if (TopDownUIInventory.instance.slots[i].itemInSlot == item) {
-                //TopDownUIInventory.instance.slots[i].GetComponent<Image>().color = TopDownUIInventory.instance.slots[i].equipedSlotColor;
+                TopDownUIInventory.instance.slots[i].GetComponent<Image>().color = TopDownUIInventory.instance.slots[i].equipedSlotColor;
             }
-        }
+        }*/
 
         if (TopDownAudioManager.instance.inventoryItemUseAudio != null) {
             Instantiate(TopDownAudioManager.instance.inventoryItemUseAudio, Vector3.zero, Quaternion.identity);
         }
 
         AddPointModifiers(item);
-        if (TopDownUIManager.instance.characterPortraitType == CharacterPortraitType.Runtime) {
-            GetComponent<TopDownCharacterCard>().UpdatePortrait();
+
+        if (gameObject.tag != "NPC") {
+            if (TopDownUIManager.instance.characterPortraitType == CharacterPortraitType.Runtime) {
+                GetComponent<TopDownCharacterCard>().UpdatePortrait();
+            }
+        }
+    }
+
+    public void EquipItemForNpc(TopDownItemObject item) {
+        int slotIndex = (int)item.itemType;
+
+        currentEquipment[slotIndex] = item;
+
+        if (item.itemType == ItemType.Weapon) {
+            if (item.weaponType == WeaponType.Melee) {
+                if (item.itemGameObject != null) {
+                    GameObject itemGo = Instantiate(item.itemGameObject) as GameObject;
+                    for (int i = 0; i < itemGo.transform.childCount; i++) {
+                        itemGo.transform.GetChild(i).gameObject.layer = gameObject.layer;
+                    }
+                    itemGo.transform.SetParent(weaponHolsterMountPoint);
+                    itemGo.transform.localPosition = Vector3.zero;
+                    itemGo.transform.localEulerAngles = Vector3.zero;
+                }
+            }
+            else if (item.weaponType == WeaponType.Ranged) {
+                if (item.itemGameObject != null) {
+                    GameObject itemGo = Instantiate(item.itemGameObject) as GameObject;
+                    for (int i = 0; i < itemGo.transform.childCount; i++) {
+                        itemGo.transform.GetChild(i).gameObject.layer = gameObject.layer;
+                    }
+                    itemGo.transform.SetParent(shieldHolsterMountPoint);
+                    itemGo.transform.localPosition = Vector3.zero;
+                    itemGo.transform.localEulerAngles = Vector3.zero;
+                }
+            }
+            weaponTypeUsed = item.weaponType;
+            weaponHoldingType = item.weaponHoldingType;
+        }
+        else if (item.itemType == ItemType.Shield) {
+            if (item.itemGameObject != null) {
+                GameObject itemGo = Instantiate(item.itemGameObject) as GameObject;
+                for (int i = 0; i < itemGo.transform.childCount; i++) {
+                    itemGo.transform.GetChild(i).gameObject.layer = gameObject.layer;
+                }
+                itemGo.transform.SetParent(shieldHolsterMountPoint);
+                itemGo.transform.localPosition = Vector3.zero;
+                itemGo.transform.localEulerAngles = Vector3.zero;
+            }
+        }
+
+        if (characterEquipmentType == CharacterEquipementType.EnableMesh) {
+            for (int i = 0; i < itemsOnCharacter.Length; i++) {
+                if (item.itemSkinnedMeshName == itemsOnCharacter[i].name) {
+                    itemsOnCharacter[i].enabled = true;
+                }
+            }
+        }
+        else if (characterEquipmentType == CharacterEquipementType.ReplaceMesh) {
+            if (item.itemType == ItemType.Chest) {
+                bodyMesh.sharedMesh = item.itemMesh;
+            }
+            else if (item.itemType == ItemType.Head) {
+                helmMesh.sharedMesh = item.itemMesh;
+            }
+            else if (item.itemType == ItemType.Legs) {
+                leggsMesh.sharedMesh = item.itemMesh;
+            }
+            else if (item.itemType == ItemType.Hands) {
+                handsMesh.sharedMesh = item.itemMesh;
+            }
+            else if (item.itemType == ItemType.Neck) {
+                neckMesh.sharedMesh = item.itemMesh;
+            }
         }
     }
 
