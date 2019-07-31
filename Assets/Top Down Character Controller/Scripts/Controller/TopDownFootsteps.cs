@@ -9,6 +9,7 @@ public class TopDownFootsteps : MonoBehaviour {
     
     public NavMeshAgent navMeshAgent;
     public TopDownControllerMain tdc_Main;
+    private TopDownAudioManager tdc_AudioManager;
 
     public bool stepped = false;
 
@@ -16,6 +17,13 @@ public class TopDownFootsteps : MonoBehaviour {
         navMeshAgent = GetComponent<NavMeshAgent>();
         if(GetComponent<TopDownControllerMain>()) {
             tdc_Main = GetComponent<TopDownControllerMain>();
+        }
+
+        tdc_AudioManager = TopDownAudioManager.instance;
+         
+        if(tdc_AudioManager == null) {
+            GameObject audioManagerGo = Instantiate(Resources.Load("TD_AudioManager") as GameObject);
+            tdc_AudioManager = audioManagerGo.GetComponent<TopDownAudioManager>();
         }
     }
 
@@ -36,9 +44,9 @@ public class TopDownFootsteps : MonoBehaviour {
     }
 
     public IEnumerator Footstep(float seconds) {
-        stepped = true;
-        Instantiate(TopDownAudioManager.instance.footstepAudio, transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(seconds);
-        stepped = false;
+            stepped = true;
+            Instantiate(tdc_AudioManager.footstepAudio, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(seconds);
+            stepped = false;
     }
 }

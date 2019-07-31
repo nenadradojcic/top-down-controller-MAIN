@@ -260,6 +260,8 @@ public class TopDownEquipmentManager : MonoBehaviour {
                 neckMesh.sharedMesh = item.itemMesh;
             }
         }
+
+        AddPointModifiers(item);
     }
 
     public void UnequipItem(TopDownItemObject item) {
@@ -432,10 +434,12 @@ public class TopDownEquipmentManager : MonoBehaviour {
     //enum PointModifiers { Armor, Damage, Strength, Dexterity, Constitution, Willpower}
 
     public void AddPointModifiers(TopDownItemObject item) {
+
+        armorPointsValue += item.armorModifier;
+        damagePointsValue += item.damageModifier;
+
+        //strength and others also
         if (gameObject.tag == "Player") {
-            armorPointsValue += item.armorModifier;
-            damagePointsValue += item.damageModifier;
-            //strength and others also
 
             //Than update UI
             TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownCharacterCard>().characterInventory.armorPointsTxt.text = "AP: " + armorPointsValue.ToString();

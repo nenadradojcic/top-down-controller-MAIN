@@ -16,6 +16,8 @@ public class TopDownCharacterManager : MonoBehaviour {
 
     public TopDownCameraBasic characterCamera;
 
+    public int experienceToLevel = 200;
+
     private TopDownUIInventory td_Inventory;
 
     public static TopDownCharacterManager instance;
@@ -27,7 +29,9 @@ public class TopDownCharacterManager : MonoBehaviour {
 
     public void Start() {
 
-        characterButtonsUi = TopDownUIManager.instance.characterPortraits;
+        if (TopDownUIManager.instance != null) {
+            characterButtonsUi = TopDownUIManager.instance.characterPortraits;
+        }
 
         characterCamera = GameObject.FindObjectOfType<TopDownCameraBasic>();
 
@@ -65,10 +69,10 @@ public class TopDownCharacterManager : MonoBehaviour {
 
                     
                     //With this method we are adding equipment to usable equipment manager and inventory from npc
-                    if (td_Inventory.currentEquipmentSlots != null && td_Inventory.currentEquipmentManager != null) {
+                    if (td_Inventory.currentEquipmentSlots != null && td_Inventory.currentEquipmentManager != null) { //We want to do this only if this is not our first cha
                         TopDownCharacterEquipmentSlots lastSlots = td_Inventory.currentEquipmentSlots;
                         TopDownEquipmentManager lastManager = td_Inventory.currentEquipmentManager;
-
+                        
                         lastManager.gameObject.GetComponent<TopDownCharacterCard>().characterInventory.gameObject.SetActive(false);
 
                         td_Inventory.currentEquipmentSlots = newCharacter.GetComponent<TopDownCharacterCard>().characterInventory;
@@ -93,9 +97,12 @@ public class TopDownCharacterManager : MonoBehaviour {
                         td_Inventory.currentEquipmentManager = lastManager;
 
                         lastManager.gameObject.GetComponent<TopDownCharacterCard>().characterInventory.gameObject.SetActive(true);
-                    }
 
-                    newCharacter.GetComponent<TopDownCharacterCard>().characterInventory.gameObject.SetActive(false);
+                        newCharacter.GetComponent<TopDownCharacterCard>().characterInventory.armorPointsTxt.text = "AP: " + newCharacter.GetComponent<TopDownEquipmentManager>().armorPointsValue.ToString();
+                        newCharacter.GetComponent<TopDownCharacterCard>().characterInventory.damagePointsTxt.text = "DP: " + newCharacter.GetComponent<TopDownEquipmentManager>().damagePointsValue.ToString();
+
+                        newCharacter.GetComponent<TopDownCharacterCard>().characterInventory.gameObject.SetActive(false);
+                    }
 
                     if (activeCharacter == null) {
                         activeCharacter = newCharacter;

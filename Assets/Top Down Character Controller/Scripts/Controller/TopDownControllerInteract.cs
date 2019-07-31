@@ -40,6 +40,8 @@ public class TopDownControllerInteract : MonoBehaviour {
 
     public TopDownCheckUI td_CheckUI;
 
+    public KeyCode defInteractKey = KeyCode.Mouse0;
+
     private void Start() {
         td_CheckUI = TopDownCheckUI.instance;
 
@@ -59,7 +61,7 @@ public class TopDownControllerInteract : MonoBehaviour {
 
         if (tempDisable == false) {
             if (TopDownUIManager.instance != null) {
-                if (Input.GetKey(TopDownInputManager.instance.interactKey)) {
+                if (Input.GetKey(tdcc_InputManager.interactKey)) {
                     MoveCharacter();
                 }
                 else {
@@ -75,7 +77,7 @@ public class TopDownControllerInteract : MonoBehaviour {
                 }
             }
             else {
-                if (Input.GetKey(KeyCode.Mouse0)) {
+                if (Input.GetKey(defInteractKey)) {
                     MoveCharacter();
                 }
                 else {

@@ -29,6 +29,7 @@ public class TopDownCameraBasic : MonoBehaviour {
     public float freeCameraSpeed = 0.5f;
 
     private TopDownInputManager td_InputManager;
+    private TopDownUIManager td_UiManager;
 
     public float cameraAxisX = 0f;
     public float cameraAxisY = 0f;
@@ -43,6 +44,15 @@ public class TopDownCameraBasic : MonoBehaviour {
     float characterSize = 1f;
 
     public static TopDownCameraBasic instance;
+
+    //These will be used only if TopDownInputManager.cs is not present in scene
+    public string defMouseX = "Mouse X";
+    public string defMouseY = "Mouse Y";
+    public string defMouseScroll = "Mouse ScrollWheel";
+    public KeyCode defChangeCamKey = KeyCode.C;
+    public KeyCode defRotCamKey = KeyCode.Mouse1;
+
+    public TopDownControllerInteract targetInteractScript;
     #endregion
 
     public void Awake() {
@@ -54,15 +64,20 @@ public class TopDownCameraBasic : MonoBehaviour {
         if (TopDownCharacterManager.instance == null || TopDownCharacterManager.instance.defaultCharacter == null) {
             if (GameObject.FindGameObjectWithTag("Player")) {
                 td_Target = GameObject.FindGameObjectWithTag("Player").transform;
+                if (td_Target.GetComponent<TopDownControllerInteract>()) {
+                    targetInteractScript = td_Target.GetComponent<TopDownControllerInteract>();
+                }
             }
             else {
                 Debug.LogWarning("No player character found in scene.");
             }
 
         }
-        td_InputManager = TopDownInputManager.instance;
 
-        Vector3 angles = transform.eulerAngles;
+        td_InputManager = TopDownInputManager.instance;
+        td_UiManager = TopDownUIManager.instance;
+
+         Vector3 angles = transform.eulerAngles;
         x = angles.x;
         y = angles.y;
 
@@ -80,11 +95,57 @@ public class TopDownCameraBasic : MonoBehaviour {
                 distanceDefault = distanceDefault * characterSize;
             }
 
-            cameraZoomAxis = Input.GetAxis(td_InputManager.mouseScrollwheelName);
+            if (td_InputManager != null) {
+                cameraZoomAxis = Input.GetAxis(td_InputManager.mouseScrollwheelName);
+            }
+            else {
+                cameraZoomAxis = Input.GetAxis(defMouseScroll);
+            }
 
-            if (TopDownUIManager.instance.checkUi != null) {
-                if (TopDownUIManager.instance.checkUi.IsPointerOverUIObject() == false) {
+            if (td_UiManager != null) {
+                if (td_UiManager.checkUi != null) {
+                    if (td_UiManager.checkUi.IsPointerOverUIObject() == false) {
 
+                        if (Input.GetKey(td_InputManager.interactKey) && Input.GetKey(td_InputManager.rotateCamera)) {
+                            Cursor.lockState = CursorLockMode.Locked;
+                            Cursor.visible = false;
+                        }
+                        else if (!Input.GetKey(td_InputManager.interactKey) && Input.GetKey(td_InputManager.rotateCamera)) {
+                            Cursor.lockState = CursorLockMode.Confined;
+                            Cursor.visible = false;
+                        }
+                        else {
+                            Cursor.lockState = CursorLockMode.None;
+                            Cursor.visible = true;
+                        }
+
+                        if (Input.GetKey(td_InputManager.rotateCamera)) {
+                            cameraAxisX = Input.GetAxis(td_InputManager.mouseYName);
+                            cameraAxisY = Input.GetAxis(td_InputManager.mouseXName);
+                        }
+                        else {
+                            cameraAxisX = Mathf.Lerp(cameraAxisX, 0f, 0.1f);
+                            cameraAxisY = Mathf.Lerp(cameraAxisY, 0f, 0.1f);
+                        }
+                    }
+                    else {
+                        cameraAxisX = Mathf.Lerp(cameraAxisX, 0f, 0.1f);
+                        cameraAxisY = Mathf.Lerp(cameraAxisY, 0f, 0.1f);
+                    }
+                }
+                else {
+                    if (td_InputManager != null) {
+                        cameraAxisX = Input.GetAxis(td_InputManager.mouseYName);
+                        cameraAxisY = Input.GetAxis(td_InputManager.mouseXName);
+                    }
+                    else {
+                        cameraAxisX = Input.GetAxis(defMouseY);
+                        cameraAxisY = Input.GetAxis(defMouseX);
+                    }
+                }
+            }
+            else {
+                if (td_InputManager != null) {
                     if (Input.GetKey(td_InputManager.interactKey) && Input.GetKey(td_InputManager.rotateCamera)) {
                         Cursor.lockState = CursorLockMode.Locked;
                         Cursor.visible = false;
@@ -108,27 +169,60 @@ public class TopDownCameraBasic : MonoBehaviour {
                     }
                 }
                 else {
-                    cameraAxisX = Mathf.Lerp(cameraAxisX, 0f, 0.1f);
-                    cameraAxisY = Mathf.Lerp(cameraAxisY, 0f, 0.1f);
+                    if (Input.GetKey(targetInteractScript.defInteractKey) && Input.GetKey(defRotCamKey)) {
+                        Cursor.lockState = CursorLockMode.Locked;
+                        Cursor.visible = false;
+                    }
+                    else if (!Input.GetKey(targetInteractScript.defInteractKey) && Input.GetKey(defRotCamKey)) {
+                        Cursor.lockState = CursorLockMode.Confined;
+                        Cursor.visible = false;
+                    }
+                    else {
+                        Cursor.lockState = CursorLockMode.None;
+                        Cursor.visible = true;
+                    }
+
+                    if (Input.GetKey(defRotCamKey)) {
+                        cameraAxisX = Input.GetAxis(defMouseY);
+                        cameraAxisY = Input.GetAxis(defMouseX);
+                    }
+                    else {
+                        cameraAxisX = Mathf.Lerp(cameraAxisX, 0f, 0.1f);
+                        cameraAxisY = Mathf.Lerp(cameraAxisY, 0f, 0.1f);
+                    }
+                }
+            }
+
+            if (td_InputManager != null) {
+                if (Input.GetKeyDown(td_InputManager.changeCamera)) {
+                    if (cameraType == CameraType.CharacterCamera) {
+                        invisibleTarget = new GameObject().transform;
+                        invisibleTarget.position = td_Target.position;
+                        invisibleTarget.name = "TD_CameraFollowTemp";
+                        invisibleTarget.SetSiblingIndex(transform.GetSiblingIndex() + 1);
+                        cameraType = CameraType.FreeCamera;
+                    }
+                    else {
+                        Destroy(invisibleTarget.gameObject);
+                        invisibleTarget = null;
+                        cameraType = CameraType.CharacterCamera;
+                    }
                 }
             }
             else {
-                cameraAxisX = Input.GetAxis(td_InputManager.mouseYName);
-                cameraAxisY = Input.GetAxis(td_InputManager.mouseXName);
-            }
-
-            if (Input.GetKeyDown(td_InputManager.changeCamera)) {
-                if(cameraType == CameraType.CharacterCamera) {
-                    invisibleTarget = new GameObject().transform;
-                    invisibleTarget.position = td_Target.position;
-                    invisibleTarget.name = "TD_CameraFollowTemp";
-                    invisibleTarget.SetSiblingIndex(transform.GetSiblingIndex() + 1);
-                    cameraType = CameraType.FreeCamera;
-                }
-                else {
-                    Destroy(invisibleTarget.gameObject);
-                    invisibleTarget = null;
-                    cameraType = CameraType.CharacterCamera;
+                if (Input.GetKeyDown(defChangeCamKey)) {
+                    if (cameraType == CameraType.CharacterCamera) {
+                        invisibleTarget = new GameObject().transform;
+                        invisibleTarget.position = td_Target.position;
+                        invisibleTarget.name = "TD_CameraFollowTemp";
+                        invisibleTarget.SetSiblingIndex(transform.GetSiblingIndex() + 1);
+                        cameraType = CameraType.FreeCamera;
+                    }
+                    else {
+                        Destroy(invisibleTarget.gameObject);
+                        invisibleTarget = null;
+                        cameraType = CameraType.CharacterCamera;
+                    }
                 }
             }
 
@@ -168,7 +262,13 @@ public class TopDownCameraBasic : MonoBehaviour {
             }
 
             if(invisibleTarget != null) {
-                Vector3 movement = new Vector3(td_InputManager.horizontalAxis, 0f, td_InputManager.verticalAxis);
+                Vector3 movement;
+                if (td_InputManager != null) {
+                    movement = new Vector3(td_InputManager.horizontalAxis, 0f, td_InputManager.verticalAxis);
+                }
+                else {
+                    movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+                }
                 movement = transform.TransformDirection(movement);
                 movement.y = 0f;
 

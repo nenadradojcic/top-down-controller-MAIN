@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1138431216511822}
+  m_IsPrefabParent: 1
+--- !u!1 &1138431216511822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4353221329238962}
+  - component: {fileID: 114024531846919024}
+  m_Layer: 0
+  m_Name: TD_AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4353221329238962
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1138431216511822}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 314.06824, y: 419.1693, z: -51.78857}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114024531846919024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1138431216511822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75bd9b870ef8c124498b243b740ffcb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryOpenAudio: {fileID: 1261714081643298, guid: 2dc51ebe6d7cf7e45b44196f9e334905,
+    type: 2}
+  inventoryItemPickupAudio: {fileID: 1691120987411388, guid: a638dd4d71a8bfe47a23d872c5f4989c,
+    type: 2}
+  inventoryItemUseAudio: {fileID: 1065124615080992, guid: 7f8263f89a991454aa52f6d35cb43013,
+    type: 2}
+  weaponSheatheAudio: {fileID: 1055903948332426, guid: c42c038edc8ce4b4ea03cf0483532b42,
+    type: 2}
+  meleeSwingAudio: {fileID: 1184932763503840, guid: f0c12981111fc964c844c65a3c4b2927,
+    type: 2}
+  meleeHitAudio: {fileID: 1546125265980378, guid: 2f868b9291e7f0c4d95594d66d6b6af4,
+    type: 2}
+  footstepAudio: {fileID: 1457073875665602, guid: e6c6d914c3db010468571fcb8d3593b6,
+    type: 2}

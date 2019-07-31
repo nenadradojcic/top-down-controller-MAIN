@@ -36,7 +36,6 @@ public class TopDownCharacterCard : MonoBehaviour {
 
     public int level = 1;
     public int experience = 0;
-    public int experienceToLevel = 200;
     public int skillPoints = 0;
 
     //PLAYER WHEN NOT ACTIVE CHARACTER
@@ -267,6 +266,8 @@ public class TopDownCharacterCard : MonoBehaviour {
                 }
             }
         }
+
+        //NewUpdate();
     }
 
     private void Die() {
@@ -336,21 +337,34 @@ public class TopDownCharacterCard : MonoBehaviour {
     }
 
     public void OnMouseOver() {
-        if (uiManager != null && uiManager.checkUi.IsPointerOverUIObject() == false) {
-            mouseOver = true;
-            if (gameObject.tag == "Enemy") {
-                npcBar.nameText.text = aiName;
-                npcBar.healthBar.enabled = true;
-                npcBar.healthBar.fillAmount = health / maxHealth;
-                npcBar.energyBar.enabled = false;
-                npcBar.energyBar.fillAmount = 0f;
-                npcBar.portraitImage.enabled = false;
-                npcBar.portraitImage.sprite = null;
-            }
-            if (gameObject.tag == "Player") {
-                if (mainCamera.GetComponent<TopDownCameraBasic>()) {
-                    if (mainCamera.GetComponent<TopDownCameraBasic>().cameraType == CameraType.CharacterCamera) {
-                        if (characterManager.activeCharacter != gameObject) {
+        if (uiManager != null) {
+            if (uiManager.checkUi.IsPointerOverUIObject() == false) {
+                mouseOver = true;
+                if (gameObject.tag == "Enemy") {
+                    npcBar.nameText.text = aiName;
+                    npcBar.healthBar.enabled = true;
+                    npcBar.healthBar.fillAmount = health / maxHealth;
+                    npcBar.energyBar.enabled = false;
+                    npcBar.energyBar.fillAmount = 0f;
+                    npcBar.portraitImage.enabled = false;
+                    npcBar.portraitImage.sprite = null;
+                }
+                if (gameObject.tag == "Player") {
+                    if (mainCamera.GetComponent<TopDownCameraBasic>()) {
+                        if (mainCamera.GetComponent<TopDownCameraBasic>().cameraType == CameraType.CharacterCamera) {
+                            if (characterManager.activeCharacter != gameObject) {
+                                npcBar.nameText.text = name;
+                                npcBar.healthBar.enabled = true;
+                                npcBar.healthBar.fillAmount = health / maxHealth;
+                                npcBar.energyBar.enabled = true;
+                                npcBar.energyBar.fillAmount = energy / maxEnergy;
+                                if (uiManager.characterPortraitType == CharacterPortraitType.Static) {
+                                    npcBar.portraitImage.enabled = true;
+                                    npcBar.portraitImage.sprite = character.icon;
+                                }
+                            }
+                        }
+                        else {
                             npcBar.nameText.text = name;
                             npcBar.healthBar.enabled = true;
                             npcBar.healthBar.fillAmount = health / maxHealth;
@@ -362,41 +376,30 @@ public class TopDownCharacterCard : MonoBehaviour {
                             }
                         }
                     }
-                    else {
-                        npcBar.nameText.text = name;
-                        npcBar.healthBar.enabled = true;
-                        npcBar.healthBar.fillAmount = health / maxHealth;
-                        npcBar.energyBar.enabled = true;
-                        npcBar.energyBar.fillAmount = energy / maxEnergy;
-                        if (uiManager.characterPortraitType == CharacterPortraitType.Static) {
-                            npcBar.portraitImage.enabled = true;
-                            npcBar.portraitImage.sprite = character.icon;
-                        }
-                    }
                 }
+                if (gameObject.tag == "NPC") {
+                    npcBar.nameText.text = name;
+                    npcBar.healthBar.enabled = false;
+                    npcBar.healthBar.fillAmount = 0f;
+                    npcBar.energyBar.enabled = false;
+                    npcBar.energyBar.fillAmount = 0f;
+                    npcBar.portraitImage.enabled = false;
+                    npcBar.portraitImage.sprite = null;
+                }
+                //Debug.LogFormat("<b>" + gameObject.name + "</b> called OnMouseOver in <i>TopDownCharacterCard.cs</i>.");
             }
-            if (gameObject.tag == "NPC") {
-                npcBar.nameText.text = name;
+            else {
+                mouseOver = false;
+                npcBar.nameText.text = string.Empty;
                 npcBar.healthBar.enabled = false;
                 npcBar.healthBar.fillAmount = 0f;
                 npcBar.energyBar.enabled = false;
                 npcBar.energyBar.fillAmount = 0f;
                 npcBar.portraitImage.enabled = false;
                 npcBar.portraitImage.sprite = null;
-            }
-            //Debug.LogFormat("<b>" + gameObject.name + "</b> called OnMouseOver in <i>TopDownCharacterCard.cs</i>.");
-        }
-        else {
-            mouseOver = false;
-            npcBar.nameText.text = string.Empty;
-            npcBar.healthBar.enabled = false;
-            npcBar.healthBar.fillAmount = 0f;
-            npcBar.energyBar.enabled = false;
-            npcBar.energyBar.fillAmount = 0f;
-            npcBar.portraitImage.enabled = false;
-            npcBar.portraitImage.sprite = null;
 
-            npcBar.transform.position = new Vector2(-100f, 0f);
+                npcBar.transform.position = new Vector2(-100f, 0f);
+            }
         }
     }
 
@@ -456,4 +459,20 @@ public class TopDownCharacterCard : MonoBehaviour {
 
         portraitImage.texture = currentPortrait;
     }
+
+    /*/// <summary>
+    /// From here down you can add new functions
+    /// </summary>
+
+    public void NewUpdate() {
+
+        if (experience >= characterManager.experienceToLevel) {
+            LevelUpCharacter();
+        }
+    }
+
+    public void LevelUpCharacter() {
+        experience = 0;
+        skillPoints++;
+    }*/
 }

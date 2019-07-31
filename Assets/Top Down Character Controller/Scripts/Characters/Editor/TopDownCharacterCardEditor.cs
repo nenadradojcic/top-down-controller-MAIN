@@ -147,7 +147,6 @@ public class TopDownCharacterCardEditor : Editor {
             EditorGUILayout.LabelField("- Level and Experience -", simpleTitleLable);
             td_target.level = EditorGUILayout.IntField("Level:", td_target.level);
             td_target.experience = EditorGUILayout.IntField("Experience:", td_target.experience);
-            td_target.experienceToLevel = EditorGUILayout.IntField("Experience to next level:", td_target.experienceToLevel);
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("- Skills -", simpleTitleLable);
             td_target.skillPoints = EditorGUILayout.IntField("Skill Points:", td_target.skillPoints);

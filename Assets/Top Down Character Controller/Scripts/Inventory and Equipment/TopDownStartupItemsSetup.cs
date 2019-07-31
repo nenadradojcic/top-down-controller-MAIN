@@ -22,27 +22,32 @@ public class TopDownStartupItemsSetup : MonoBehaviour {
         td_CharacterCard = gameObject.GetComponent<TopDownCharacterCard>();
         td_Inventory = TopDownUIInventory.instance;
 
-        if (itemsToPlaceInInventory.Count > 0) {
-            for (int i = 0; i < itemsToPlaceInInventory.Count; i++) {
-                td_Inventory.AddItemJustAsset(itemsToPlaceInInventory[i]);
-                itemsInInventory.Add(itemsToPlaceInInventory[i]);
+        if (td_Inventory != null) {
+            if (itemsToPlaceInInventory.Count > 0) {
+                for (int i = 0; i < itemsToPlaceInInventory.Count; i++) {
+                    td_Inventory.AddItemJustAsset(itemsToPlaceInInventory[i]);
+                    itemsInInventory.Add(itemsToPlaceInInventory[i]);
+                }
+            }
+            if (itemsToEquip.Count > 0) {
+                for (int i = 0; i < itemsToEquip.Count; i++) {
+
+                    TopDownItemObject tmp = itemsToEquip[i];
+                    if (td_CharacterCard.characterInventory != null) {
+                        td_Inventory.AddItemJustAsset(itemsToEquip[i]);
+                        itemsToEquip[i].slotOfThisItem.UseSlottedItem();
+                        td_CharacterCard.characterInventory.equipmentSlots[(int)itemsToEquip[i].itemType].ClearSlot(itemsToEquip[i].slotOfThisItem);
+                        td_CharacterCard.characterInventory.equipmentSlots[(int)itemsToEquip[i].itemType].AddItemToSlot(tmp);
+                    }
+                    else {
+                        td_CharacterCard.equipmentManager.EquipItemForNpc(itemsToEquip[i]);
+                        itemsEquipped.Add(itemsToEquip[i]);
+                    }
+                }
             }
         }
-        if (itemsToEquip.Count > 0) {
-            for (int i = 0; i < itemsToEquip.Count; i++) {
-
-                TopDownItemObject tmp = itemsToEquip[i];
-                if (td_CharacterCard.characterInventory != null) {
-                    td_Inventory.AddItemJustAsset(itemsToEquip[i]);
-                    itemsToEquip[i].slotOfThisItem.UseSlottedItem();
-                    td_CharacterCard.characterInventory.equipmentSlots[(int)itemsToEquip[i].itemType].ClearSlot(itemsToEquip[i].slotOfThisItem);
-                    td_CharacterCard.characterInventory.equipmentSlots[(int)itemsToEquip[i].itemType].AddItemToSlot(tmp);
-                }
-                else {
-                    td_CharacterCard.equipmentManager.EquipItemForNpc(itemsToEquip[i]);
-                    itemsEquipped.Add(itemsToEquip[i]);
-                }
-            }
+        else {
+            this.enabled = false;
         }
     }
 }

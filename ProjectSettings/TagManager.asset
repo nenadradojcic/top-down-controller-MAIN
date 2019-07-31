@@ -4,11 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Fly
   - Item
   - Enemy
   - Walkable
   - NPC
   - Chest
+  - Water
+  - Horse
   layers:
   - Default
   - TransparentFX
@@ -30,7 +33,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Animal
   - 
   - 
   - 

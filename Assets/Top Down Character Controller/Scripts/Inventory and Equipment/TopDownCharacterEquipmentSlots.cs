@@ -58,7 +58,6 @@ public class TopDownCharacterEquipmentSlots : MonoBehaviour {
             nameTxt.text = characterInSlot.character.name;
             levelTxt.text = characterInSlot.level.ToString();
             expTxt.text = characterInSlot.experience.ToString();
-            expToLevelTxt.text = characterInSlot.experienceToLevel.ToString();
             skillsTxt.text = characterInSlot.skillPoints.ToString();
 
         }
