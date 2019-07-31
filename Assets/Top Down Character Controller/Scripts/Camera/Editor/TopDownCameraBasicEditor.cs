@@ -42,7 +42,7 @@ public class TopDownCameraBasicEditor : Editor {
         EditorGUILayout.BeginVertical("Box", GUILayout.Width(90 * Screen.width / 100));
 
         EditorGUI.BeginDisabledGroup(true);
-        td_target.cameraType = (CameraType)EditorGUILayout.EnumPopup("Camera Mode:", td_target.cameraType);
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("cameraType"));
         EditorGUI.EndDisabledGroup();
         EditorGUILayout.Space();
 
@@ -50,22 +50,22 @@ public class TopDownCameraBasicEditor : Editor {
         td_target.yAxisOffset = EditorGUILayout.FloatField("Offset:", td_target.yAxisOffset);
         EditorGUILayout.HelpBox("Here we determine how much will camera be offset based on characters position at Y axis. (Used so the camera wont be centered on characters feet.)", MessageType.Info);
         EditorGUILayout.Space();
-        td_target.cameraAngleMin = EditorGUILayout.FloatField("Minimum X Angle:", td_target.cameraAngleMin);
-        td_target.cameraAngleMax = EditorGUILayout.FloatField("Maximum X Angle:", td_target.cameraAngleMax);
+        serializedObject.FindProperty("cameraAngleMin").floatValue = EditorGUILayout.FloatField("Minimum X Angle:", td_target.cameraAngleMin);
+        serializedObject.FindProperty("cameraAngleMax").floatValue = EditorGUILayout.FloatField("Maximum X Angle:", td_target.cameraAngleMax);
         EditorGUILayout.HelpBox("Determines minimum and maximum X axis angle.", MessageType.Info);
         EditorGUILayout.Space();
 
         EditorGUILayout.LabelField("Distance Options", simpleTitleLable);
-        td_target.distanceDefault = EditorGUILayout.FloatField("Default Distance:", td_target.distanceDefault);
-        td_target.distanceMin = EditorGUILayout.FloatField("Minimum Distance:", td_target.distanceMin);
-        td_target.distanceMax = EditorGUILayout.FloatField("Maximum Distance:", td_target.distanceMax);
+        serializedObject.FindProperty("distanceDefault").floatValue = EditorGUILayout.FloatField("Default Distance:", td_target.distanceDefault);
+        serializedObject.FindProperty("distanceMin").floatValue = EditorGUILayout.FloatField("Minimum Distance:", td_target.distanceMin);
+        serializedObject.FindProperty("distanceMax").floatValue = EditorGUILayout.FloatField("Maximum Distance:", td_target.distanceMax);
         EditorGUILayout.HelpBox("Default Distance represents starting distance and current distance while game is live. Minimum and Maximum values determine how near or far camera can zoom.", MessageType.Info);
         EditorGUILayout.Space();
 
         EditorGUILayout.LabelField("Speed Options", simpleTitleLable);
-        td_target.rotationSpeed = EditorGUILayout.FloatField("Rotation Speed:", td_target.rotationSpeed);
+        serializedObject.FindProperty("rotationSpeed").floatValue = EditorGUILayout.FloatField("Rotation Speed:", td_target.rotationSpeed);
         EditorGUILayout.HelpBox("Rotation Speed determines at what speed will camera rotate.", MessageType.Info);
-        td_target.freeCameraSpeed = EditorGUILayout.FloatField("Free Camera Mode Speed:", td_target.freeCameraSpeed);
+        serializedObject.FindProperty("freeCameraSpeed").floatValue = EditorGUILayout.FloatField("Free Camera Mode Speed:", td_target.freeCameraSpeed);
         EditorGUILayout.HelpBox("Free Camera Mode Speed determines at what speed will camera move when in Free Camera Mode.", MessageType.Info);
 
         EditorGUILayout.EndVertical();

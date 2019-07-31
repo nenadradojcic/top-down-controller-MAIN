@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum CharacterPortraitType { Static = 0, Runtime = 1}
 public class TopDownUIManager : MonoBehaviour {
@@ -13,6 +10,7 @@ public class TopDownUIManager : MonoBehaviour {
     public GameObject quickSlotBar;
     public GameObject inventory;
     public GameObject dialog;
+    public GameObject questLog;
 
     public GameObject pausedGameNotification;
 
@@ -39,6 +37,7 @@ public class TopDownUIManager : MonoBehaviour {
         instance = this;
 
         SetUIState(inventory);
+        SetUIState(questLog);
         SetUIState(pausedGameNotification);
         SetUIState(itemTooltip);
         SetUIState(statsTooltip);
@@ -56,6 +55,12 @@ public class TopDownUIManager : MonoBehaviour {
                 Instantiate(TopDownAudioManager.instance.inventoryOpenAudio, Vector3.zero, Quaternion.identity);
             }
             SetUIState(inventory);
+        }
+        else if (Input.GetKeyDown(TopDownInputManager.instance.questLogKeyCode)) {
+            if (TopDownAudioManager.instance.inventoryOpenAudio != null) {
+                Instantiate(TopDownAudioManager.instance.inventoryOpenAudio, Vector3.zero, Quaternion.identity);
+            }
+            SetUIState(questLog);
         }
     }
 

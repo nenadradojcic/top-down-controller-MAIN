@@ -64,5 +64,7 @@ public class TopDownStartupItemsSetupEditor : Editor {
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();
 
+
+        serializedObject.ApplyModifiedProperties();
     }
 }
