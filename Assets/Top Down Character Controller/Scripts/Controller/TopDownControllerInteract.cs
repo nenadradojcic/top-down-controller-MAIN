@@ -22,7 +22,7 @@ public class TopDownControllerInteract : MonoBehaviour {
     public float enemyStopDistance = 2f;
     public float enemyStopDistanceRanged = 8f;
     public float itemStopDistance = 1f;
-    public float chestStopDistance = 2f;
+    public float chestStopDistance = 0.75f;
     public float defaultStopDistance = 0.2f;
 
     public float faceEnemyRotSpeed = 6f;

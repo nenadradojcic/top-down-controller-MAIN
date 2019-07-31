@@ -30,7 +30,7 @@ public class TopDownFootstepsEditor : Editor {
         EditorGUILayout.LabelField("- TOP DOWN RPG -", boldCenteredLabel);
         EditorGUILayout.LabelField("Footsteps Manager", boldCenteredLabel);
         EditorGUILayout.HelpBox("This component we place on characters that we want to play footsteps sound when moving. It will be played on timed interval by calling TopDownAudioManager component and using footstep file set in it.", MessageType.Info);
-        td_target.stepRunInterval = EditorGUILayout.FloatField("Footstep Play Interval:", td_target.stepRunInterval);
+        serializedObject.FindProperty("stepRunInterval").floatValue = EditorGUILayout.FloatField("Footstep Play Interval:", td_target.stepRunInterval);
         EditorGUILayout.EndVertical();
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();

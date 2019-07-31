@@ -40,9 +40,9 @@ public class TopDownControllerMainEditor : Editor {
         EditorGUILayout.BeginHorizontal();
         GUILayout.FlexibleSpace();
         EditorGUILayout.BeginVertical("Box", GUILayout.Width(90 * Screen.width / 100));
-        td_target.tdcm_movingSpeed = EditorGUILayout.FloatField("Moving Speed:", td_target.tdcm_movingSpeed);
-        td_target.tdcm_turningSpeed = EditorGUILayout.FloatField("Moving Speed:", td_target.tdcm_turningSpeed);
-        td_target.tdcm_animPlaySpeed = EditorGUILayout.FloatField("Animation Playback Speed:", td_target.tdcm_animPlaySpeed);
+        serializedObject.FindProperty("tdcm_movingSpeed").floatValue = EditorGUILayout.FloatField("Moving Speed:", td_target.tdcm_movingSpeed);
+        serializedObject.FindProperty("tdcm_turningSpeed").floatValue = EditorGUILayout.FloatField("Moving Speed:", td_target.tdcm_turningSpeed);
+        serializedObject.FindProperty("tdcm_animPlaySpeed").floatValue = EditorGUILayout.FloatField("Animation Playback Speed:", td_target.tdcm_animPlaySpeed);
         EditorGUILayout.EndVertical();
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();

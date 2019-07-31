@@ -8,7 +8,7 @@ using UnityEngine.Events;
 [AddComponentMenu("Top Down RPG/Controller/Third Person Controller")]
 public class TopDownControllerMain : MonoBehaviour {
 
-    public float tdcm_turningSpeed = 560;
+    public float tdcm_turningSpeed = 240f;
     public float tdcm_movingSpeed = 1f;
     public float tdcm_animPlaySpeed = 1f;
 

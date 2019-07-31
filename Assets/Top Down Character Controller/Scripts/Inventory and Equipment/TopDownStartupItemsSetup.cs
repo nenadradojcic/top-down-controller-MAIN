@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TopDownStartupItemsSetup : MonoBehaviour {
 
-    public List<TopDownItemObject> itemsToEquip;
-    public List<TopDownItemObject> itemsToPlaceInInventory;
+    public TopDownItemObject[] itemsToEquip;
+    public TopDownItemObject[] itemsToPlaceInInventory;
     //private List<TopDownItemObject> itemsInInventory;
 
     //private TopDownEquipmentManager td_equipmentManager;
@@ -23,14 +23,14 @@ public class TopDownStartupItemsSetup : MonoBehaviour {
         td_Inventory = TopDownUIInventory.instance;
 
         if (td_Inventory != null) {
-            if (itemsToPlaceInInventory.Count > 0) {
-                for (int i = 0; i < itemsToPlaceInInventory.Count; i++) {
+            if (itemsToPlaceInInventory.Length > 0) {
+                for (int i = 0; i < itemsToPlaceInInventory.Length; i++) {
                     td_Inventory.AddItemJustAsset(itemsToPlaceInInventory[i]);
                     itemsInInventory.Add(itemsToPlaceInInventory[i]);
                 }
             }
-            if (itemsToEquip.Count > 0) {
-                for (int i = 0; i < itemsToEquip.Count; i++) {
+            if (itemsToEquip.Length > 0) {
+                for (int i = 0; i < itemsToEquip.Length; i++) {
 
                     TopDownItemObject tmp = itemsToEquip[i];
                     if (td_CharacterCard.characterInventory != null) {

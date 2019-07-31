@@ -46,6 +46,8 @@ public class TopDownCharacterCardEditor : Editor {
 
     public override void OnInspectorGUI() {
 
+        serializedObject.Update();
+
         GUIStyle boldCenteredLabel = new GUIStyle(EditorStyles.boldLabel) { alignment = TextAnchor.MiddleCenter };
 
         GUIStyle simpleTitleLable = new GUIStyle(EditorStyles.boldLabel) { alignment = TextAnchor.MiddleLeft };
@@ -73,15 +75,15 @@ public class TopDownCharacterCardEditor : Editor {
             EditorGUILayout.LabelField("- AI Info -", boldCenteredLabel);
 
             EditorGUILayout.LabelField("Name:", simpleTitleLable);
-            td_target.aiName = EditorGUILayout.TextField(string.Empty, td_target.aiName);
+            serializedObject.FindProperty("aiName").stringValue = EditorGUILayout.TextField(string.Empty, td_target.aiName);
             EditorGUILayout.HelpBox("This is the name of this AI.", MessageType.Info);
 
             EditorGUILayout.LabelField("Health:", simpleTitleLable);
-            td_target.health = EditorGUILayout.FloatField(string.Empty, td_target.health);
+            serializedObject.FindProperty("health").floatValue = EditorGUILayout.FloatField(string.Empty, td_target.health);
             EditorGUILayout.HelpBox("This is the starting health value of this AI.", MessageType.Info);
 
             EditorGUILayout.LabelField("Voice Set:", simpleTitleLable);
-            td_target.aiVoiceSet = (TopDownVoiceSet)EditorGUILayout.ObjectField(string.Empty, td_target.aiVoiceSet, typeof(TopDownVoiceSet), true);
+            serializedObject.FindProperty("aiVoiceSet").objectReferenceValue = (TopDownVoiceSet)EditorGUILayout.ObjectField(string.Empty, td_target.aiVoiceSet, typeof(TopDownVoiceSet), true);
             EditorGUILayout.HelpBox("If this is set then this AI will play configured voices in the game.", MessageType.Info);
 
             EditorGUILayout.EndVertical();
@@ -97,11 +99,11 @@ public class TopDownCharacterCardEditor : Editor {
             EditorGUILayout.LabelField("- AI Detect -", boldCenteredLabel);
 
             EditorGUILayout.LabelField("Field of View:", simpleTitleLable);
-            td_target.aiFieldOfView = EditorGUILayout.IntSlider((int)td_target.aiFieldOfView, 60, 180);
+            serializedObject.FindProperty("aiFieldOfView").intValue = EditorGUILayout.IntSlider((int)td_target.aiFieldOfView, 60, 180);
             EditorGUILayout.HelpBox("This represents field of view in which AI will detect player.", MessageType.Info);
 
             EditorGUILayout.LabelField("Detect Radius:", simpleTitleLable);
-            td_target.aiDetectRadius = EditorGUILayout.IntSlider((int)td_target.aiDetectRadius, 4, 20);
+            serializedObject.FindProperty("aiDetectRadius").intValue = EditorGUILayout.IntSlider((int)td_target.aiDetectRadius, 4, 20);
             EditorGUILayout.HelpBox("This represents radius of detection.", MessageType.Info);
 
             EditorGUILayout.EndVertical();
@@ -116,7 +118,7 @@ public class TopDownCharacterCardEditor : Editor {
             GUILayout.FlexibleSpace();
             EditorGUILayout.BeginVertical("Box", GUILayout.Width(90 * Screen.width / 100));
             EditorGUILayout.LabelField("Character:", simpleTitleLable);
-            td_target.character = (TopDownCharacter)EditorGUILayout.ObjectField(string.Empty, td_target.character, typeof(TopDownCharacter), true);
+            serializedObject.FindProperty("character").objectReferenceValue = (TopDownCharacter)EditorGUILayout.ObjectField(string.Empty, td_target.character, typeof(TopDownCharacter), true);
             EditorGUILayout.HelpBox("Here we place our character from assets that we created earlier.", MessageType.Info);
             EditorGUILayout.EndVertical();
             GUILayout.FlexibleSpace();
@@ -160,7 +162,6 @@ public class TopDownCharacterCardEditor : Editor {
         if(td_target.gameObject.tag == "NPC") {
 
         }
-
 
         serializedObject.ApplyModifiedProperties();
     }

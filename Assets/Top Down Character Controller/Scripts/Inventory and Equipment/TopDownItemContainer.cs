@@ -28,10 +28,16 @@ public class TopDownItemContainer : TopDownInteractible {
     public Animator containerAnimator;
 
     private void Start() {
+
         td_Inventory = TopDownUIInventory.instance;
         td_UiManager = TopDownUIManager.instance;
-        itemName = td_UiManager.itemWorldName.GetComponent<TopDownUIItemName>();
+
+        if (td_UiManager != null) {
+            itemName = td_UiManager.itemWorldName.GetComponent<TopDownUIItemName>();
+        }
+
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+
         if(containerAnimator == null) {
             containerAnimator = GetComponent<Animator>();
         }
@@ -83,31 +89,37 @@ public class TopDownItemContainer : TopDownInteractible {
 
     public void LateUpdate() {
 
-        itemName.screenY = Screen.height;
+        if (td_UiManager != null) {
+            itemName.screenY = Screen.height;
 
-        if (mouseOver == true) {
-            Vector2 tmp = mainCamera.WorldToScreenPoint(transform.position);
-            Vector2 namePos = new Vector3(tmp.x, tmp.y + (itemName.yOffset * itemName.screenY));
-            itemName.transform.position = namePos;
-        }
+            if (mouseOver == true) {
+                Vector2 tmp = mainCamera.WorldToScreenPoint(transform.position);
+                Vector2 namePos = new Vector3(tmp.x, tmp.y + (itemName.yOffset * itemName.screenY));
+                itemName.transform.position = namePos;
+            }
 
-        if (hasInteracted == true) {
-            mouseOver = false;
-            itemName.nameText.text = string.Empty;
+            if (hasInteracted == true) {
+                mouseOver = false;
+                itemName.nameText.text = string.Empty;
 
-            itemName.transform.position = new Vector2(-100f, 0f);
+                itemName.transform.position = new Vector2(-100f, 0f);
+            }
         }
     }
 
     public void OnMouseOver() {
         mouseOver = true;
-        itemName.nameText.text = containerName;
+        if (td_UiManager != null) {
+            itemName.nameText.text = containerName;
+        }
     }
 
     public void OnMouseExit() {
         mouseOver = false;
-        itemName.nameText.text = string.Empty;
+        if (td_UiManager != null) {
+            itemName.nameText.text = string.Empty;
 
-        itemName.transform.position = new Vector2(-100f, 0f);
+            itemName.transform.position = new Vector2(-100f, 0f);
+        }
     }
 }
