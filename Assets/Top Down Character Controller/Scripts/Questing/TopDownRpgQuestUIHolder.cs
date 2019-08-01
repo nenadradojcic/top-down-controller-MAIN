@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class TopDownRpgQuestUIHolder : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public Text questNameText;
+
+    public TopDownRpgQuest questSlotted;
+
+    public Text questDescription;
+
+    public void ButtonActivated() {
+        questDescription.text = questSlotted.questDescription;
+    }
 }

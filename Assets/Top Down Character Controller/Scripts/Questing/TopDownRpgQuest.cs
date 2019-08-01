@@ -24,9 +24,12 @@ public enum QuestEnding {
 public class TopDownRpgQuest : MonoBehaviour {
 
     public string questName;
+    [TextArea(10, 50)]
+    public string questDescription;
     public bool questFinished;
     public QuestState questState;
 
+    public string questCategory;
     public QuestType questType;
     public GameObject questTarget;
     public List<GameObject> questTargets;
@@ -83,6 +86,8 @@ public class TopDownRpgQuest : MonoBehaviour {
             questHub.startedQuests.Add(this);
             questHub.activeQuest = this;
 
+            uiManager.questLog.GetComponent<TopDownRpgQuestLog>().UpdateQuestList();
+
             //SOME NOTIFICATION THAT QUEST STARTED
             uiManager.notificationText.GetComponent<TopDownUIShowNotification>().ShowNotification("Quest Started \n''" + questName + "''");
         }
@@ -103,6 +108,8 @@ public class TopDownRpgQuest : MonoBehaviour {
 
             questHub.startedQuests.Add(this);
             questHub.activeQuest = this;
+
+            uiManager.questLog.GetComponent<TopDownRpgQuestLog>().UpdateQuestList();
 
             //SOME NOTIFICATION THAT QUEST STARTED
             uiManager.notificationText.GetComponent<TopDownUIShowNotification>().ShowNotification("Quest Started \n''" + questName + "''");
@@ -153,6 +160,8 @@ public class TopDownRpgQuest : MonoBehaviour {
     public void FinishQuest() {
         questState = QuestState.Finished;
         questFinished = true;
+
+        uiManager.questLog.GetComponent<TopDownRpgQuestLog>().UpdateQuestList();
 
         //SOME NOTIFICATION THAT QUEST STARTED
         uiManager.notificationText.GetComponent<TopDownUIShowNotification>().ShowNotification("Quest Finished \n''" + questName + "''");

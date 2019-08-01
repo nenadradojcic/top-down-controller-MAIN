@@ -109,7 +109,7 @@ public class TopDownItemContainer : TopDownInteractible {
 
     public void OnMouseOver() {
         mouseOver = true;
-        if (td_UiManager != null) {
+        if (td_UiManager != null && td_UiManager.checkUi.IsPointerOverUIObject() == false) {
             itemName.nameText.text = containerName;
         }
     }

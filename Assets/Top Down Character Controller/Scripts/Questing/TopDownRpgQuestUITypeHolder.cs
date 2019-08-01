@@ -1,16 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class TopDownRpgQuestUITypeHolder : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public Text questTypeText;
+
+    public void Start() {
+        if(questTypeText.text != null) {
+            string formatedText = "~ " + questTypeText.text + " ~";
+            questTypeText.text = formatedText;
+        }
+    }
 }
