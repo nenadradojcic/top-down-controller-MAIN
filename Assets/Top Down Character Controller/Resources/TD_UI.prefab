@@ -37543,13 +37543,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questDescriptionText: {fileID: 114662053517530094}
   questButtonHolder: {fileID: 224906028657777018}
-  questTypePrefab: {fileID: 1453146916100604, guid: facadbff37ae8ce40a7dfa1f01cb6d65,
+  questCategoryPrefab: {fileID: 1453146916100604, guid: facadbff37ae8ce40a7dfa1f01cb6d65,
     type: 2}
   questButtonPrefab: {fileID: 1148476242817606, guid: ccccef6d34198aa43b89f45634952d42,
     type: 2}
+  rows: 0
   activeQuests: []
   instantiatedQuestButtons: []
-  test: 0
+  questCategoriesPresent: []
+  instantiatedQuestCategory: []
 --- !u!114 &114845979979995590
 MonoBehaviour:
   m_ObjectHideFlags: 1

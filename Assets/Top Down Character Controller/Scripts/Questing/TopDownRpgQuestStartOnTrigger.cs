@@ -8,7 +8,9 @@ public class TopDownRpgQuestStartOnTrigger : MonoBehaviour {
     public void OnTriggerEnter(Collider other) {
         if(other.tag == "Player") {
             if (questToStart != null) {
-                questToStart.StartQuest();
+                if (questToStart.questState == QuestState.NotStarted) {
+                    questToStart.StartQuest();
+                }
                 Destroy(gameObject);
             }
             else {
