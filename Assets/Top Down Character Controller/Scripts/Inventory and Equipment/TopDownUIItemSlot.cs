@@ -233,6 +233,9 @@ public class TopDownUIItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEn
                         }
                     }
                     else if (GetComponent<TopDownUIItemSlot>().slotType == SlotType.Quickslot) {
+                        if (GetComponent<TopDownUIQuickSlot>().originalSlot != null) {
+                            GetComponent<TopDownUIQuickSlot>().originalSlot.slottedInQuick = null;
+                        }
                         ClearSlot(this);
                         AddItemToSlot(inventory.holdingItem);
                         if (inventory.previousSlot.slotType != SlotType.Quickslot) {
