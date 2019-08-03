@@ -103,12 +103,24 @@ MonoBehaviour:
   distanceMin: 4
   distanceMax: 10
   rotationSpeed: 60
-  cameraAngle: 55
-  yAxisOffset: 1.25
+  cameraAngleMin: 15
+  cameraAngleMax: 85
+  yAxisOffset: 1.35
   freeCameraSpeed: 0.5
-  cameraAxis: 0
+  cameraAxisX: 0
+  cameraAxisY: 0
   cameraZoomAxis: 0
+  cameraHeightLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  freeCamRaycastDistanceCheck: 0
   invisibleTarget: {fileID: 0}
+  defMouseX: Mouse X
+  defMouseY: Mouse Y
+  defMouseScroll: Mouse ScrollWheel
+  defChangeCamKey: 99
+  defRotCamKey: 324
+  targetInteractScript: {fileID: 0}
 --- !u!124 &124137429329732444
 Behaviour:
   m_ObjectHideFlags: 1

@@ -8,6 +8,7 @@ public enum SlotType {
     Inventory = 0,
     Equipment = 1,
     Quickslot = 2,
+    Ability = 3,
 }
 
 public class TopDownUIItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler {

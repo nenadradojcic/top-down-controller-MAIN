@@ -33,6 +33,12 @@ Assets/Standard Assets*
 Assets/Standard Assets.meta
 Assets/Malbers Animations*
 Assets/Malbers Animations.meta
+Assets/Editor*
+Assets/Editor.meta
+Assets/Mixamo*
+Assets/Mixamo.meta
+Assets/Realistic Effects Pack*
+Assets/Realistic Effects Pack.meta
 
 # Visual Studio cache directory
 .vs/

@@ -13,6 +13,7 @@ public class TopDownControllerInteract : MonoBehaviour {
     public TopDownInputManager tdcc_InputManager;
     public TopDownEquipmentManager tdcc_EquipmentManager;
     public Camera tdcc_CameraMain;
+    public TopDownRpgAbilities tdr_Abilities;
 
     public string walkableTag = "Walkable";
     public string npcTag = "NPC";
@@ -49,6 +50,7 @@ public class TopDownControllerInteract : MonoBehaviour {
         tdcc_NavMeshAgent = GetComponent<NavMeshAgent>();
         tdcc_InputManager = TopDownInputManager.instance;
         tdcc_EquipmentManager = GetComponent<TopDownEquipmentManager>();
+        tdr_Abilities = GetComponent<TopDownRpgAbilities>();
         if (GameObject.FindGameObjectWithTag("MainCamera")) {
             tdcc_CameraMain = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         }
@@ -117,7 +119,7 @@ public class TopDownControllerInteract : MonoBehaviour {
                         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * faceEnemyRotSpeed);
 
                         //COMBAT
-                        if (focusedTarget.tag == enemyTag && distanceToFocus < tdcc_Main.tdcm_NavMeshAgent.stoppingDistance) {
+                        if (focusedTarget.tag == enemyTag && distanceToFocus < tdcc_Main.tdcm_NavMeshAgent.stoppingDistance && tdr_Abilities.usingAbility == false) {
                             if (focusedTarget.GetComponent<TopDownCharacterCard>() && focusedTarget.GetComponent<TopDownCharacterCard>().IsDead() == false) {
                                 //here we only attack with melee
                                 int i = (int)tdcc_EquipmentManager.weaponTypeUsed;
@@ -156,41 +158,115 @@ public class TopDownControllerInteract : MonoBehaviour {
             if (td_CheckUI.IsPointerOverUIObject() == false && TopDownUIInventory.instance.holdingItem == null && TopDownUIInventory.instance.clickedOutOfUi == false) {
                 if (Physics.Raycast(ray, out hit, 100)) {
                     hitPoint = hit.point;
-                    if (hit.transform.tag == enemyTag || hit.transform.tag == itemTag || hit.transform.tag == chestTag || hit.transform.tag == npcTag) {
-                        if (focusedTarget != null && focusedTarget != hit.transform) {
-                            RemoveFocus();
-                            SetFocus(hit.transform);
-                        }
-                        else if (focusedTarget == null) {
-                            SetFocus(hit.transform);
-                        }
+                    if (tdr_Abilities != null) {
+                        if (tdr_Abilities.usingAbility) {
+                            if ((hit.transform.tag == enemyTag)) {
+                                if (focusedTarget != null && focusedTarget != hit.transform) {
+                                    RemoveFocus();
+                                    SetFocus(hit.transform);
+                                }
+                                else if (focusedTarget == null) {
+                                    SetFocus(hit.transform);
+                                }
 
-                        followingCursor = false;
-                    }
-                    else if (hit.transform.tag == walkableTag) {
-                        tdcc_NavMeshAgent.SetDestination(hit.point);
+                                followingCursor = false;
+                            }
+                            else if (hit.transform.tag == walkableTag) {
 
-                        if (tdcc_NavMeshAgent.remainingDistance > tdcc_NavMeshAgent.stoppingDistance) {
-                            tdcc_Main.TDCC_MoveCharacter(tdcc_NavMeshAgent.desiredVelocity);
-                            if (tdcc_Main.vegetationMoveWindZone != null) {
-                                tdcc_Main.vegetationMoveWindZone.gameObject.SetActive(true);
+                                tdr_Abilities.usingAbility = false;
+
+                                tdcc_NavMeshAgent.SetDestination(hit.point);
+
+                                if (tdcc_NavMeshAgent.remainingDistance > tdcc_NavMeshAgent.stoppingDistance) {
+                                    tdcc_Main.TDCC_MoveCharacter(tdcc_NavMeshAgent.desiredVelocity);
+                                    if (tdcc_Main.vegetationMoveWindZone != null) {
+                                        tdcc_Main.vegetationMoveWindZone.gameObject.SetActive(true);
+                                    }
+                                }
+                                else {
+                                    tdcc_Main.TDCC_MoveCharacter(Vector3.zero);
+                                    if (tdcc_Main.vegetationMoveWindZone != null) {
+                                        tdcc_Main.vegetationMoveWindZone.gameObject.SetActive(false);
+                                    }
+                                }
+
+                                if (focusedTarget != null) {
+                                    RemoveFocus();
+                                }
+
+                                followingCursor = true;
                             }
                         }
                         else {
-                            tdcc_Main.TDCC_MoveCharacter(Vector3.zero);
-                            if (tdcc_Main.vegetationMoveWindZone != null) {
-                                tdcc_Main.vegetationMoveWindZone.gameObject.SetActive(false);
+                            if ((hit.transform.tag == enemyTag || hit.transform.tag == itemTag || hit.transform.tag == chestTag || hit.transform.tag == npcTag)) {
+                                if (focusedTarget != null && focusedTarget != hit.transform) {
+                                    RemoveFocus();
+                                    SetFocus(hit.transform);
+                                }
+                                else if (focusedTarget == null) {
+                                    SetFocus(hit.transform);
+                                }
+
+                                followingCursor = false;
+                            }
+                            else if (hit.transform.tag == walkableTag) {
+                                tdcc_NavMeshAgent.SetDestination(hit.point);
+
+                                if (tdcc_NavMeshAgent.remainingDistance > tdcc_NavMeshAgent.stoppingDistance) {
+                                    tdcc_Main.TDCC_MoveCharacter(tdcc_NavMeshAgent.desiredVelocity);
+                                    if (tdcc_Main.vegetationMoveWindZone != null) {
+                                        tdcc_Main.vegetationMoveWindZone.gameObject.SetActive(true);
+                                    }
+                                }
+                                else {
+                                    tdcc_Main.TDCC_MoveCharacter(Vector3.zero);
+                                    if (tdcc_Main.vegetationMoveWindZone != null) {
+                                        tdcc_Main.vegetationMoveWindZone.gameObject.SetActive(false);
+                                    }
+                                }
+
+                                if (focusedTarget != null) {
+                                    RemoveFocus();
+                                }
+
+                                followingCursor = true;
                             }
                         }
-
-                        if (focusedTarget != null) {
-                            RemoveFocus();
-                        }
-
-                        followingCursor = true;
                     }
                     else {
-                        //If there is no focused target under our mouse click
+                        if ((hit.transform.tag == enemyTag || hit.transform.tag == itemTag || hit.transform.tag == chestTag || hit.transform.tag == npcTag)) {
+                            if (focusedTarget != null && focusedTarget != hit.transform) {
+                                RemoveFocus();
+                                SetFocus(hit.transform);
+                            }
+                            else if (focusedTarget == null) {
+                                SetFocus(hit.transform);
+                            }
+
+                            followingCursor = false;
+                        }
+                        else if (hit.transform.tag == walkableTag) {
+                            tdcc_NavMeshAgent.SetDestination(hit.point);
+
+                            if (tdcc_NavMeshAgent.remainingDistance > tdcc_NavMeshAgent.stoppingDistance) {
+                                tdcc_Main.TDCC_MoveCharacter(tdcc_NavMeshAgent.desiredVelocity);
+                                if (tdcc_Main.vegetationMoveWindZone != null) {
+                                    tdcc_Main.vegetationMoveWindZone.gameObject.SetActive(true);
+                                }
+                            }
+                            else {
+                                tdcc_Main.TDCC_MoveCharacter(Vector3.zero);
+                                if (tdcc_Main.vegetationMoveWindZone != null) {
+                                    tdcc_Main.vegetationMoveWindZone.gameObject.SetActive(false);
+                                }
+                            }
+
+                            if (focusedTarget != null) {
+                                RemoveFocus();
+                            }
+
+                            followingCursor = true;
+                        }
                     }
                 }
             }
@@ -255,6 +331,9 @@ public class TopDownControllerInteract : MonoBehaviour {
 
         if (focusObject.tag == enemyTag) {
             if (tdcc_EquipmentManager.weaponTypeUsed == WeaponType.Ranged) {
+                tdcc_NavMeshAgent.stoppingDistance = enemyStopDistanceRanged;
+            }
+            else if(tdr_Abilities.usingAbility == true) {
                 tdcc_NavMeshAgent.stoppingDistance = enemyStopDistanceRanged;
             }
             else {

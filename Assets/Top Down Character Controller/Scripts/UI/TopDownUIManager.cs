@@ -11,6 +11,7 @@ public class TopDownUIManager : MonoBehaviour {
     public GameObject inventory;
     public GameObject dialog;
     public GameObject questLog;
+    public GameObject abilitesLog;
 
     public GameObject pausedGameNotification;
 
@@ -18,6 +19,8 @@ public class TopDownUIManager : MonoBehaviour {
     public Vector2 itemTooltipOffset;
     public GameObject statsTooltip;
     public Vector2 statsTooltipOffset;
+    public GameObject abilityTooltip;
+    public Vector2 abilityTooltipOffset;
 
     public GameObject itemWorldName;
     public GameObject npcWorldName;
@@ -30,6 +33,7 @@ public class TopDownUIManager : MonoBehaviour {
     public TopDownUICharacterButton[] characterPortraits;
 
     public TopDownCheckUI checkUi;
+    public TopDownUICharacterInfoPanel charInfoPanel;
 
     public static TopDownUIManager instance;
 
@@ -38,9 +42,11 @@ public class TopDownUIManager : MonoBehaviour {
 
         SetUIState(inventory);
         SetUIState(questLog);
+        SetUIState(abilitesLog);
         SetUIState(pausedGameNotification);
         SetUIState(itemTooltip);
         SetUIState(statsTooltip);
+        SetUIState(abilityTooltip);
 
         itemWorldName.GetComponent<TopDownUIItemName>().nameText.text = string.Empty;
         npcWorldName.GetComponent<TopDownUINpcNameBar>().nameText.text = string.Empty;
@@ -54,13 +60,19 @@ public class TopDownUIManager : MonoBehaviour {
             if (TopDownAudioManager.instance.inventoryOpenAudio != null) {
                 Instantiate(TopDownAudioManager.instance.inventoryOpenAudio, Vector3.zero, Quaternion.identity);
             }
-            SetUIState(inventory);
+            SetCharUIState(inventory);
         }
         else if (Input.GetKeyDown(TopDownInputManager.instance.questLogKeyCode)) {
             if (TopDownAudioManager.instance.inventoryOpenAudio != null) {
                 Instantiate(TopDownAudioManager.instance.inventoryOpenAudio, Vector3.zero, Quaternion.identity);
             }
-            SetUIState(questLog);
+            SetCharUIState(questLog);
+        }
+        else if (Input.GetKeyDown(TopDownInputManager.instance.abilitesLogKeyCode)) {
+            if (TopDownAudioManager.instance.inventoryOpenAudio != null) {
+                Instantiate(TopDownAudioManager.instance.inventoryOpenAudio, Vector3.zero, Quaternion.identity);
+            }
+            SetCharUIState(abilitesLog);
         }
     }
 
@@ -79,6 +91,60 @@ public class TopDownUIManager : MonoBehaviour {
         }
         else {
             uiObject.SetActive(!uiObject.activeSelf);
+        }
+    }
+
+    public void SetCharUIState(GameObject uiObject) {
+        if (uiObject.GetComponent<CanvasGroup>()) {
+            if (uiObject.GetComponent<CanvasGroup>().interactable == true) {
+                uiObject.GetComponent<CanvasGroup>().alpha = 0f;
+                uiObject.GetComponent<CanvasGroup>().interactable = false;
+                uiObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            }
+            else {
+                uiObject.GetComponent<CanvasGroup>().interactable = true;
+                uiObject.GetComponent<CanvasGroup>().alpha = 1f;
+                uiObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            }
+        }
+        else {
+            uiObject.SetActive(!uiObject.activeSelf);
+        }
+
+        if(uiObject == inventory) {
+            charInfoPanel.inventoryActive = !charInfoPanel.inventoryActive;
+        }
+        else if (uiObject == questLog) {
+            charInfoPanel.questLogActive = !charInfoPanel.questLogActive;
+        }
+        else if (uiObject == abilitesLog) {
+            charInfoPanel.abilitiesLogActive = !charInfoPanel.abilitiesLogActive;
+        }
+
+        if (charInfoPanel.inventoryActive && charInfoPanel.questLogActive && charInfoPanel.abilitiesLogActive) {
+            inventory.GetComponent<RectTransform>().anchoredPosition = new Vector2(charInfoPanel.inventoryNewXPos, charInfoPanel.inventoryNewYPos);
+            questLog.GetComponent<RectTransform>().anchoredPosition = new Vector2(charInfoPanel.questLogNewXPos, charInfoPanel.questLogNewYPos);
+            abilitesLog.GetComponent<RectTransform>().anchoredPosition = new Vector2(charInfoPanel.abilitiesLogNewXPos, charInfoPanel.abilitiesLogNewYPos);
+        }
+        else if (!charInfoPanel.inventoryActive && charInfoPanel.questLogActive && charInfoPanel.abilitiesLogActive) {
+            inventory.GetComponent<RectTransform>().anchoredPosition = new Vector2(charInfoPanel.inventoryNorPos.x, charInfoPanel.inventoryNorPos.x);
+            questLog.GetComponent<RectTransform>().anchoredPosition = new Vector2(charInfoPanel.questLogNewXPos, charInfoPanel.questLogNorPos.y);
+            abilitesLog.GetComponent<RectTransform>().anchoredPosition = new Vector2(charInfoPanel.abilitiesLogNewXPos, charInfoPanel.abilitiesLogNorPos.y);
+        }
+        else if (charInfoPanel.inventoryActive && !charInfoPanel.questLogActive && charInfoPanel.abilitiesLogActive) {
+            inventory.GetComponent<RectTransform>().anchoredPosition = new Vector2(charInfoPanel.inventoryNewXPos, charInfoPanel.inventoryNorPos.y);
+            questLog.GetComponent<RectTransform>().anchoredPosition = new Vector2(charInfoPanel.questLogNorPos.x, charInfoPanel.questLogNorPos.y);
+            abilitesLog.GetComponent<RectTransform>().anchoredPosition = new Vector2(charInfoPanel.abilitiesLogNewXPos, charInfoPanel.abilitiesLogNorPos.y);
+        }
+        else if (charInfoPanel.inventoryActive && charInfoPanel.questLogActive && !charInfoPanel.abilitiesLogActive) {
+            inventory.GetComponent<RectTransform>().anchoredPosition = new Vector2(charInfoPanel.inventoryNorPos.x, charInfoPanel.inventoryNewYPos);
+            questLog.GetComponent<RectTransform>().anchoredPosition = new Vector2(charInfoPanel.questLogNorPos.x, charInfoPanel.questLogNewYPos);
+            abilitesLog.GetComponent<RectTransform>().anchoredPosition = new Vector2(charInfoPanel.abilitiesLogNorPos.x, charInfoPanel.abilitiesLogNorPos.y);
+        }
+        else {
+            inventory.GetComponent<RectTransform>().anchoredPosition = new Vector2(charInfoPanel.inventoryNorPos.x, charInfoPanel.inventoryNorPos.y);
+            questLog.GetComponent<RectTransform>().anchoredPosition = new Vector2(charInfoPanel.questLogNorPos.x, charInfoPanel.questLogNorPos.y);
+            abilitesLog.GetComponent<RectTransform>().anchoredPosition = new Vector2(charInfoPanel.abilitiesLogNorPos.x, charInfoPanel.abilitiesLogNorPos.y);
         }
     }
 

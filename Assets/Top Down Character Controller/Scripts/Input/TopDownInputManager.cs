@@ -28,6 +28,7 @@ public class TopDownInputManager : MonoBehaviour {
     public KeyCode interactKey = KeyCode.Mouse0;
     public KeyCode inventoryKeyCode = KeyCode.I;
     public KeyCode questLogKeyCode = KeyCode.J;
+    public KeyCode abilitesLogKeyCode = KeyCode.P;
 
     public KeyCode changeCamera = KeyCode.C;
     public KeyCode rotateCamera = KeyCode.Mouse1;
