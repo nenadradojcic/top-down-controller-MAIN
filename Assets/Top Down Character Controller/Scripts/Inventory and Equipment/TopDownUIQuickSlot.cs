@@ -45,35 +45,59 @@ public class TopDownUIQuickSlot : TopDownUIItemSlot {
                     }
                 }
 
-                if (TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].itemInSlot == null) {
-                    TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
-                    TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].slottedInQuick = this;
-                    TopDownUIInventory.instance.RemoveItem(originalSlot.itemInSlot);
-                    originalSlot.slottedInQuick = null;
-                    ClearSlot(originalSlot);
-                    originalSlot = TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType];
-                }
-                else if(TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].itemInSlot == itemInSlot) {
-                    TopDownUIInventory.instance.MoveItemToInventory(TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType]);
-                    ClearSlot(TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType]);
+                if (TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType] != null) {
+                    if (TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].itemInSlot == null) {
+                        TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
+                        TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].slottedInQuick = this;
+                        TopDownUIInventory.instance.RemoveItem(originalSlot.itemInSlot);
+                        originalSlot.slottedInQuick = null;
+                        ClearSlot(originalSlot);
+                        originalSlot = TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType];
+                    }
+                    else if (TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].itemInSlot == itemInSlot) {
+                        TopDownUIInventory.instance.MoveItemToInventory(TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType]);
+                        ClearSlot(TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType]);
+
+                    }
+                    else if (TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].itemInSlot != itemInSlot) {
+                        //first we need to unequip old item and move it to inventory
+                        //then equip new item
+                        TopDownUIInventory.instance.MoveItemToInventory(TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType]);
+                        TopDownUIInventory.instance.currentEquipmentManager.UnequipItem(TopDownUIInventory.instance.currentEquipmentManager.currentEquipment[(int)itemInSlot.itemType]);
+                        ClearSlot(TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType]);
+
+                        TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
+                        TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].slottedInQuick = this;
+                        TopDownUIInventory.instance.RemoveItem(originalSlot.itemInSlot);
+
+                        originalSlot.slottedInQuick = null;
+                        ClearSlot(originalSlot);
+                        originalSlot = TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType];
+                    }
 
                 }
-                else if (TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].itemInSlot != itemInSlot) {
-                    //first we need to unequip old item and move it to inventory
-                    //then equip new item
-                    TopDownUIInventory.instance.MoveItemToInventory(TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType]);
-                    TopDownUIInventory.instance.currentEquipmentManager.UnequipItem(TopDownUIInventory.instance.currentEquipmentManager.currentEquipment[(int)itemInSlot.itemType]);
-                    ClearSlot(TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType]);
+                else {
+                    if(itemInSlot.itemType == ItemType.Scroll) {
+                        if (TopDownAudioManager.instance.spellUseAudio != null) {
+                            Instantiate(TopDownAudioManager.instance.spellUseAudio, Vector3.zero, Quaternion.identity);
+                        }
 
-                    TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
-                    TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].slottedInQuick = this;
-                    TopDownUIInventory.instance.RemoveItem(originalSlot.itemInSlot);
+                        TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownRpgSpellcaster>().activeSpell = itemInSlot;
+                        TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownRpgSpellcaster>().spellItemSlot = originalSlot;
+                        TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownRpgSpellcaster>().castingSpell = true;
 
-                    originalSlot.slottedInQuick = null;
-                    ClearSlot(originalSlot);
-                    originalSlot = TopDownUIInventory.instance.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType];
+                        if (TopDownUIManager.instance.charInfoPanel.inventoryActive) {
+                            if (TopDownUIManager.instance.inventory.GetComponent<CanvasGroup>().alpha > 0) {
+                                TopDownUIManager.instance.SetUIState(TopDownUIManager.instance.inventory);
+                            }
+                        }
+                        if (TopDownUIManager.instance.charInfoPanel.questLogActive) {
+                            if (TopDownUIManager.instance.questLog.GetComponent<CanvasGroup>().alpha > 0) {
+                                TopDownUIManager.instance.SetUIState(TopDownUIManager.instance.questLog);
+                            }
+                        }
+                    }
                 }
-
 
 
                 UseSlottedItem();

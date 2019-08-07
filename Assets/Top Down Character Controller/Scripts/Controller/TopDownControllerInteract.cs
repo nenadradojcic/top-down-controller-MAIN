@@ -13,7 +13,7 @@ public class TopDownControllerInteract : MonoBehaviour {
     public TopDownInputManager tdcc_InputManager;
     public TopDownEquipmentManager tdcc_EquipmentManager;
     public Camera tdcc_CameraMain;
-    public TopDownRpgAbilities tdr_Abilities;
+    public TopDownRpgSpellcaster tdr_Spellcaster;
 
     public string walkableTag = "Walkable";
     public string npcTag = "NPC";
@@ -50,7 +50,7 @@ public class TopDownControllerInteract : MonoBehaviour {
         tdcc_NavMeshAgent = GetComponent<NavMeshAgent>();
         tdcc_InputManager = TopDownInputManager.instance;
         tdcc_EquipmentManager = GetComponent<TopDownEquipmentManager>();
-        tdr_Abilities = GetComponent<TopDownRpgAbilities>();
+        tdr_Spellcaster = GetComponent<TopDownRpgSpellcaster>();
         if (GameObject.FindGameObjectWithTag("MainCamera")) {
             tdcc_CameraMain = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         }
@@ -119,7 +119,7 @@ public class TopDownControllerInteract : MonoBehaviour {
                         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * faceEnemyRotSpeed);
 
                         //COMBAT
-                        if (focusedTarget.tag == enemyTag && distanceToFocus < tdcc_Main.tdcm_NavMeshAgent.stoppingDistance && tdr_Abilities.usingAbility == false) {
+                        if (focusedTarget.tag == enemyTag && distanceToFocus < tdcc_Main.tdcm_NavMeshAgent.stoppingDistance && tdr_Spellcaster.castingSpell == false) {
                             if (focusedTarget.GetComponent<TopDownCharacterCard>() && focusedTarget.GetComponent<TopDownCharacterCard>().IsDead() == false) {
                                 //here we only attack with melee
                                 int i = (int)tdcc_EquipmentManager.weaponTypeUsed;
@@ -158,8 +158,8 @@ public class TopDownControllerInteract : MonoBehaviour {
             if (td_CheckUI.IsPointerOverUIObject() == false && TopDownUIInventory.instance.holdingItem == null && TopDownUIInventory.instance.clickedOutOfUi == false) {
                 if (Physics.Raycast(ray, out hit, 100)) {
                     hitPoint = hit.point;
-                    if (tdr_Abilities != null) {
-                        if (tdr_Abilities.usingAbility) {
+                    if (tdr_Spellcaster != null) {
+                        if (tdr_Spellcaster.castingSpell) {
                             if ((hit.transform.tag == enemyTag)) {
                                 if (focusedTarget != null && focusedTarget != hit.transform) {
                                     RemoveFocus();
@@ -173,7 +173,7 @@ public class TopDownControllerInteract : MonoBehaviour {
                             }
                             else if (hit.transform.tag == walkableTag) {
 
-                                tdr_Abilities.usingAbility = false;
+                                tdr_Spellcaster.castingSpell = false;
 
                                 tdcc_NavMeshAgent.SetDestination(hit.point);
 
@@ -333,7 +333,7 @@ public class TopDownControllerInteract : MonoBehaviour {
             if (tdcc_EquipmentManager.weaponTypeUsed == WeaponType.Ranged) {
                 tdcc_NavMeshAgent.stoppingDistance = enemyStopDistanceRanged;
             }
-            else if(tdr_Abilities.usingAbility == true) {
+            else if(tdr_Spellcaster.castingSpell == true) {
                 tdcc_NavMeshAgent.stoppingDistance = enemyStopDistanceRanged;
             }
             else {

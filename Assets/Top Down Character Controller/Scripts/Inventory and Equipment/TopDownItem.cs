@@ -26,17 +26,19 @@ public class TopDownItem : TopDownInteractible {
     public override void Interact() {
         base.Interact();
 
-        if (td_Inventory != null) {
-            if (TopDownAudioManager.instance.inventoryItemPickupAudio != null) {
-                Instantiate(TopDownAudioManager.instance.inventoryItemPickupAudio, Vector3.zero, Quaternion.identity);
+        if (item) {
+            if (td_Inventory != null) {
+                if (TopDownAudioManager.instance.inventoryItemPickupAudio != null) {
+                    Instantiate(TopDownAudioManager.instance.inventoryItemPickupAudio, Vector3.zero, Quaternion.identity);
+                }
+
+                td_Inventory.AddItem(this);
+
+                mouseOver = false;
+                itemName.nameText.text = string.Empty;
+
+                itemName.transform.position = new Vector2(-100f, 0f);
             }
-
-            td_Inventory.AddItem(this);
-
-            mouseOver = false;
-            itemName.nameText.text = string.Empty;
-
-            itemName.transform.position = new Vector2(-100f, 0f);
         }
     }
 

@@ -8,6 +8,8 @@ public class TopDownAudioManager : MonoBehaviour {
     public GameObject inventoryItemPickupAudio;
     public GameObject inventoryItemUseAudio;
 
+    public GameObject spellUseAudio;
+
     public GameObject weaponSheatheAudio;
     public GameObject meleeSwingAudio;
     public GameObject meleeHitAudio;

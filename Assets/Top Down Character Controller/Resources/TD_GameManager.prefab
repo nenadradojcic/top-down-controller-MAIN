@@ -210,6 +210,8 @@ MonoBehaviour:
     type: 2}
   inventoryItemUseAudio: {fileID: 1065124615080992, guid: 7f8263f89a991454aa52f6d35cb43013,
     type: 2}
+  spellUseAudio: {fileID: 1261714081643298, guid: 9ee479def06e6264dad6b585c2d05c28,
+    type: 2}
   weaponSheatheAudio: {fileID: 1055903948332426, guid: c42c038edc8ce4b4ea03cf0483532b42,
     type: 2}
   meleeSwingAudio: {fileID: 1184932763503840, guid: f0c12981111fc964c844c65a3c4b2927,

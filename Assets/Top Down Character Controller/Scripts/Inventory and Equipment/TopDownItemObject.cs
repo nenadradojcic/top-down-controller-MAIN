@@ -15,6 +15,13 @@ public enum ItemType {
     Scroll = 11,
 }
 
+public enum SpellType {
+    CastOnEnemy = 0,
+    CastOnAlly = 1,
+    CastOnSelf = 2,
+    CastOnCursor = 3,
+}
+
 public enum ItemVisualisation {
     None = 0,
     InstantiateObject = 1,
@@ -31,6 +38,16 @@ public class TopDownItemObject : ScriptableObject {
 
     [TextArea(2, 5)]
     public string itemDescription;
+
+    public SpellType spellType;
+    public int spellModifierValue;
+    public GameObject spellFx;
+    public GameObject onImpactFx;
+    public int castingCost;
+    public string castingSpellAnimation;
+    public float animationTriggerTime;
+    public GameObject spellCastSfx;
+    public GameObject spellImpactSfx;
 
     public ItemType itemType;
     public WeaponType weaponType;

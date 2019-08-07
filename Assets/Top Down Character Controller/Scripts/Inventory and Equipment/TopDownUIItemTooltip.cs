@@ -8,7 +8,6 @@ public class TopDownUIItemTooltip : MonoBehaviour {
     public Canvas canvas;
 
     public Text itemNameTxt;
-    public Text itemStatsTxt;
     public Text itemDescrTxt;
 
     public Vector2 tooltipOffset;

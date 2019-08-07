@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TopDownRpgAbilities : MonoBehaviour {
+public class TopDownRpgSpellcaster : MonoBehaviour {
 
-    public bool usingAbility;
+    public TopDownItemObject activeSpell;
+    public TopDownUIItemSlot spellItemSlot;
 
-    public TopDownRpgAbilityObject activeAbility;
-
-    public List<TopDownRpgAbilityObject> listOfAllAbilities;
+    public bool castingSpell;
 
     public Transform target;
 
     public Animator animator;
 
     public float speed = 10f;
+
+    private SphereCollider col;
 
     private TopDownControllerInteract tdcInteract;
     private TopDownCharacterCard tdcCard;
@@ -29,7 +30,7 @@ public class TopDownRpgAbilities : MonoBehaviour {
 
     public void Update() {
 
-        if (Input.GetKeyDown(tdcInteract.defInteractKey) && usingAbility) {
+        if (Input.GetKeyDown(tdcInteract.defInteractKey) && castingSpell) {
 
             Ray ray = tdcInteract.tdcc_CameraMain.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -46,16 +47,16 @@ public class TopDownRpgAbilities : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyUp(tdcInteract.defInteractKey) && activeAbility != null && target != null) {
+        if (Input.GetKeyUp(tdcInteract.defInteractKey) && activeSpell != null && target != null) {
 
             float distance = Vector3.Distance(transform.position, target.position);
 
             if (distance <= tdcInteract.enemyStopDistanceRanged) {
-                if (tdcCard.energy >= activeAbility.energyCost) {
-                    StartCoroutine(ExecuteAbility());
+                if (tdcCard.energy >= activeSpell.castingCost) {
+                    StartCoroutine(CastSpell());
                 }
                 else {
-                    usingAbility = false;
+                    castingSpell = false;
                     tdcInteract.RemoveFocus();
                     target = null;
                 }
@@ -63,29 +64,49 @@ public class TopDownRpgAbilities : MonoBehaviour {
         }
     }
 
-    public IEnumerator ExecuteAbility() {
+    public IEnumerator CastSpell() {
 
-        //tdcInteract.RemoveFocus();
+        if (spellItemSlot != null) {
+            
+            if(spellItemSlot.slottedInQuick != null) {
+                spellItemSlot.slottedInQuick.ClearSlot(spellItemSlot.slottedInQuick);
+                spellItemSlot.slottedInQuick = null;
+            }
 
-        animator.Play(activeAbility.abilityAnim);
+            spellItemSlot.ClearSlot(spellItemSlot);
+        }
 
-        yield return new WaitForSeconds(activeAbility.animTime);
+        animator.Play(activeSpell.castingSpellAnimation);
 
-        if (activeAbility.abilityType == AbilityType.Projectile) {
-            GameObject fx = Instantiate(activeAbility.abilityFx as GameObject);
+        yield return new WaitForSeconds(activeSpell.animationTriggerTime);
+
+        if(activeSpell.spellCastSfx != null) {
+            Instantiate(activeSpell.spellCastSfx, Vector3.zero, Quaternion.identity);
+        }
+
+        if (activeSpell.spellType == SpellType.CastOnEnemy) {
+            GameObject fx = Instantiate(activeSpell.spellFx as GameObject);
             fx.transform.SetParent(transform);
             fx.transform.localPosition = new Vector3(0f, gameObject.GetComponent<CapsuleCollider>().center.y, 0f);
             fx.transform.SetParent(null);
 
             fx.GetComponent<Rigidbody>().velocity = (target.transform.position - transform.position).normalized * speed;
+
+            if(fx.GetComponent<TopDownRpgSpellCollision>() == null) {
+                TopDownRpgSpellCollision spellCol = fx.AddComponent<TopDownRpgSpellCollision>();
+                spellCol.thisSpell = activeSpell;
+            }
         }
 
-        usingAbility = false;
+        castingSpell = false;
 
         tdcInteract.RemoveFocus();
 
         target = null;
 
-        tdcCard.energy -= activeAbility.energyCost;
+        tdcCard.energy -= activeSpell.castingCost;
+
+        activeSpell = null;
+        spellItemSlot = null;
     }
 }

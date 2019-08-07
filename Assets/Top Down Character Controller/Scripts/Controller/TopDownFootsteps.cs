@@ -20,8 +20,11 @@ public class TopDownFootsteps : MonoBehaviour {
         }
 
         tdc_AudioManager = TopDownAudioManager.instance;
-         
-        if(tdc_AudioManager == null) {
+
+        if (GameObject.FindObjectOfType<TopDownAudioManager>()) {
+            tdc_AudioManager = GameObject.FindObjectOfType<TopDownAudioManager>();
+        }
+        else {
             GameObject audioManagerGo = Instantiate(Resources.Load("TD_AudioManager") as GameObject);
             tdc_AudioManager = audioManagerGo.GetComponent<TopDownAudioManager>();
         }
