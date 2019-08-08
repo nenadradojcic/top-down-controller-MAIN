@@ -32,9 +32,12 @@ public enum ItemVisualisation {
 [CreateAssetMenu(fileName = "New Item", menuName = "Top Down RPG/Inventory/Item")]
 public class TopDownItemObject : ScriptableObject {
 
+    public bool isItem = true;
+
     public string itemName = "New Item";
     public Sprite itemIcon = null;
     public int itemStack;
+    public float itemValue;
 
     [TextArea(2, 5)]
     public string itemDescription;

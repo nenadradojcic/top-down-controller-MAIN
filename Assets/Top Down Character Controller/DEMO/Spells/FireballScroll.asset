@@ -11,9 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7538195a728d84542aa897fe7b478e22, type: 3}
   m_Name: FireballScroll
   m_EditorClassIdentifier: 
+  isItem: 0
   itemName: Fireball Scroll
   itemIcon: {fileID: 21300000, guid: 57fcd86c5325abf46a8408efe0f0c708, type: 3}
   itemStack: 0
+  itemValue: 0
   itemDescription: A simple dusty scroll containing fireball spelll.
   spellType: 0
   spellModifierValue: 15
