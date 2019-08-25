@@ -18,7 +18,6 @@ MonoBehaviour:
   itemValue: 0
   itemDescription: A simple dusty scroll containing fireball spelll.
   spellType: 0
-  spellModifierValue: 15
   spellFx: {fileID: 100002, guid: 74d264362dc5c1e4cbf80f1b68ca4259, type: 2}
   onImpactFx: {fileID: 1329583842552526, guid: 86105000d00599d44a066c7fe6c85c5a, type: 2}
   castingCost: 5
@@ -28,6 +27,22 @@ MonoBehaviour:
     type: 2}
   spellImpactSfx: {fileID: 1261714081643298, guid: 051e10e144bc46748b8cec9f8f418eaa,
     type: 2}
+  spellOnImpactEvents:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000}
+        m_MethodName: Spell_Damage
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 15
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   itemType: 11
   weaponType: 0
   weaponHoldingType: 0

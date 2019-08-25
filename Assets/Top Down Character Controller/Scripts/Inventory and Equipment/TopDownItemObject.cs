@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public enum ItemType {
     Misc = 0,
@@ -43,7 +44,6 @@ public class TopDownItemObject : ScriptableObject {
     public string itemDescription;
 
     public SpellType spellType;
-    public int spellModifierValue;
     public GameObject spellFx;
     public GameObject onImpactFx;
     public int castingCost;
@@ -51,6 +51,8 @@ public class TopDownItemObject : ScriptableObject {
     public float animationTriggerTime;
     public GameObject spellCastSfx;
     public GameObject spellImpactSfx;
+
+    public UnityEvent spellOnImpactEvents;
 
     public ItemType itemType;
     public WeaponType weaponType;
@@ -97,6 +99,20 @@ public class TopDownItemObject : ScriptableObject {
             if (equipmentManager.currentEquipment[(int)itemType] == this) {
                 equipmentManager.UnequipItem(this);
             }
+        }
+    }
+
+    public void Spell_Damage(int damageValue) {
+        TopDownCharacterCard tdcc = TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownRpgSpellcaster>().previousTarget.GetComponent<TopDownCharacterCard>();
+        if(tdcc != null) {
+            tdcc.health -= damageValue;
+        }
+    }
+
+    public void Spell_Heal(int healValue) {
+        TopDownCharacterCard tdcc = TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownRpgSpellcaster>().previousTarget.GetComponent<TopDownCharacterCard>();
+        if (tdcc != null) {
+            tdcc.health += healValue;
         }
     }
 }

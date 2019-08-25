@@ -230,14 +230,14 @@ public class TopDownItemObjectEditor : Editor {
             EditorGUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
             EditorGUILayout.BeginVertical("Box", GUILayout.Width(90 * Screen.width / 100));
-            typeBool = EditorGUILayout.Foldout(typeBool, "Type Info", simpleStyle);
+            typeBool = EditorGUILayout.Foldout(typeBool, "Spell Settings", simpleStyle);
 
-            if (typeBool == true) {
+            if (typeBool) {
                 EditorGUILayout.LabelField("Spell Type:", simpleTitleLable);
                 td_target.spellType = (SpellType)EditorGUILayout.EnumPopup(string.Empty, td_target.spellType);
                 EditorGUILayout.HelpBox("Determines what kind of item this is.", MessageType.Info);
 
-                if(td_target.spellType != SpellType.CastOnSelf) {
+                if (td_target.spellType != SpellType.CastOnSelf) {
                     EditorGUILayout.LabelField("Spell Energy Cost:", simpleTitleLable);
                     td_target.castingCost = EditorGUILayout.IntField(td_target.castingCost);
                     EditorGUILayout.HelpBox("How much energy points will this spell take when cast.", MessageType.Info);
@@ -264,11 +264,13 @@ public class TopDownItemObjectEditor : Editor {
                     EditorGUILayout.HelpBox("This sound effect will be played when cast particle hits target.", MessageType.Info);
 
                 }
+
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("spellOnImpactEvents"), true);
             }
+
             EditorGUILayout.EndVertical();
             GUILayout.FlexibleSpace();
             EditorGUILayout.EndHorizontal();
-
         }
 
         serializedObject.ApplyModifiedProperties();

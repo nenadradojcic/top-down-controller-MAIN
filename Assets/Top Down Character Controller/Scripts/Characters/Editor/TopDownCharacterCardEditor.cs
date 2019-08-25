@@ -99,11 +99,13 @@ public class TopDownCharacterCardEditor : Editor {
             EditorGUILayout.LabelField("- AI Detect -", boldCenteredLabel);
 
             EditorGUILayout.LabelField("Field of View:", simpleTitleLable);
-            serializedObject.FindProperty("aiFieldOfView").intValue = EditorGUILayout.IntSlider((int)td_target.aiFieldOfView, 60, 180);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("aiFieldOfView"), true);
+            //serializedObject.FindProperty("aiFieldOfView").intValue = EditorGUILayout.IntSlider((int)td_target.aiFieldOfView, 60, 180);
             EditorGUILayout.HelpBox("This represents field of view in which AI will detect player.", MessageType.Info);
 
             EditorGUILayout.LabelField("Detect Radius:", simpleTitleLable);
-            serializedObject.FindProperty("aiDetectRadius").intValue = EditorGUILayout.IntSlider((int)td_target.aiDetectRadius, 4, 20);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("aiDetectRadius"), true);
+            //serializedObject.FindProperty("aiDetectRadius").intValue = EditorGUILayout.IntSlider((int)td_target.aiDetectRadius, 4, 20);
             EditorGUILayout.HelpBox("This represents radius of detection.", MessageType.Info);
 
             EditorGUILayout.EndVertical();

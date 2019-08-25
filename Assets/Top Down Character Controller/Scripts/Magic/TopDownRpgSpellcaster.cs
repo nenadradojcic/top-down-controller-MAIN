@@ -10,6 +10,7 @@ public class TopDownRpgSpellcaster : MonoBehaviour {
     public bool castingSpell;
 
     public Transform target;
+    public Transform previousTarget;
 
     public Animator animator;
 
@@ -102,6 +103,7 @@ public class TopDownRpgSpellcaster : MonoBehaviour {
 
         tdcInteract.RemoveFocus();
 
+        previousTarget = target;
         target = null;
 
         tdcCard.energy -= activeSpell.castingCost;

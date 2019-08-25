@@ -13,12 +13,14 @@ public class TopDownRpgSpellCollision : MonoBehaviour {
                 Instantiate(thisSpell.spellImpactSfx, Vector3.zero, Quaternion.identity);
             }
 
-            if (thisSpell.spellModifierValue > 0) {
+            /*if (thisSpell.spellModifierValue > 0) {
                 other.gameObject.GetComponent<TopDownCharacterCard>().health -= thisSpell.spellModifierValue;
-            }
+            }*/
 
             GameObject impactGo = Instantiate(thisSpell.onImpactFx, transform.position, Quaternion.identity);
             impactGo.AddComponent<TopDownToolDestroyAfterTime>().destroyAfter = 1.5f;
+
+            thisSpell.spellOnImpactEvents.Invoke();
 
             Destroy(gameObject);
         }
