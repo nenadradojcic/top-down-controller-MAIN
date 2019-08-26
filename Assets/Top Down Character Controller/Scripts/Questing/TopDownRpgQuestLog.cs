@@ -42,23 +42,23 @@ public class TopDownRpgQuestLog : MonoBehaviour {
             for (int q = 0; q < activeQuests.Count; q++) {
                 if (questCategoriesPresent.Count > 0) {
                     if(questCategoriesPresent.Contains(activeQuests[q].questCategory) == true) {
-                        print("Category `" + activeQuests[q].questCategory + "` is already present in the list. We will not add it again.");
+                        //print("Category `" + activeQuests[q].questCategory + "` is already present in the list. We will not add it again.");
                     }
                     else {
-                        print("Category `" + activeQuests[q].questCategory + "` is not present in the list. We will add it.");
+                        //print("Category `" + activeQuests[q].questCategory + "` is not present in the list. We will add it.");
                         questCategoriesPresent.Add(activeQuests[q].questCategory);
                     }
                 }
                 else {
                     questCategoriesPresent.Add(activeQuests[q].questCategory);
-                    print("Added quest" + activeQuests[q].questName + "to log.");
+                    //print("Added quest" + activeQuests[q].questName + "to log.");
                 }
             }
 
             questCategoriesPresent.Sort();
 
-            print("activeQuests " + activeQuests.Count);
-            print("questCategoriesPresent " + questCategoriesPresent.Count);
+            //print("activeQuests " + activeQuests.Count);
+            //print("questCategoriesPresent " + questCategoriesPresent.Count);
         }
 
         //Next we are going to instantiate every category and every quest

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class TopDownRpgQuestCreatorWindow : EditorWindow {
 
@@ -8,11 +9,17 @@ public class TopDownRpgQuestCreatorWindow : EditorWindow {
 
     public string questName;
     public QuestType questType;
+    public string questDescription;
     public GameObject questTarget;
     public List<GameObject> questTargets;
     public QuestEnding questEnding;
+    public GameObject questGiver;
     public string questFinishDialogChoice;
     public string questFinishDialogReply;
+    public DialogType questFinishDialogType;
+    public UnityEvent questFinishDialogEvent;
+
+    public SerializedObject serializedObject;
 
     [MenuItem("Top Down RPG/New Quest %#q", false, 4)]
     static void Init() {
@@ -23,7 +30,7 @@ public class TopDownRpgQuestCreatorWindow : EditorWindow {
             TopDownIcon = Resources.Load("TopDownIcon") as Texture;
         }
 
-        window.minSize = new Vector2(500f, 575f);
+        window.minSize = new Vector2(500f, 630f);
     }
 
     void OnGUI() {
@@ -61,6 +68,10 @@ public class TopDownRpgQuestCreatorWindow : EditorWindow {
 
         questType = (QuestType)EditorGUILayout.EnumPopup("Quest Type:", questType);
         EditorGUILayout.HelpBox("What kind of quest this is. This basicly sets its main objective.", MessageType.Info);
+        
+        questDescription = EditorGUILayout.TextField("Quest Description:", questDescription, GUILayout.MaxHeight(75));
+
+        EditorGUILayout.HelpBox("Here you can describe what player needs to do to complete this quest.", MessageType.Info);
 
         EditorGUILayout.EndVertical();
         GUILayout.FlexibleSpace();
@@ -113,11 +124,23 @@ public class TopDownRpgQuestCreatorWindow : EditorWindow {
             GUILayout.FlexibleSpace();
             EditorGUILayout.BeginVertical("Box", GUILayout.Width(90 * Screen.width / 100));
 
+            questGiver = (GameObject)EditorGUILayout.ObjectField("Quest Giver:", questGiver, typeof(GameObject), true);
+            EditorGUILayout.HelpBox("Here we set npc with TopDownRpgDialog.cs to whom we will end this quest.", MessageType.Info);
+
             questFinishDialogChoice = EditorGUILayout.TextField("Finish Quest Dialog Choice:", questFinishDialogChoice);
             EditorGUILayout.HelpBox("If quest is started by NPC, this choice will be visible in his dialog menu when quest is done.", MessageType.Info);
 
             questFinishDialogReply = EditorGUILayout.TextField("Finish Quest Dialog Reply:", questFinishDialogReply, GUILayout.MinHeight(90));
             EditorGUILayout.HelpBox("This will be the reply the npc will give us when the above choice is activated.", MessageType.Info);
+
+            questFinishDialogType = (DialogType)EditorGUILayout.EnumPopup("Dialog Choice Type:", questFinishDialogType);
+            EditorGUILayout.HelpBox("Determines what will happen when finish dialog choice is chosen in conversation.", MessageType.Info);
+
+            SerializedObject serializedObject = new SerializedObject(this);
+            serializedObject.Update();
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("questFinishDialogEvent"), true);
+            EditorGUILayout.HelpBox("This will be the reply the npc will give us when the above choice is activated.", MessageType.Info);
+            serializedObject.ApplyModifiedProperties();
 
             EditorGUILayout.EndVertical();
             GUILayout.FlexibleSpace();
@@ -141,8 +164,11 @@ public class TopDownRpgQuestCreatorWindow : EditorWindow {
             quest.questTarget = questTarget;
             quest.questTargets = questTargets;
             quest.questEnding = questEnding;
+            quest.questGiverDialog = questGiver.GetComponent<TopDownUIDialog>();
+            quest.questFinishDialogType = questFinishDialogType;
             quest.questFinishChoice = questFinishDialogChoice;
             quest.questFinishDialog = questFinishDialogReply;
+            quest.questFinishEvent = questFinishDialogEvent;
 
             Debug.Log("Quest named '"+questName+"' added to scene.");
         }

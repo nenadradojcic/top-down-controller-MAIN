@@ -15,7 +15,6 @@ public class TopDownCharacterEquipmentSlots : MonoBehaviour {
     public Text damagePointsTxt;
 
     public Text nameTxt;
-    public Text levelTxt;
 
     public TopDownUIEquipmentSlot[] equipmentSlots;
 
@@ -41,7 +40,6 @@ public class TopDownCharacterEquipmentSlots : MonoBehaviour {
             damagePointsTxt.text = "DP: " + characterInSlot.damagePoints.ToString();
 
             nameTxt.text = characterInSlot.character.name;
-            levelTxt.text = characterInSlot.level.ToString();
         }
     }
 
@@ -55,7 +53,6 @@ public class TopDownCharacterEquipmentSlots : MonoBehaviour {
         damagePointsTxt.text = string.Empty;
 
         nameTxt.text = string.Empty;
-        levelTxt.text = string.Empty;
 
         characterInSlot.characterInventory = null;
 

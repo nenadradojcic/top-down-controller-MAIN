@@ -25,18 +25,8 @@ public class TopDownCharacterCard : MonoBehaviour {
     public float energy = 10f;
     public float maxEnergy = 10f;
 
-    public int strength = 2;
-    public int dexterity = 2;
-    public int constitution = 2;
-    public int willpower = 2;
-    public int attributePoints = 0;
-
     public int armorPoints = 0;
     public int damagePoints = 0;
-
-    public int level = 1;
-    public int experience = 0;
-    public int skillPoints = 0;
 
     //PLAYER WHEN NOT ACTIVE CHARACTER
     public bool activePlayerAi;
@@ -182,13 +172,16 @@ public class TopDownCharacterCard : MonoBehaviour {
                             main.tdcm_NavMeshAgent.SetDestination(transform.position);
                             main.TDCC_MoveCharacter(Vector3.zero);
                         }
+
+                        enemyFocus = null;
+                        main.tdcm_animator.SetBool("TargetInFront", false);
+                        main.tdcm_animator.SetBool("Attacking", false);
                     }
                     else {
                         if(activeFocus.GetComponent<TopDownControllerInteract>().focusedTarget != null) {
                             if (enemyFocus == null) {
                                 enemyFocus = activeFocus.GetComponent<TopDownControllerInteract>().focusedTarget;
                             }
-
                             //float distanceToActivesFocus = Vector3.Distance(transform.position, enemyFocus.position);
 
                             if (main.tdcm_NavMeshAgent.remainingDistance > interact.enemyStopDistance) {
@@ -459,20 +452,4 @@ public class TopDownCharacterCard : MonoBehaviour {
 
         portraitImage.texture = currentPortrait;
     }
-
-    /*/// <summary>
-    /// From here down you can add new functions
-    /// </summary>
-
-    public void NewUpdate() {
-
-        if (experience >= characterManager.experienceToLevel) {
-            LevelUpCharacter();
-        }
-    }
-
-    public void LevelUpCharacter() {
-        experience = 0;
-        skillPoints++;
-    }*/
 }

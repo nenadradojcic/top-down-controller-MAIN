@@ -138,22 +138,9 @@ public class TopDownCharacterCardEditor : Editor {
             td_target.health = EditorGUILayout.FloatField("Health:", td_target.health);
             td_target.energy = EditorGUILayout.FloatField("Energy:", td_target.energy);
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("- Attributes -", simpleTitleLable);
-            td_target.strength = EditorGUILayout.IntField("Strength:", td_target.strength);
-            td_target.dexterity = EditorGUILayout.IntField("Dexterity:", td_target.dexterity);
-            td_target.constitution = EditorGUILayout.IntField("Constitution:", td_target.constitution);
-            td_target.willpower = EditorGUILayout.IntField("Willpower:", td_target.willpower);
-            EditorGUILayout.Space();
             EditorGUILayout.LabelField("- Equipment Modifiers -", simpleTitleLable);
             td_target.armorPoints = EditorGUILayout.IntField("Armor Points:", td_target.armorPoints);
             td_target.damagePoints = EditorGUILayout.IntField("Damage Points:", td_target.damagePoints);
-            EditorGUILayout.Space();
-            EditorGUILayout.LabelField("- Level and Experience -", simpleTitleLable);
-            td_target.level = EditorGUILayout.IntField("Level:", td_target.level);
-            td_target.experience = EditorGUILayout.IntField("Experience:", td_target.experience);
-            EditorGUILayout.Space();
-            EditorGUILayout.LabelField("- Skills -", simpleTitleLable);
-            td_target.skillPoints = EditorGUILayout.IntField("Skill Points:", td_target.skillPoints);
             EditorGUILayout.Space();
             EditorGUI.EndDisabledGroup();
 

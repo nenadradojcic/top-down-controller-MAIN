@@ -77,7 +77,7 @@ public class TopDownUIDialogMain : MonoBehaviour {
             dialogInUse = null;
         }
 
-        cameraBasic.enabled = true;
+        //cameraBasic.enabled = true;
     }
 
     public void ShowDialog(TopDownUIDialog dialog) {
@@ -164,7 +164,7 @@ public class TopDownUIDialogMain : MonoBehaviour {
             }
         }
 
-        cameraBasic.enabled = false;
+        //cameraBasic.enabled = false;
     }
 
     public void CloseDialogPerType(string buttonText) {
@@ -183,7 +183,7 @@ public class TopDownUIDialogMain : MonoBehaviour {
             }
         }
 
-        cameraBasic.enabled = true;
+        //cameraBasic.enabled = true;
     }
 
     public enum ChoicePosition { Top = 0, Bottom = 1}
@@ -192,9 +192,10 @@ public class TopDownUIDialogMain : MonoBehaviour {
     /// </summary>
     /// <param name="dialog">Dialog that we are adding choice to.</param>
     /// <param name="choiceText">Text in the choice button.</param>
-    /// <param name="dialogText">Text in the dialog box when choice is activated</param>
+    /// <param name="dialogText">Text in the dialog box when choice is activated.</param>
+    /// <param name="dialogChoiceType">What type of dialog choice this is?</param>
     /// <param name="choicePosition">Position of choice in the choices list. It can be at Top or at Bottom. If there is four choices already if on Top the last one will be removed and if on Bottom the first one will be removed.</param>
-    public void AddNewChoice(TopDownRpgQuest quest, TopDownUIDialog dialog, string choiceText, string dialogText, ChoicePosition choicePosition) {
+    public void AddNewChoice(TopDownRpgQuest quest, TopDownUIDialog dialog, string choiceText, string dialogText, DialogType dialogChoiceType, ChoicePosition choicePosition) {
         if(choicePosition == ChoicePosition.Top) {
 
             for (int i = dialog.numberOfChoices; i > 0; i--) {
@@ -207,7 +208,7 @@ public class TopDownUIDialogMain : MonoBehaviour {
                     dialog.typeFourResponse = dialog.typeThreeResponse;
                     dialog.choiceFourEvent = dialog.choiceThreeEvent;
                 }
-                else if (i == 3) {
+                if (i == 3) {
                     dialog.choiceThree = dialog.choiceTwo;
                     dialog.choiceThreeDialog = dialog.choiceTwoDialog;
                     dialog.choiceThreeType = dialog.choiceTwoType;
@@ -216,7 +217,7 @@ public class TopDownUIDialogMain : MonoBehaviour {
                     dialog.typeThreeResponse = dialog.typeTwoResponse;
                     dialog.choiceThreeEvent = dialog.choiceTwoEvent;
                 }
-                else if (i == 2) {
+                if (i == 2) {
                     dialog.choiceTwo = dialog.choiceOne;
                     dialog.choiceTwoDialog = dialog.choiceOneDialog;
                     dialog.choiceTwoType = dialog.choiceOneType;
@@ -225,10 +226,10 @@ public class TopDownUIDialogMain : MonoBehaviour {
                     dialog.typeTwoResponse = dialog.typeOneResponse;
                     dialog.choiceTwoEvent = dialog.choiceOneEvent;
                 }
-                else if (i == 1) {
+                if (i == 1) {
                     dialog.choiceOne = choiceText;
                     dialog.choiceOneDialog = dialogText;
-                    dialog.choiceOneType = DialogType.None;
+                    dialog.choiceOneType = dialogChoiceType;
                     dialog.removeOnChoiceOne = true;
                     dialog.branchOneDialog = null;
                     dialog.typeOneResponse = string.Empty;

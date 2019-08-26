@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public enum QuestState {
+    NONE = 0,
     NotStarted = 1,
     Started = 2,
     Finished = 3,
@@ -10,6 +11,7 @@ public enum QuestState {
 }
 
 public enum QuestType {
+    NONE = 0,
     KillTarget = 1,
     KillAllTargets = 2,
     GoToLocation = 3,
@@ -17,6 +19,7 @@ public enum QuestType {
 }
 
 public enum QuestEnding {
+    NONE = 0,
     ReturnToNpc = 1,
     EndInPlace = 2,
 }
@@ -38,6 +41,7 @@ public class TopDownRpgQuest : MonoBehaviour {
     public QuestEnding questEnding;
 
     public TopDownUIDialog questGiverDialog;
+    public DialogType questFinishDialogType;
     public string questFinishChoice;
     public string questFinishDialog;
     public UnityEvent questFinishEvent;
@@ -145,7 +149,7 @@ public class TopDownRpgQuest : MonoBehaviour {
                 //All targets killed, return to quest giver and report
                 if (questEnding == QuestEnding.ReturnToNpc) {
                     if (questGiverDialog != null) {
-                        TopDownUIDialogMain.instance.AddNewChoice(this, questGiverDialog, questFinishChoice, questFinishDialog, TopDownUIDialogMain.ChoicePosition.Top);
+                        TopDownUIDialogMain.instance.AddNewChoice(this, questGiverDialog, questFinishChoice, questFinishDialog, questFinishDialogType, TopDownUIDialogMain.ChoicePosition.Top);
                         questGiverDialog = null;
                     }
                 }
@@ -154,6 +158,19 @@ public class TopDownRpgQuest : MonoBehaviour {
             }
         }
         else if (questType == QuestType.TalkToNpc) {
+        }
+        else if (questType == QuestType.GoToLocation) {
+            float dist = Vector3.Distance(TopDownCharacterManager.instance.activeCharacter.transform.position, questTarget.transform.position);
+            if (dist <= 4) {
+                if (questEnding == QuestEnding.ReturnToNpc) {
+                    if (questGiverDialog != null) {
+                        TopDownUIDialogMain.instance.AddNewChoice(this, questGiverDialog, questFinishChoice, questFinishDialog, questFinishDialogType, TopDownUIDialogMain.ChoicePosition.Top);
+                        questGiverDialog = null;
+                    }
+                }
+                else if (questEnding == QuestEnding.EndInPlace) {
+                }
+            }
         }
     }
 
