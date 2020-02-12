@@ -147,10 +147,6 @@ public class TopDownUIDialogChoice : MonoBehaviour {
         string dialogTmp = dialog;
         
         branch.branchedFrom = dialogMain.dialogInUse;
-
-        if (branch.cameraPosition == DialogCameraPosition.None) {
-            branch.cameraPosition = dialogMain.dialogInUse.cameraPosition;
-        }
         dialogMain.ClearDialog();
 
         yield return new WaitForEndOfFrame();

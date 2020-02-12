@@ -267,7 +267,9 @@ public class TopDownCharacterCard : MonoBehaviour {
         if (GetComponent<TopDownAI>()) {
             TopDownAI ai = GetComponent<TopDownAI>();
             if (ai.voiceSet != null) {
-                Instantiate(ai.voiceSet.deathVoice, transform.position, Quaternion.identity);
+                if (ai.voiceSet.deathVoice != null) {
+                    Instantiate(ai.voiceSet.deathVoice, transform.position, Quaternion.identity);
+                }
             }
         }
 
@@ -311,6 +313,9 @@ public class TopDownCharacterCard : MonoBehaviour {
         }
         if (GetComponent<TopDownDecompose>()) {
             GetComponent<TopDownDecompose>().decompose = true;
+        }
+        if(GetComponent<TopDownRpgOnDeathEvent>()) {
+            GetComponent<TopDownRpgOnDeathEvent>().InvokeOnDeathEvent();
         }
 
         TopDownDecompose decompose = gameObject.AddComponent<TopDownDecompose>();

@@ -44,7 +44,8 @@ public class TopDownRpgQuest : MonoBehaviour {
     public DialogType questFinishDialogType;
     public string questFinishChoice;
     public string questFinishDialog;
-    public UnityEvent questFinishEvent;
+    public UnityEvent questStartEvents;
+    public UnityEvent questFinishEvents;
 
     public TopDownRpgQuestHub questHub;
     public TopDownUIManager uiManager;
@@ -75,7 +76,11 @@ public class TopDownRpgQuest : MonoBehaviour {
             }
         }
 
-        questFinishEvent.AddListener(this.FinishQuest);
+        questFinishEvents.AddListener(this.FinishQuest);
+
+        if(questState == QuestState.Started) {
+            StartQuest();
+        }
 
         this.enabled = false;
     }
@@ -91,6 +96,8 @@ public class TopDownRpgQuest : MonoBehaviour {
             questHub.activeQuest = this;
 
             uiManager.questLog.GetComponent<TopDownRpgQuestLog>().UpdateQuestList();
+
+            questStartEvents.Invoke();
 
             //SOME NOTIFICATION THAT QUEST STARTED
             uiManager.notificationText.GetComponent<TopDownUIShowNotification>().ShowNotification("Quest Started \n''" + questName + "''");
@@ -114,6 +121,8 @@ public class TopDownRpgQuest : MonoBehaviour {
             questHub.activeQuest = this;
 
             uiManager.questLog.GetComponent<TopDownRpgQuestLog>().UpdateQuestList();
+
+            questStartEvents.Invoke();
 
             //SOME NOTIFICATION THAT QUEST STARTED
             uiManager.notificationText.GetComponent<TopDownUIShowNotification>().ShowNotification("Quest Started \n''" + questName + "''");

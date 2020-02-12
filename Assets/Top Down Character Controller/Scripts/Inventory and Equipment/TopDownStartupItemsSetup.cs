@@ -1,14 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TopDownStartupItemsSetup : MonoBehaviour {
 
     public TopDownItemObject[] itemsToEquip;
     public TopDownItemObject[] itemsToPlaceInInventory;
-    //private List<TopDownItemObject> itemsInInventory;
-
-    //private TopDownEquipmentManager td_equipmentManager;
 
     private TopDownCharacterCard td_CharacterCard;
     private TopDownUIInventory td_Inventory;
@@ -17,8 +13,7 @@ public class TopDownStartupItemsSetup : MonoBehaviour {
     public List<TopDownItemObject> itemsInInventory;
 
     private void Start() {
-
-        //td_equipmentManager = GetComponent<TopDownEquipmentManager>();
+        
         td_CharacterCard = gameObject.GetComponent<TopDownCharacterCard>();
         td_Inventory = TopDownUIInventory.instance;
 

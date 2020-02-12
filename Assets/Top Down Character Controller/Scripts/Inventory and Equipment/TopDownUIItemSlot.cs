@@ -171,11 +171,13 @@ public class TopDownUIItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEn
                             if (TopDownUIManager.instance.charInfoPanel.inventoryActive) {
                                 if (TopDownUIManager.instance.inventory.GetComponent<CanvasGroup>().alpha > 0) {
                                     TopDownUIManager.instance.SetUIState(TopDownUIManager.instance.inventory);
+                                    TopDownUIManager.instance.charInfoPanel.inventoryActive = false;
                                 }
                             }
                             if (TopDownUIManager.instance.charInfoPanel.questLogActive) {
                                 if (TopDownUIManager.instance.questLog.GetComponent<CanvasGroup>().alpha > 0) {
                                     TopDownUIManager.instance.SetUIState(TopDownUIManager.instance.questLog);
+                                    TopDownUIManager.instance.charInfoPanel.inventoryActive = true;
                                 }
                             }
                         }

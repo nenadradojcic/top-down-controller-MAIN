@@ -21,6 +21,7 @@ public class TopDownUIManager : MonoBehaviour {
 
     public GameObject itemWorldName;
     public GameObject npcWorldName;
+    public GameObject genericWorldTooltip;
 
     public GameObject notificationText;
 
@@ -45,6 +46,7 @@ public class TopDownUIManager : MonoBehaviour {
 
         itemWorldName.GetComponent<TopDownUIItemName>().nameText.text = string.Empty;
         npcWorldName.GetComponent<TopDownUINpcNameBar>().nameText.text = string.Empty;
+        genericWorldTooltip.GetComponent<TopDownUIGeneralWorldTooltip>().tooltipText.text = string.Empty;
     }
 
     public void LateUpdate() {

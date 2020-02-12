@@ -119,7 +119,9 @@ public class TopDownAI : MonoBehaviour {
                         focus = other.transform;
 
                         if (detected == false && voiceSet != null) {
-                            Instantiate(voiceSet.detectVoice, transform.position, Quaternion.identity);
+                            if (voiceSet.detectVoice != null) {
+                                Instantiate(voiceSet.detectVoice, transform.position, Quaternion.identity);
+                            }
                             detected = true;
                         }
                     }

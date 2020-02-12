@@ -531,7 +531,9 @@ public class TopDownEquipmentManager : MonoBehaviour {
                     if (tcc_Interact.focusedTarget.GetComponent<TopDownAI>()) {
                         TopDownAI ai = tcc_Interact.focusedTarget.GetComponent<TopDownAI>();
                         if (ai.voiceSet != null) {
-                            Instantiate(ai.voiceSet.getHitVoice, transform.position, Quaternion.identity);
+                            if (ai.voiceSet.getHitVoice) {
+                                Instantiate(ai.voiceSet.getHitVoice, transform.position, Quaternion.identity);
+                            }
                         }
                     }
                 }
@@ -558,7 +560,9 @@ public class TopDownEquipmentManager : MonoBehaviour {
                     if (td_characterCard.enemyFocus.GetComponent<TopDownAI>()) {
                         TopDownAI ai = td_characterCard.enemyFocus.GetComponent<TopDownAI>();
                         if (ai.voiceSet != null) {
-                            Instantiate(ai.voiceSet.getHitVoice, transform.position, Quaternion.identity);
+                            if (ai.voiceSet.getHitVoice) {
+                                Instantiate(ai.voiceSet.getHitVoice, transform.position, Quaternion.identity);
+                            }
                         }
                     }
                 }

@@ -12,14 +12,14 @@ public enum DialogType {
 }
 
 public class TopDownUIDialog : TopDownInteractible {
-    
-    public DialogCameraPosition cameraPosition;
 
     public string welcomeDialog;
+    public AudioClip welcomeDialogAudio;
 
     public bool showChoiceOne;
     public string choiceOne;
     public string choiceOneDialog;
+    public AudioClip choiceOneDialogAudio;
     public DialogType choiceOneType;
     public bool removeOnChoiceOne;
     public TopDownUIDialog branchOneDialog;
@@ -29,6 +29,7 @@ public class TopDownUIDialog : TopDownInteractible {
     public bool showChoiceTwo;
     public string choiceTwo;
     public string choiceTwoDialog;
+    public AudioClip choiceTwoDialogAudio;
     public DialogType choiceTwoType;
     public bool removeOnChoiceTwo;
     public TopDownUIDialog branchTwoDialog;
@@ -38,6 +39,7 @@ public class TopDownUIDialog : TopDownInteractible {
     public bool showChoiceThree;
     public string choiceThree;
     public string choiceThreeDialog;
+    public AudioClip choiceThreeDialogAudio;
     public DialogType choiceThreeType;
     public bool removeOnChoiceThree;
     public TopDownUIDialog branchThreeDialog;
@@ -47,6 +49,7 @@ public class TopDownUIDialog : TopDownInteractible {
     public bool showChoiceFour;
     public string choiceFour;
     public string choiceFourDialog;
+    public AudioClip choiceFourDialogAudio;
     public DialogType choiceFourType;
     public bool removeOnChoiceFour;
     public TopDownUIDialog branchFourDialog;
@@ -114,8 +117,6 @@ public class TopDownUIDialog : TopDownInteractible {
         TopDownUIManager.instance.SetUIState(TopDownUIManager.instance.dialog);
 
         TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownControllerInteract>().tempDisable = true;
-
-        TopDownUIDialogMain.instance.dialogCameraPosition = cameraPosition;
 
         TopDownUIDialogMain.instance.ClearDialog();
         TopDownUIDialogMain.instance.ShowDialog(this);

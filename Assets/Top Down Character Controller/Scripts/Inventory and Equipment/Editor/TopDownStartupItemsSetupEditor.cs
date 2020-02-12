@@ -7,11 +7,7 @@ public class TopDownStartupItemsSetupEditor : Editor {
 
     private Texture TopDownIcon;
 
-    //private TopDownStartupItemsSetup td_target;
-
     private void OnEnable() {
-        //td_target = (TopDownStartupItemsSetup)target;
-
         if (TopDownIcon == null) {
             TopDownIcon = Resources.Load("TopDownIcon") as Texture;
         }

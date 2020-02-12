@@ -256,11 +256,11 @@ public class TopDownItemObjectEditor : Editor {
                     EditorGUILayout.HelpBox("Here we set the name of the animation state that will be played on spell cast. Also, in animationTriggerTime we set the time that animation will be played until spell is casted.", MessageType.Info);
 
                     EditorGUILayout.LabelField("On Impact Particle:", simpleTitleLable);
-                    td_target.spellFx = (GameObject)EditorGUILayout.ObjectField(string.Empty, td_target.spellFx, typeof(GameObject), true);
+                    td_target.onImpactFx = (GameObject)EditorGUILayout.ObjectField(string.Empty, td_target.onImpactFx, typeof(GameObject), true);
                     EditorGUILayout.HelpBox("This particle will be instantiated when cast particle hits target.", MessageType.Info);
 
                     EditorGUILayout.LabelField("On Impact Sound:", simpleTitleLable);
-                    td_target.spellCastSfx = (GameObject)EditorGUILayout.ObjectField(string.Empty, td_target.spellCastSfx, typeof(GameObject), true);
+                    td_target.spellImpactSfx = (GameObject)EditorGUILayout.ObjectField(string.Empty, td_target.spellImpactSfx, typeof(GameObject), true);
                     EditorGUILayout.HelpBox("This sound effect will be played when cast particle hits target.", MessageType.Info);
 
                 }

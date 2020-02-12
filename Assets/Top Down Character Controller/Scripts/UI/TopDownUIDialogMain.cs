@@ -3,24 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum DialogCameraPosition {
-    None = 0,
-    OnPlayer = 1,
-    OnNpc = 2,
-    Between = 3,
-}
-
 public class TopDownUIDialogMain : MonoBehaviour {
 
-    public DialogCameraPosition dialogCameraPosition;
+    public bool useKeyNumShortcuts;
+    [SerializeField]
+    public KeyCode dialog1Key = KeyCode.Alpha1;
+    [SerializeField]
+    public KeyCode dialog2Key = KeyCode.Alpha2;
+    [SerializeField]
+    public KeyCode dialog3Key = KeyCode.Alpha3;
+    [SerializeField]
+    public KeyCode dialog4Key = KeyCode.Alpha4;
+    [SerializeField]
+    public KeyCode dialog5Key = KeyCode.Alpha5;
 
     public TopDownUIDialog dialogInUse;
     public TopDownUIDialogChoice[] dialogChoices;
 
     public static TopDownUIDialogMain instance;
 
-    public float cameraMoveSpeed = 1f;
+    public float dialogCamMoveSpeed = 1f;
+    private float defCamMoveSpeed;
     public TopDownCameraBasic cameraBasic;
+    public Vector3 cameraDialogPos; //This is based on local space of active player character
 
     public void Awake() {
         instance = this;
@@ -30,12 +35,44 @@ public class TopDownUIDialogMain : MonoBehaviour {
         cameraBasic = TopDownCameraBasic.instance;
     }
 
+    public void LateUpdate() {
+        if(useKeyNumShortcuts && dialogInUse != null) {
+            if(Input.GetKeyUp(dialog1Key)) {
+                if(!string.IsNullOrEmpty(dialogChoices[0].dialog)) {
+                    dialogChoices[0].ShowChoiceDialog();
+                }
+            }
+            else if (Input.GetKeyUp(dialog2Key)) {
+                if (!string.IsNullOrEmpty(dialogChoices[1].dialog)) {
+                    dialogChoices[1].ShowChoiceDialog();
+                }
+            }
+            else if (Input.GetKeyUp(dialog3Key)) {
+                if (!string.IsNullOrEmpty(dialogChoices[2].dialog)) {
+                    dialogChoices[2].ShowChoiceDialog();
+                }
+            }
+            else if (Input.GetKeyUp(dialog4Key)) {
+                if (!string.IsNullOrEmpty(dialogChoices[3].dialog)) {
+                    dialogChoices[3].ShowChoiceDialog();
+                }
+            }
+            else if (Input.GetKeyUp(dialog5Key)) {
+                if (!string.IsNullOrEmpty(dialogChoices[4].dialog)) {
+                    dialogChoices[4].ShowChoiceDialog();
+                }
+            }
+        }
+    }
+
     public void ClearDialog() {
 
         if(cameraBasic.td_Target.name == "TempCameraBetweenPosition") {
             Destroy(cameraBasic.td_Target.gameObject);
         }
         cameraBasic.td_Target = TopDownCharacterManager.instance.activeCharacter.transform;
+
+        cameraBasic.cameraFreeze = false;
 
         dialogChoices[0].dialogTxt.text = string.Empty;
 
@@ -76,32 +113,42 @@ public class TopDownUIDialogMain : MonoBehaviour {
 
             dialogInUse = null;
         }
+    }
 
-        //cameraBasic.enabled = true;
+    private IEnumerator SetCameraPosition() {
+
+        cameraBasic.cameraFreeze = true;
+        GameObject camPos = new GameObject();
+        camPos.transform.SetParent(TopDownCharacterManager.instance.activeCharacter.transform);
+        camPos.transform.localPosition = cameraDialogPos;
+        camPos.transform.SetParent(null);
+        cameraBasic.transform.localPosition = camPos.transform.position;
+        Destroy(camPos);
+
+        yield return new WaitForEndOfFrame();
     }
 
     public void ShowDialog(TopDownUIDialog dialog) {
         if (dialog != null) {
             dialogInUse = dialog;
 
-            if (dialog.branchedFrom == null) {
-                if (dialogCameraPosition == DialogCameraPosition.OnNpc) {
-                    cameraBasic.td_Target = dialog.transform;
-                }
-                else if (dialogCameraPosition == DialogCameraPosition.Between) {
-                    Vector3 pointInBetween = (TopDownCharacterManager.instance.activeCharacter.transform.position + dialog.transform.position) * 0.5f;
-                    GameObject pointGo = new GameObject();
-                    pointGo.name = "TempCameraBetweenPosition";
-                    pointGo.transform.position = pointInBetween + -Vector3.up;
-                    cameraBasic.td_Target = pointGo.transform;
-                }
-            }
+            /*cameraBasic.cameraFreeze = true;
+            GameObject camPos = new GameObject();
+            camPos.transform.SetParent(TopDownCharacterManager.instance.activeCharacter.transform);
+            camPos.transform.localPosition = cameraDialogPos;
+            camPos.transform.SetParent(null);
+            cameraBasic.transform.localPosition = camPos.transform.position;
+            Destroy(camPos);*/
+
+            cameraBasic.td_Target = dialog.transform;
 
             Quaternion npcRotation = Quaternion.LookRotation(TopDownCharacterManager.instance.activeCharacter.transform.position - dialog.transform.position);
             dialog.transform.rotation = Quaternion.Slerp(transform.rotation, npcRotation, Time.deltaTime * 600f);
 
             Quaternion playerRotation = Quaternion.LookRotation(dialog.transform.position - TopDownCharacterManager.instance.activeCharacter.transform.position);
             TopDownCharacterManager.instance.activeCharacter.transform.rotation = Quaternion.Slerp(TopDownCharacterManager.instance.activeCharacter.transform.rotation, playerRotation, Time.deltaTime * 600f);
+
+            StartCoroutine(SetCameraPosition());
 
             dialogChoices[0].dialogTxt.text = dialog.welcomeDialog;
 
@@ -163,8 +210,6 @@ public class TopDownUIDialogMain : MonoBehaviour {
                 }
             }
         }
-
-        //cameraBasic.enabled = false;
     }
 
     public void CloseDialogPerType(string buttonText) {
@@ -182,8 +227,6 @@ public class TopDownUIDialogMain : MonoBehaviour {
                 dialogChoices[i - 1].index = 0;
             }
         }
-
-        //cameraBasic.enabled = true;
     }
 
     public enum ChoicePosition { Top = 0, Bottom = 1}
@@ -237,7 +280,7 @@ public class TopDownUIDialogMain : MonoBehaviour {
                     if(quest == null) {
                         print("No quest");
                     }
-                    dialog.choiceOneEvent = quest.questFinishEvent;
+                    dialog.choiceOneEvent = quest.questFinishEvents;
                 }
             }
 

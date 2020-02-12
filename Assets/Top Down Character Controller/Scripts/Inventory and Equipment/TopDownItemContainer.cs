@@ -94,7 +94,7 @@ public class TopDownItemContainer : TopDownInteractible {
 
             if (mouseOver == true) {
                 Vector2 tmp = mainCamera.WorldToScreenPoint(transform.position);
-                Vector2 namePos = new Vector3(tmp.x, tmp.y + (itemName.yOffset * itemName.screenY));
+                Vector2 namePos = new Vector3(tmp.x, tmp.y + (itemName.yOffset * itemName.screenY), 0f);
                 itemName.transform.position = namePos;
             }
 

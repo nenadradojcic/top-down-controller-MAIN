@@ -8,6 +8,7 @@ public class TopDownRpgQuestCreatorWindow : EditorWindow {
     private static Texture TopDownIcon;
 
     public string questName;
+    public string questCategory;
     public QuestType questType;
     public string questDescription;
     public GameObject questTarget;
@@ -56,7 +57,8 @@ public class TopDownRpgQuestCreatorWindow : EditorWindow {
         EditorGUILayout.BeginVertical("Box", GUILayout.Width(90 * Screen.width / 100));
 
         questName = EditorGUILayout.TextField("Quest Title:", questName);
-        EditorGUILayout.HelpBox("This is the name of the Quest that will show up in the questlog.", MessageType.Info);
+        questCategory = EditorGUILayout.TextField("Quest Category:", questCategory);
+        EditorGUILayout.HelpBox("This is the name of the Quest that will show up in the questlog and the quest category name under which it will be sorted.", MessageType.Info);
 
         EditorGUILayout.EndVertical();
         GUILayout.FlexibleSpace();
@@ -160,15 +162,18 @@ public class TopDownRpgQuestCreatorWindow : EditorWindow {
 
             TopDownRpgQuest quest = questGo.AddComponent<TopDownRpgQuest>();
             quest.questName = questName;
+            quest.questDescription = questDescription;
             quest.questType = questType;
             quest.questTarget = questTarget;
             quest.questTargets = questTargets;
             quest.questEnding = questEnding;
-            quest.questGiverDialog = questGiver.GetComponent<TopDownUIDialog>();
+            if (questGiver != null) {
+                quest.questGiverDialog = questGiver.GetComponent<TopDownUIDialog>();
+            }
             quest.questFinishDialogType = questFinishDialogType;
             quest.questFinishChoice = questFinishDialogChoice;
             quest.questFinishDialog = questFinishDialogReply;
-            quest.questFinishEvent = questFinishDialogEvent;
+            quest.questFinishEvents = questFinishDialogEvent;
 
             Debug.Log("Quest named '"+questName+"' added to scene.");
         }

@@ -40,7 +40,10 @@ public class TopDownRpgSpellcaster : MonoBehaviour {
                 if (tdcInteract.td_CheckUI.IsPointerOverUIObject() == false && TopDownUIInventory.instance.holdingItem == null && TopDownUIInventory.instance.clickedOutOfUi == false) {
                     if (Physics.Raycast(ray, out hit, 100)) {
                         hitPoint = hit.point;
-                        if (hit.transform.tag == tdcInteract.enemyTag) {
+                        if (activeSpell.spellType == SpellType.CastOnEnemy && hit.transform.tag == tdcInteract.enemyTag) {
+                            target = hit.transform;
+                        }
+                        else if (activeSpell.spellType == SpellType.CastOnAlly && hit.transform.tag == "NPC" && hit.transform.gameObject != TopDownCharacterManager.instance.activeCharacter) {
                             target = hit.transform;
                         }
                     }
@@ -96,6 +99,21 @@ public class TopDownRpgSpellcaster : MonoBehaviour {
             if(fx.GetComponent<TopDownRpgSpellCollision>() == null) {
                 TopDownRpgSpellCollision spellCol = fx.AddComponent<TopDownRpgSpellCollision>();
                 spellCol.thisSpell = activeSpell;
+                spellCol.thisSpellType = activeSpell.spellType;
+            }
+        }
+        else if (activeSpell.spellType == SpellType.CastOnAlly) {
+            GameObject fx = Instantiate(activeSpell.spellFx as GameObject);
+            fx.transform.SetParent(transform);
+            fx.transform.localPosition = new Vector3(0f, gameObject.GetComponent<CapsuleCollider>().center.y, 0f);
+            fx.transform.SetParent(null);
+
+            fx.GetComponent<Rigidbody>().velocity = (target.transform.position - transform.position).normalized * speed;
+
+            if (fx.GetComponent<TopDownRpgSpellCollision>() == null) {
+                TopDownRpgSpellCollision spellCol = fx.AddComponent<TopDownRpgSpellCollision>();
+                spellCol.thisSpell = activeSpell;
+                spellCol.thisSpellType = activeSpell.spellType;
             }
         }
 
