@@ -225,7 +225,7 @@ public class TopDownUIItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEn
                         }
                     }
                     else if (GetComponent<TopDownUIItemSlot>().slotType == SlotType.Inventory) {
-                        if (inventory.previousSlot.slotType != SlotType.Quickslot) {
+                        if (inventory.previousSlot.slotType != SlotType.Quickslot) { //WE NEED TO ADD DIFFERENT QUICKSLOT BARS FOR DIFFERENT CHARACTERS
                             if (itemInSlot == null) {
                                 if (inventory.previousSlot != null) {
                                     if (inventory.currentEquipmentManager.currentEquipment[(int)inventory.previousSlot.itemInSlot.itemType] == inventory.previousSlot.itemInSlot) {

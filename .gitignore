@@ -39,6 +39,15 @@ Assets/Mixamo*
 Assets/Mixamo.meta
 Assets/Realistic Effects Pack*
 Assets/Realistic Effects Pack.meta
+Assets/_TerrainAutoUpgrade*
+Assets/_TerrainAutoUpgrade.meta
+Assets/DungeonArchitect*
+Assets/DungeonArchitect.meta
+Assets/LowPolyWater*
+Assets/LowPolyWater.meta
+Logs*
+Packages*
+UnityPackageManager*
 
 # Visual Studio cache directory
 .vs/
