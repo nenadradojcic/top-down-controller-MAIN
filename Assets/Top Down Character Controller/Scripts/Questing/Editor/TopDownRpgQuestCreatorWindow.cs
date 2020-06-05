@@ -79,7 +79,7 @@ public class TopDownRpgQuestCreatorWindow : EditorWindow {
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();
 
-        if (questType == QuestType.KillAllTargets) {
+        if (questType == QuestType.KillTargets) {
             EditorGUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
             EditorGUILayout.BeginVertical("Box", GUILayout.Width(90 * Screen.width / 100));

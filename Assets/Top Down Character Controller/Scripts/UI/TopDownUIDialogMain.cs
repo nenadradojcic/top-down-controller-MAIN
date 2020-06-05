@@ -66,11 +66,10 @@ public class TopDownUIDialogMain : MonoBehaviour {
     }
 
     public void ClearDialog() {
-
-        if(cameraBasic.td_Target.name == "TempCameraBetweenPosition") {
+        if (cameraBasic.td_Target.name == "TempCameraBetweenPosition") {
             Destroy(cameraBasic.td_Target.gameObject);
         }
-        cameraBasic.td_Target = TopDownCharacterManager.instance.activeCharacter.transform;
+        cameraBasic.td_Target = TopDownCharacterManager.instance.controllingCharacter.transform;
 
         cameraBasic.cameraFreeze = false;
 
@@ -119,7 +118,7 @@ public class TopDownUIDialogMain : MonoBehaviour {
 
         cameraBasic.cameraFreeze = true;
         GameObject camPos = new GameObject();
-        camPos.transform.SetParent(TopDownCharacterManager.instance.activeCharacter.transform);
+        camPos.transform.SetParent(TopDownCharacterManager.instance.controllingCharacter.transform);
         camPos.transform.localPosition = cameraDialogPos;
         camPos.transform.SetParent(null);
         cameraBasic.transform.localPosition = camPos.transform.position;
@@ -132,21 +131,13 @@ public class TopDownUIDialogMain : MonoBehaviour {
         if (dialog != null) {
             dialogInUse = dialog;
 
-            /*cameraBasic.cameraFreeze = true;
-            GameObject camPos = new GameObject();
-            camPos.transform.SetParent(TopDownCharacterManager.instance.activeCharacter.transform);
-            camPos.transform.localPosition = cameraDialogPos;
-            camPos.transform.SetParent(null);
-            cameraBasic.transform.localPosition = camPos.transform.position;
-            Destroy(camPos);*/
-
             cameraBasic.td_Target = dialog.transform;
 
-            Quaternion npcRotation = Quaternion.LookRotation(TopDownCharacterManager.instance.activeCharacter.transform.position - dialog.transform.position);
+            Quaternion npcRotation = Quaternion.LookRotation(TopDownCharacterManager.instance.controllingCharacter.transform.position - dialog.transform.position);
             dialog.transform.rotation = Quaternion.Slerp(transform.rotation, npcRotation, Time.deltaTime * 600f);
 
-            Quaternion playerRotation = Quaternion.LookRotation(dialog.transform.position - TopDownCharacterManager.instance.activeCharacter.transform.position);
-            TopDownCharacterManager.instance.activeCharacter.transform.rotation = Quaternion.Slerp(TopDownCharacterManager.instance.activeCharacter.transform.rotation, playerRotation, Time.deltaTime * 600f);
+            Quaternion playerRotation = Quaternion.LookRotation(dialog.transform.position - TopDownCharacterManager.instance.controllingCharacter.transform.position);
+            TopDownCharacterManager.instance.controllingCharacter.transform.rotation = Quaternion.Slerp(TopDownCharacterManager.instance.controllingCharacter.transform.rotation, playerRotation, Time.deltaTime * 600f);
 
             StartCoroutine(SetCameraPosition());
 

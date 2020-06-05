@@ -81,50 +81,52 @@ public class TopDownUICharacterButton : MonoBehaviour {
     }
 
     public void SetActiveCharacter() {
-        if (characterManager.activeCharacter == null) {
-            characterInSlot.GetComponent<TopDownControllerInteract>().enabled = true;
-            if (characterManager.activeCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera != null) {
-                characterInSlot.GetComponent<TopDownCharacterCard>().inventoryCamera.SetActive(true);
-            }
-            characterManager.activeCharacter = characterInSlot.gameObject;
-            TopDownUIInventory.instance.currentEquipmentManager = characterInSlot.GetComponent<TopDownEquipmentManager>();
-            cameraBasic.td_Target = characterInSlot.transform;
-            cameraBasic.cameraType = CameraType.CharacterCamera;
-        }
-        else if (characterManager.activeCharacter != characterInSlot.gameObject) {
-
-            characterManager.activeCharacter.GetComponent<TopDownControllerInteract>().focusedTarget = null;
-            characterManager.activeCharacter.GetComponent<TopDownControllerInteract>().enabled = false;
-            if (characterManager.activeCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera != null) {
-                characterManager.activeCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera.SetActive(false);
-            }
-
-            characterInSlot.GetComponent<TopDownControllerInteract>().enabled = true;
-            if (characterManager.activeCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera != null) {
-                characterInSlot.GetComponent<TopDownCharacterCard>().inventoryCamera.SetActive(true);
-            }
-            characterInSlot.GetComponent<TopDownCharacterCard>().DeactivateAi();
-            characterManager.activeCharacter = characterInSlot.gameObject;
-
-            for (int i = 0; i < TopDownUIInventory.instance.charEquipmentSlots.Length; i++) {
-                TopDownUIInventory.instance.charEquipmentSlots[i].gameObject.SetActive(false);
-            }
-
-            for (int i = 0; i < characterManager.activeCharacters.Count; i++) {
-                if (characterManager.activeCharacters[i] != characterInSlot.gameObject) {
-                    characterManager.activeCharacters[i].GetComponent<TopDownCharacterCard>().SetAiActive();
+        if (characterInSlot != null) {
+            if (characterManager.controllingCharacter == null) {
+                characterInSlot.GetComponent<TopDownControllerInteract>().enabled = true;
+                if (characterManager.controllingCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera != null) {
+                    characterInSlot.GetComponent<TopDownCharacterCard>().inventoryCamera.SetActive(true);
                 }
+                characterManager.controllingCharacter = characterInSlot.gameObject;
+                TopDownUIInventory.instance.currentEquipmentManager = characterInSlot.GetComponent<TopDownEquipmentManager>();
+                cameraBasic.td_Target = characterInSlot.transform;
+                cameraBasic.cameraType = CameraType.CharacterCamera;
             }
+            else if (characterManager.controllingCharacter != characterInSlot.gameObject) {
 
-            characterInSlot.GetComponent<TopDownCharacterCard>().DeactivateAi();
-            characterInSlot.GetComponent<TopDownCharacterCard>().characterInventory.gameObject.SetActive(true);
-            TopDownUIInventory.instance.currentEquipmentManager = characterInSlot.GetComponent<TopDownEquipmentManager>();
-            TopDownUIInventory.instance.currentEquipmentSlots = characterInSlot.GetComponent<TopDownCharacterCard>().characterInventory;
-            cameraBasic.td_Target = characterInSlot.transform;
-            cameraBasic.cameraType = CameraType.CharacterCamera;
+                characterManager.controllingCharacter.GetComponent<TopDownControllerInteract>().focusedTarget = null;
+                characterManager.controllingCharacter.GetComponent<TopDownControllerInteract>().enabled = false;
+                if (characterManager.controllingCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera != null) {
+                    characterManager.controllingCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera.SetActive(false);
+                }
 
-            if (characterInSlot.GetComponent<TopDownCharacterCard>().enemyFocus != null) {
-                characterInSlot.GetComponent<TopDownControllerInteract>().SetFocus(characterInSlot.GetComponent<TopDownCharacterCard>().enemyFocus);
+                characterInSlot.GetComponent<TopDownControllerInteract>().enabled = true;
+                if (characterManager.controllingCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera != null) {
+                    characterInSlot.GetComponent<TopDownCharacterCard>().inventoryCamera.SetActive(true);
+                }
+                characterInSlot.GetComponent<TopDownCharacterCard>().DeactivateAi();
+                characterManager.controllingCharacter = characterInSlot.gameObject;
+
+                for (int i = 0; i < TopDownUIInventory.instance.charEquipmentSlots.Length; i++) {
+                    TopDownUIInventory.instance.charEquipmentSlots[i].gameObject.SetActive(false);
+                }
+
+                for (int i = 0; i < characterManager.activeCharacters.Count; i++) {
+                    if (characterManager.activeCharacters[i] != characterInSlot.gameObject) {
+                        characterManager.activeCharacters[i].GetComponent<TopDownCharacterCard>().SetAiActive();
+                    }
+                }
+
+                characterInSlot.GetComponent<TopDownCharacterCard>().DeactivateAi();
+                characterInSlot.GetComponent<TopDownCharacterCard>().characterInventory.gameObject.SetActive(true);
+                TopDownUIInventory.instance.currentEquipmentManager = characterInSlot.GetComponent<TopDownEquipmentManager>();
+                TopDownUIInventory.instance.currentEquipmentSlots = characterInSlot.GetComponent<TopDownCharacterCard>().characterInventory;
+                cameraBasic.td_Target = characterInSlot.transform;
+                cameraBasic.cameraType = CameraType.CharacterCamera;
+
+                if (characterInSlot.GetComponent<TopDownCharacterCard>().enemyFocus != null) {
+                    characterInSlot.GetComponent<TopDownControllerInteract>().SetFocus(characterInSlot.GetComponent<TopDownCharacterCard>().enemyFocus);
+                }
             }
         }
     }

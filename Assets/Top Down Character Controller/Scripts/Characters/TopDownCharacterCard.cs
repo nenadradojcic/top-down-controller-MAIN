@@ -105,7 +105,7 @@ public class TopDownCharacterCard : MonoBehaviour {
                 inventoryCamera.GetComponent<Camera>().cullingMask = 1 << layerInt;
 
                 if (TopDownCharacterManager.instance != null) {
-                    if (TopDownCharacterManager.instance.activeCharacter != gameObject) {
+                    if (TopDownCharacterManager.instance.controllingCharacter != gameObject) {
                         inventoryCamera.SetActive(false);
                     }
                 }
@@ -118,17 +118,6 @@ public class TopDownCharacterCard : MonoBehaviour {
                 nameBarPosition = allChildren[i];
             }
         }
-
-        /*if (uiManager.characterPortraitType == CharacterPortraitType.Runtime) {
-            if (portraitCamera != null) {
-                portraitCamera.enabled = false;
-                if (portraitLight != null) {
-                    portraitLight.enabled = false;
-                }
-
-                UpdatePortrait();
-            }
-        }*/
     }
 
     public void SetAiActive() {
@@ -155,8 +144,8 @@ public class TopDownCharacterCard : MonoBehaviour {
     public void Update() {
         if (activePlayerAi == true) {
             if(main.tdcm_NavMeshAgent != null) {
-                if(activeFocus != characterManager.activeCharacter) {
-                    activeFocus = characterManager.activeCharacter.transform;
+                if(activeFocus != characterManager.controllingCharacter) {
+                    activeFocus = characterManager.controllingCharacter.transform;
                 }
 
                 if(activeFocus != null) {
@@ -350,7 +339,7 @@ public class TopDownCharacterCard : MonoBehaviour {
                 if (gameObject.tag == "Player") {
                     if (mainCamera.GetComponent<TopDownCameraBasic>()) {
                         if (mainCamera.GetComponent<TopDownCameraBasic>().cameraType == CameraType.CharacterCamera) {
-                            if (characterManager.activeCharacter != gameObject) {
+                            if (characterManager.controllingCharacter != gameObject) {
                                 npcBar.nameText.text = name;
                                 npcBar.healthBar.enabled = true;
                                 npcBar.healthBar.fillAmount = health / maxHealth;

@@ -82,9 +82,9 @@ public class TopDownUIQuickSlot : TopDownUIItemSlot {
                             Instantiate(TopDownAudioManager.instance.spellUseAudio, Vector3.zero, Quaternion.identity);
                         }
 
-                        TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownRpgSpellcaster>().activeSpell = itemInSlot;
-                        TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownRpgSpellcaster>().spellItemSlot = originalSlot;
-                        TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownRpgSpellcaster>().castingSpell = true;
+                        TopDownCharacterManager.instance.controllingCharacter.GetComponent<TopDownRpgSpellcaster>().activeSpell = itemInSlot;
+                        TopDownCharacterManager.instance.controllingCharacter.GetComponent<TopDownRpgSpellcaster>().spellItemSlot = originalSlot;
+                        TopDownCharacterManager.instance.controllingCharacter.GetComponent<TopDownRpgSpellcaster>().castingSpell = true;
 
                         if (TopDownUIManager.instance.charInfoPanel.inventoryActive) {
                             if (TopDownUIManager.instance.inventory.GetComponent<CanvasGroup>().alpha > 0) {

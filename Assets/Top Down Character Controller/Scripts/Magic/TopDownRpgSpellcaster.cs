@@ -43,7 +43,7 @@ public class TopDownRpgSpellcaster : MonoBehaviour {
                         if (activeSpell.spellType == SpellType.CastOnEnemy && hit.transform.tag == tdcInteract.enemyTag) {
                             target = hit.transform;
                         }
-                        else if (activeSpell.spellType == SpellType.CastOnAlly && hit.transform.tag == "NPC" && hit.transform.gameObject != TopDownCharacterManager.instance.activeCharacter) {
+                        else if (activeSpell.spellType == SpellType.CastOnAlly && hit.transform.tag == "NPC" && hit.transform.gameObject != TopDownCharacterManager.instance.controllingCharacter) {
                             target = hit.transform;
                         }
                     }

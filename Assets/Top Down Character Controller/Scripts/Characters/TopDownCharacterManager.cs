@@ -7,7 +7,7 @@ public class TopDownCharacterManager : MonoBehaviour {
 
     public GameObject defaultCharacter;
 
-    public GameObject activeCharacter;
+    public GameObject controllingCharacter;
     public GameObject oldActiveCharacter;
 
 	public List<TopDownControllerMain> activeCharacters;
@@ -15,8 +15,6 @@ public class TopDownCharacterManager : MonoBehaviour {
     public TopDownUICharacterButton[] characterButtonsUi;
 
     public TopDownCameraBasic characterCamera;
-
-    public int experienceToLevel = 200;
 
     private TopDownUIInventory td_Inventory;
 
@@ -104,11 +102,11 @@ public class TopDownCharacterManager : MonoBehaviour {
                         newCharacter.GetComponent<TopDownCharacterCard>().characterInventory.gameObject.SetActive(false);
                     }
 
-                    if (activeCharacter == null) {
-                        activeCharacter = newCharacter;
-                        activeCharacter.GetComponent<TopDownControllerInteract>().enabled = true;
-                        if (activeCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera != null) {
-                            activeCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera.SetActive(true);
+                    if (controllingCharacter == null) {
+                        controllingCharacter = newCharacter;
+                        controllingCharacter.GetComponent<TopDownControllerInteract>().enabled = true;
+                        if (controllingCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera != null) {
+                            controllingCharacter.GetComponent<TopDownCharacterCard>().inventoryCamera.SetActive(true);
                         }
 
                         TopDownUIInventory.instance.currentEquipmentManager = newCharacter.GetComponent<TopDownEquipmentManager>();
@@ -157,10 +155,10 @@ public class TopDownCharacterManager : MonoBehaviour {
                     removeCharacter.GetComponent<TopDownCharacterCard>().DeactivateAi();
                     removeCharacter.tag = "NPC";
 
-                    if (activeCharacter == removeCharacter) {
+                    if (controllingCharacter == removeCharacter) {
 
                         if (activeCharacters.Count > 1) {
-                            oldActiveCharacter = activeCharacter;
+                            oldActiveCharacter = controllingCharacter;
                             characterButtonsUi[i - 1].SetActiveCharacter();
                             TopDownUIInventory.instance.currentEquipmentSlots = activeCharacters[i - 1].GetComponent<TopDownCharacterCard>().characterInventory;
                             //Debug.Log(characterButtonsUi[i - 1].characterInSlot.td_Character.name + " set as active character");

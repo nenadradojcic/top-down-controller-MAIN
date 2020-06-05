@@ -7,6 +7,8 @@ public class TopDownSetupCharacterEditorWindow : EditorWindow {
 
     private static Texture TopDownIcon;
 
+    private bool characterSpellcaster;
+
     private GameObject characterModel;
     private TopDownCharacter characterAsset;
 
@@ -38,8 +40,8 @@ public class TopDownSetupCharacterEditorWindow : EditorWindow {
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();
 
-        characterModel = (GameObject)EditorGUILayout.ObjectField("Character Model:", characterModel, typeof(GameObject), true);
         characterAsset = (TopDownCharacter)EditorGUILayout.ObjectField("Character Asset:", characterAsset, typeof(TopDownCharacter), true);
+
 
         if(characterAsset == null) {
             if(GUILayout.Button("Create new character card")) {
@@ -48,8 +50,14 @@ public class TopDownSetupCharacterEditorWindow : EditorWindow {
                 characterAsset = charCard;
             }
         }
+        else {
+            characterModel = (GameObject)EditorGUILayout.ObjectField("Character Model:", characterModel, typeof(GameObject), true);
+        }
 
         if (characterModel != null && characterAsset != null) {
+
+            characterSpellcaster = EditorGUILayout.Toggle("Can Character use magic?", characterSpellcaster);
+
             if (GUILayout.Button("Create Character")) {
 
                 #region CREATE CHARACTER BUTTON FUNCTIONS
@@ -59,7 +67,7 @@ public class TopDownSetupCharacterEditorWindow : EditorWindow {
                 charObject.name = "Top Down Character Controller";
 
                 charObject.tag = "Player";
-                charObject.layer = 2;
+                //charObject.layer = 2;
 
                 if (charObject.GetComponent<Animator>() == null) {
                     Animator charAnimator = charObject.AddComponent<Animator>();
@@ -121,7 +129,8 @@ public class TopDownSetupCharacterEditorWindow : EditorWindow {
                         }
                     }
                     if (charEquipManager.shieldHolsterMountPoint == null) {
-                        if (allChildren[i].name.Contains("spine") || allChildren[i].name.Contains("SPINE") || allChildren[i].name.Contains("Spine")) {
+                        if (allChildren[i].name.Contains("spine") || allChildren[i].name.Contains("SPINE") || allChildren[i].name.Contains("Spine") ||
+                            allChildren[i].name.Contains("chest") || allChildren[i].name.Contains("CHEST") || allChildren[i].name.Contains("Chest")) {
                             GameObject weaponHolsterPoint = new GameObject();
                             weaponHolsterPoint.name = "WEAPON_HOLSTER_MOUNTPOINT";
                             weaponHolsterPoint.transform.SetParent(allChildren[i]);
@@ -206,6 +215,8 @@ public class TopDownSetupCharacterEditorWindow : EditorWindow {
                         //Debug.LogFormat("Setting up <b><color=yellow>Inventory Camera</color></b> as a child of <b><color=blue>" + charObject.gameObject.name + "</color></b> player character.");
                     }
                 }
+
+                charObject.AddComponent<TopDownRpgSpellcaster>();
 
                 characterModel.SetActive(false);
 

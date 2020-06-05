@@ -116,7 +116,7 @@ public class TopDownUIDialog : TopDownInteractible {
         TopDownUIManager.instance.SetUIState(TopDownUIManager.instance.uiHolder);
         TopDownUIManager.instance.SetUIState(TopDownUIManager.instance.dialog);
 
-        TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownControllerInteract>().tempDisable = true;
+        TopDownCharacterManager.instance.controllingCharacter.GetComponent<TopDownControllerInteract>().tempDisable = true;
 
         TopDownUIDialogMain.instance.ClearDialog();
         TopDownUIDialogMain.instance.ShowDialog(this);

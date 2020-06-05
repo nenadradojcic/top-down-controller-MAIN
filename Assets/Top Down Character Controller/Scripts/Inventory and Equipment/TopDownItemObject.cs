@@ -103,14 +103,22 @@ public class TopDownItemObject : ScriptableObject {
     }
 
     public void Spell_Damage(int damageValue) {
-        TopDownCharacterCard tdcc = TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownRpgSpellcaster>().previousTarget.GetComponent<TopDownCharacterCard>();
+        TopDownCharacterCard tdcc = TopDownCharacterManager.instance.controllingCharacter.GetComponent<TopDownRpgSpellcaster>().previousTarget.GetComponent<TopDownCharacterCard>();
         if(tdcc != null) {
             tdcc.health -= damageValue;
+
+            TopDownAI tdccAi = tdcc.GetComponent<TopDownAI>();
+
+            if (tdccAi.playerInSight == false) {
+                tdccAi.detected = true;
+                tdccAi.playerInSight = true;
+                tdccAi.focus = TopDownCharacterManager.instance.controllingCharacter.transform;
+            }
         }
     }
 
     public void Spell_Heal(int healValue) {
-        TopDownCharacterCard tdcc = TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownRpgSpellcaster>().previousTarget.GetComponent<TopDownCharacterCard>();
+        TopDownCharacterCard tdcc = TopDownCharacterManager.instance.controllingCharacter.GetComponent<TopDownRpgSpellcaster>().previousTarget.GetComponent<TopDownCharacterCard>();
         if (tdcc != null) {
             tdcc.health += healValue;
         }

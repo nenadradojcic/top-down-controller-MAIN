@@ -67,7 +67,7 @@ public class TopDownHoverTooltip : MonoBehaviour {
                 }
             }
 
-            distToPlayer = Vector3.Distance(transform.position, td_CharacterManager.activeCharacter.transform.position);
+            distToPlayer = Vector3.Distance(transform.position, td_CharacterManager.controllingCharacter.transform.position);
         }
     }
 }

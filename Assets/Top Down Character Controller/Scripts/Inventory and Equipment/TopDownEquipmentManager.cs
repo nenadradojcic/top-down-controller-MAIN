@@ -90,8 +90,11 @@ public class TopDownEquipmentManager : MonoBehaviour {
                 SetAIEquipment();
             }
         }
-        for (int i = 0; i < itemsOnCharacter.Length; i++) {
-            itemsOnCharacter[i].enabled = false;
+
+        if (itemsOnCharacter.Length > 0) {
+            for (int i = 0; i < itemsOnCharacter.Length; i++) {
+                itemsOnCharacter[i].gameObject.SetActive(false);
+            }
         }
     }
 
@@ -151,7 +154,7 @@ public class TopDownEquipmentManager : MonoBehaviour {
             if (characterEquipmentType == CharacterEquipementType.EnableMesh) {
                 for (int i = 0; i < itemsOnCharacter.Length; i++) {
                     if (item.itemSkinnedMeshName == itemsOnCharacter[i].name) {
-                        itemsOnCharacter[i].enabled = true;
+                        itemsOnCharacter[i].gameObject.SetActive(true);
                     }
                 }
             }
@@ -305,7 +308,7 @@ public class TopDownEquipmentManager : MonoBehaviour {
             if (characterEquipmentType == CharacterEquipementType.EnableMesh) {
                 for (int i = 0; i < itemsOnCharacter.Length; i++) {
                     if (item.itemSkinnedMeshName == itemsOnCharacter[i].name) {
-                        itemsOnCharacter[i].enabled = false;
+                        itemsOnCharacter[i].gameObject.SetActive(false);
                     }
                 }
             }
@@ -442,8 +445,8 @@ public class TopDownEquipmentManager : MonoBehaviour {
         if (gameObject.tag == "Player") {
 
             //Than update UI
-            TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownCharacterCard>().characterInventory.armorPointsTxt.text = "AP: " + armorPointsValue.ToString();
-            TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownCharacterCard>().characterInventory.damagePointsTxt.text = "DP: " + damagePointsValue.ToString();
+            TopDownCharacterManager.instance.controllingCharacter.GetComponent<TopDownCharacterCard>().characterInventory.armorPointsTxt.text = "AP: " + armorPointsValue.ToString();
+            TopDownCharacterManager.instance.controllingCharacter.GetComponent<TopDownCharacterCard>().characterInventory.damagePointsTxt.text = "DP: " + damagePointsValue.ToString();
             return;
         }
     }
@@ -455,8 +458,8 @@ public class TopDownEquipmentManager : MonoBehaviour {
             //strength and others also
 
             //Than update UI
-            TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownCharacterCard>().characterInventory.armorPointsTxt.text = "AP: " + armorPointsValue.ToString();
-            TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownCharacterCard>().characterInventory.damagePointsTxt.text = "DP: " + damagePointsValue.ToString();
+            TopDownCharacterManager.instance.controllingCharacter.GetComponent<TopDownCharacterCard>().characterInventory.armorPointsTxt.text = "AP: " + armorPointsValue.ToString();
+            TopDownCharacterManager.instance.controllingCharacter.GetComponent<TopDownCharacterCard>().characterInventory.damagePointsTxt.text = "DP: " + damagePointsValue.ToString();
             return;
         }
     }

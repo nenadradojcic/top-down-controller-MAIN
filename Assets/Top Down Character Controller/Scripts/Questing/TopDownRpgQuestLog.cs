@@ -125,6 +125,7 @@ public class TopDownRpgQuestLog : MonoBehaviour {
             }
         }
 
+        questDescriptionText.text = string.Empty;
         rows = 0;
     }
 }

@@ -46,6 +46,14 @@ public class TopDownCameraBasicEditor : Editor {
         EditorGUI.EndDisabledGroup();
         EditorGUILayout.Space();
 
+        EditorGUILayout.EndVertical();
+        GUILayout.FlexibleSpace();
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.FlexibleSpace();
+        EditorGUILayout.BeginVertical("Box", GUILayout.Width(90 * Screen.width / 100));
+
         EditorGUILayout.LabelField("Camera Position", simpleTitleLable);
         td_target.yAxisOffset = EditorGUILayout.FloatField("Offset:", td_target.yAxisOffset);
         EditorGUILayout.HelpBox("Here we determine how much will camera be offset based on characters position at Y axis. (Used so the camera wont be centered on characters feet.)", MessageType.Info);
@@ -55,12 +63,28 @@ public class TopDownCameraBasicEditor : Editor {
         EditorGUILayout.HelpBox("Determines minimum and maximum X axis angle.", MessageType.Info);
         EditorGUILayout.Space();
 
+        EditorGUILayout.EndVertical();
+        GUILayout.FlexibleSpace();
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.FlexibleSpace();
+        EditorGUILayout.BeginVertical("Box", GUILayout.Width(90 * Screen.width / 100));
+
         EditorGUILayout.LabelField("Distance Options", simpleTitleLable);
         serializedObject.FindProperty("distanceDefault").floatValue = EditorGUILayout.FloatField("Default Distance:", td_target.distanceDefault);
         serializedObject.FindProperty("distanceMin").floatValue = EditorGUILayout.FloatField("Minimum Distance:", td_target.distanceMin);
         serializedObject.FindProperty("distanceMax").floatValue = EditorGUILayout.FloatField("Maximum Distance:", td_target.distanceMax);
         EditorGUILayout.HelpBox("Default Distance represents starting distance and current distance while game is live. Minimum and Maximum values determine how near or far camera can zoom.", MessageType.Info);
         EditorGUILayout.Space();
+
+        EditorGUILayout.EndVertical();
+        GUILayout.FlexibleSpace();
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.FlexibleSpace();
+        EditorGUILayout.BeginVertical("Box", GUILayout.Width(90 * Screen.width / 100));
 
         EditorGUILayout.LabelField("Speed Options", simpleTitleLable);
         serializedObject.FindProperty("rotationSpeed").floatValue = EditorGUILayout.FloatField("Rotation Speed:", td_target.rotationSpeed);

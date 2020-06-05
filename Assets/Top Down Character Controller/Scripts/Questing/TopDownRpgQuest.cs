@@ -12,8 +12,7 @@ public enum QuestState {
 
 public enum QuestType {
     NONE = 0,
-    KillTarget = 1,
-    KillAllTargets = 2,
+    KillTargets = 2,
     GoToLocation = 3,
     TalkToNpc = 4,
 }
@@ -56,23 +55,15 @@ public class TopDownRpgQuest : MonoBehaviour {
 
         uiManager = TopDownUIManager.instance;
 
-        if (questTargets.Count > 1) {
+        if (questTargets.Count > 0) {
             for (int i = 0; i < questTargets.Count; i++) {
-                if(questTargets[i].GetComponent<TopDownAI>() == null) {
+                if (questTargets[i].GetComponent<TopDownAI>() == null) {
                     Debug.LogWarningFormat(questTargets[i].gameObject.name + " object from your quest targets list is not an AI!");
                     return;
                 }
-                questTargetsCards.Add(questTargets[i].GetComponent<TopDownCharacterCard>());
-            }
-        }
-        else {
-            if (questTargets.Count == 1) {
-                Debug.LogWarning("You have set only one target in questTargets(plural) in " + gameObject.name + " object's quest component. Moving it to questTarget(singular).");
-                questTarget = questTargets[0];
-                questTargets = new List<GameObject>();
-            }
-            if (questTarget != null) {
-                questTargetsCards.Add(questTarget.GetComponent<TopDownCharacterCard>());
+                else {
+                    questTargetsCards.Add(questTargets[i].GetComponent<TopDownCharacterCard>());
+                }
             }
         }
 
@@ -131,7 +122,7 @@ public class TopDownRpgQuest : MonoBehaviour {
 
     public void LateUpdate() {
         if(questState == QuestState.Started) {
-            Invoke("CheckQuestStatus", 0.5f);
+            CheckQuestStatus();
         }
         else if(questState == QuestState.Finished) {
             this.enabled = false;
@@ -145,12 +136,12 @@ public class TopDownRpgQuest : MonoBehaviour {
     }
 
     public void CheckQuestStatus() {
-        if (questType == QuestType.KillAllTargets) {
+        if (questType == QuestType.KillTargets) {
             if (questTargetsCards.Count > 0) {
-                for (int i = questTargetsCards.Count - 1; i > -1; i--) {
+                for (int i = 0; i < questTargetsCards.Count; i++) {
                     if (questTargetsCards[i] == null) {
-                        questTargetsCards.RemoveAt(i);
                         questTargets.RemoveAt(i);
+                        questTargetsCards.RemoveAt(i);
                     }
                 }
             }
@@ -163,13 +154,14 @@ public class TopDownRpgQuest : MonoBehaviour {
                     }
                 }
                 else if (questEnding == QuestEnding.EndInPlace) {
+                    FinishQuest();
                 }
             }
         }
         else if (questType == QuestType.TalkToNpc) {
         }
         else if (questType == QuestType.GoToLocation) {
-            float dist = Vector3.Distance(TopDownCharacterManager.instance.activeCharacter.transform.position, questTarget.transform.position);
+            float dist = Vector3.Distance(TopDownCharacterManager.instance.controllingCharacter.transform.position, questTarget.transform.position);
             if (dist <= 4) {
                 if (questEnding == QuestEnding.ReturnToNpc) {
                     if (questGiverDialog != null) {
@@ -184,12 +176,13 @@ public class TopDownRpgQuest : MonoBehaviour {
     }
 
     public void FinishQuest() {
-        questState = QuestState.Finished;
+
+        //SOME NOTIFICATION THAT QUEST FINISHED
+        uiManager.notificationText.GetComponent<TopDownUIShowNotification>().ShowNotification("Quest Finished \n''" + questName + "''");
+
         questFinished = true;
+        questState = QuestState.Finished;
 
         uiManager.questLog.GetComponent<TopDownRpgQuestLog>().UpdateQuestList();
-
-        //SOME NOTIFICATION THAT QUEST STARTED
-        uiManager.notificationText.GetComponent<TopDownUIShowNotification>().ShowNotification("Quest Finished \n''" + questName + "''");
     }
 }

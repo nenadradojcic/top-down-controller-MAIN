@@ -119,16 +119,30 @@ public class TopDownControllerInteract : MonoBehaviour {
                         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * faceEnemyRotSpeed);
 
                         //COMBAT
-                        if (focusedTarget.tag == enemyTag && distanceToFocus < tdcc_Main.tdcm_NavMeshAgent.stoppingDistance && tdr_Spellcaster.castingSpell == false) {
+                        if (focusedTarget.tag == enemyTag && distanceToFocus < tdcc_Main.tdcm_NavMeshAgent.stoppingDistance) {
                             if (focusedTarget.GetComponent<TopDownCharacterCard>() && focusedTarget.GetComponent<TopDownCharacterCard>().IsDead() == false) {
-                                //here we only attack with melee
-                                int i = (int)tdcc_EquipmentManager.weaponTypeUsed;
-                                int h = (int)tdcc_EquipmentManager.weaponHoldingType;
+                                if (tdr_Spellcaster != null) {
+                                    if (tdr_Spellcaster.castingSpell == false) {
+                                        //here we only attack with melee
+                                        int i = (int)tdcc_EquipmentManager.weaponTypeUsed;
+                                        int h = (int)tdcc_EquipmentManager.weaponHoldingType;
 
-                                tdcc_Main.tdcm_animator.SetBool("TargetInFront", true);
-                                tdcc_Main.tdcm_animator.SetFloat("WeaponType", (float)i);
-                                tdcc_Main.tdcm_animator.SetFloat("WeaponHoldingType", (float)h);
-                                tdcc_Main.tdcm_animator.SetBool("Attacking", true);
+                                        tdcc_Main.tdcm_animator.SetBool("TargetInFront", true);
+                                        tdcc_Main.tdcm_animator.SetFloat("WeaponType", (float)i);
+                                        tdcc_Main.tdcm_animator.SetFloat("WeaponHoldingType", (float)h);
+                                        tdcc_Main.tdcm_animator.SetBool("Attacking", true);
+                                    }
+                                }
+                                else {
+                                    //here we only attack with melee
+                                    int i = (int)tdcc_EquipmentManager.weaponTypeUsed;
+                                    int h = (int)tdcc_EquipmentManager.weaponHoldingType;
+
+                                    tdcc_Main.tdcm_animator.SetBool("TargetInFront", true);
+                                    tdcc_Main.tdcm_animator.SetFloat("WeaponType", (float)i);
+                                    tdcc_Main.tdcm_animator.SetFloat("WeaponHoldingType", (float)h);
+                                    tdcc_Main.tdcm_animator.SetBool("Attacking", true);
+                                }
                             }
                             else {
                                 RemoveFocus();
@@ -333,7 +347,7 @@ public class TopDownControllerInteract : MonoBehaviour {
             if (tdcc_EquipmentManager.weaponTypeUsed == WeaponType.Ranged) {
                 tdcc_NavMeshAgent.stoppingDistance = enemyStopDistanceRanged;
             }
-            else if(tdr_Spellcaster.castingSpell == true) {
+            else if(tdr_Spellcaster != null && tdr_Spellcaster.castingSpell == true) {
                 tdcc_NavMeshAgent.stoppingDistance = enemyStopDistanceRanged;
             }
             else {
@@ -350,7 +364,9 @@ public class TopDownControllerInteract : MonoBehaviour {
         }
         else if (focusObject.tag == npcTag) {
             tdcc_NavMeshAgent.stoppingDistance = enemyStopDistance;
-            focusedTarget.GetComponent<TopDownInteractible>().OnFocused(transform);
+            if (focusedTarget.GetComponent<TopDownInteractible>()) {
+                focusedTarget.GetComponent<TopDownInteractible>().OnFocused(transform);
+            }
         }
         else {
             tdcc_NavMeshAgent.stoppingDistance = defaultStopDistance;
@@ -377,8 +393,10 @@ public class TopDownControllerInteract : MonoBehaviour {
 
         }
 
-        tdcc_NavMeshAgent.stoppingDistance = 0f;
-        tdcc_NavMeshAgent.SetDestination(transform.position);
+        if (tdcc_NavMeshAgent != null) {
+            tdcc_NavMeshAgent.stoppingDistance = 0f;
+            tdcc_NavMeshAgent.SetDestination(transform.position);
+        }
         tdcc_Main.TDCC_MoveCharacter(Vector3.zero);
         if(tdcc_Main.vegetationMoveWindZone != null) {
             tdcc_Main.vegetationMoveWindZone.gameObject.SetActive(false);

@@ -138,7 +138,7 @@ public class TopDownUIDialogChoice : MonoBehaviour {
         TopDownUIManager.instance.SetUIState(TopDownUIManager.instance.dialog);
         TopDownUIManager.instance.SetUIState(TopDownUIManager.instance.uiHolder);
 
-        TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownControllerInteract>().tempDisable = false;
+        TopDownCharacterManager.instance.controllingCharacter.GetComponent<TopDownControllerInteract>().tempDisable = false;
 
     }
 

@@ -89,12 +89,17 @@ public class TopDownUIDialogEditor : Editor {
                             GameObject branch = new GameObject();
                             branch.name = "Dialog Branch";
                             branch.transform.SetParent(td_target.transform);
+                            branch.transform.localPosition = Vector3.zero;
                             td_target.branchOneDialog = branch.AddComponent<TopDownUIDialog>();
+                            td_target.branchOneDialog.enabled = false;
                         }
                     }
                     else {
-                        td_target.branchOneDialog = (TopDownUIDialog)EditorGUILayout.ObjectField("Branch To Dialog:", td_target.branchOneDialog, typeof(TopDownUIDialog), true);
+                        if (GUILayout.Button("Remove Branch")) {
+                            DestroyImmediate(td_target.branchOneDialog.gameObject);
+                        }
                     }
+                    td_target.branchOneDialog = (TopDownUIDialog)EditorGUILayout.ObjectField("Branch To Dialog:", td_target.branchOneDialog, typeof(TopDownUIDialog), true);
                 }
 
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("choiceOneEvent"), new GUIContent("On Response Click"), true);
@@ -239,12 +244,12 @@ public class TopDownUIDialogEditor : Editor {
                                 GameObject branch = new GameObject();
                                 branch.name = "Dialog Branch";
                                 branch.transform.SetParent(td_target.transform);
+                                branch.transform.localPosition = Vector3.zero;
                                 td_target.branchTwoDialog = branch.AddComponent<TopDownUIDialog>();
+                                td_target.branchTwoDialog.enabled = false;
                             }
                         }
-                        else {
-                            td_target.branchTwoDialog = (TopDownUIDialog)EditorGUILayout.ObjectField("Branch To Dialog:", td_target.branchTwoDialog, typeof(TopDownUIDialog), true);
-                        }
+                        td_target.branchTwoDialog = (TopDownUIDialog)EditorGUILayout.ObjectField("Branch To Dialog:", td_target.branchTwoDialog, typeof(TopDownUIDialog), true);
                     }
 
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("choiceTwoEvent"), new GUIContent("On Response Click"), true);
@@ -359,12 +364,12 @@ public class TopDownUIDialogEditor : Editor {
                                     GameObject branch = new GameObject();
                                     branch.name = "Dialog Branch";
                                     branch.transform.SetParent(td_target.transform);
+                                    branch.transform.localPosition = Vector3.zero;
                                     td_target.branchThreeDialog = branch.AddComponent<TopDownUIDialog>();
+                                    td_target.branchThreeDialog.enabled = false;
                                 }
                             }
-                            else {
-                                td_target.branchThreeDialog = (TopDownUIDialog)EditorGUILayout.ObjectField("Branch To Dialog:", td_target.branchThreeDialog, typeof(TopDownUIDialog), true);
-                            }
+                            td_target.branchThreeDialog = (TopDownUIDialog)EditorGUILayout.ObjectField("Branch To Dialog:", td_target.branchThreeDialog, typeof(TopDownUIDialog), true);
                         }
 
                         EditorGUILayout.PropertyField(serializedObject.FindProperty("choiceThreeEvent"), new GUIContent("On Response Click"), true);
@@ -443,12 +448,12 @@ public class TopDownUIDialogEditor : Editor {
                                         GameObject branch = new GameObject();
                                         branch.name = "Dialog Branch";
                                         branch.transform.SetParent(td_target.transform);
+                                        branch.transform.localPosition = Vector3.zero;
                                         td_target.branchFourDialog = branch.AddComponent<TopDownUIDialog>();
+                                        td_target.branchFourDialog.enabled = false;
                                     }
                                 }
-                                else {
-                                    td_target.branchFourDialog = (TopDownUIDialog)EditorGUILayout.ObjectField("Branch To Dialog:", td_target.branchFourDialog, typeof(TopDownUIDialog), true);
-                                }
+                                td_target.branchFourDialog = (TopDownUIDialog)EditorGUILayout.ObjectField("Branch To Dialog:", td_target.branchFourDialog, typeof(TopDownUIDialog), true);
                             }
 
                             EditorGUILayout.PropertyField(serializedObject.FindProperty("choiceFourEvent"), new GUIContent("On Response Click"), true);

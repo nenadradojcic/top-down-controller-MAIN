@@ -76,13 +76,13 @@ public class TopDownUIItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEn
 
     public void OnPointerClick(PointerEventData eventData) {
 
-        main = TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownControllerMain>();
+        main = TopDownCharacterManager.instance.controllingCharacter.GetComponent<TopDownControllerMain>();
 
         if (main.tdcm_animator.GetBool("TargetInFront") == false) { //We should be able to use slots only when out of combat
             if (eventData.button == PointerEventData.InputButton.Right) {
                 if (itemInSlot != null && inventory.holdingItem == null) {
                     if (GetComponent<TopDownUIItemSlot>().slotType != SlotType.Quickslot) {
-                        if (itemInSlot.itemType != ItemType.Scroll) {
+                        if (itemInSlot.isItem == true) {
                             //If item we are trying to equip is two handed weapon, we want to check if there is a shield equipped and to deequip it
                             if (itemInSlot.weaponHoldingType == WeaponHoldingType.TwoHanded) {
                                 if (inventory.currentEquipmentSlots.equipmentSlots[3].itemInSlot != null) {
@@ -107,49 +107,51 @@ public class TopDownUIItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEn
                                 }
                             }
 
-                            if (inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].itemInSlot == null) {
+                            if (inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType] != null) {
+                                if (inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].itemInSlot == null) {
 
-                                //Debug.Log("No item equiped.");
+                                    //Debug.Log("No item equiped.");
 
-                                UseSlottedItem();
-                                //print(inventory.currentEquipmentManager.gameObject.name);
+                                    UseSlottedItem();
+                                    //print(inventory.currentEquipmentManager.gameObject.name);
 
-                                inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
-                                if (slottedInQuick != null) {
-                                    inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].slottedInQuick = slottedInQuick;
-                                    slottedInQuick = null;
+                                    inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
+                                    if (slottedInQuick != null) {
+                                        inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].slottedInQuick = slottedInQuick;
+                                        slottedInQuick = null;
+                                    }
+                                    inventory.RemoveItem(itemInSlot);
                                 }
-                                inventory.RemoveItem(itemInSlot);
-                            }
-                            else if (inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].itemInSlot == itemInSlot) {
+                                else if (inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].itemInSlot == itemInSlot) {
 
-                                //Debug.Log("This item is equiped.");
+                                    //Debug.Log("This item is equiped.");
 
-                                UseSlottedItem();
-                                //print(inventory.currentEquipmentManager.gameObject.name);
+                                    UseSlottedItem();
+                                    //print(inventory.currentEquipmentManager.gameObject.name);
 
-                                inventory.MoveItemToInventory(inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType]);
-                                inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
-                            }
-                            else if (inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].itemInSlot != itemInSlot) {
-
-                                //Debug.Log("Other item is equiped.");
-
-                                inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].UseSlottedItem();
-                                //print(inventory.currentEquipmentManager.gameObject.name);
-
-                                inventory.MoveItemToInventory(inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType]);
-                                inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
-
-                                UseSlottedItem();
-                                //print(inventory.currentEquipmentManager.gameObject.name);
-
-                                inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
-                                if (slottedInQuick != null) {
-                                    inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].slottedInQuick = slottedInQuick;
-                                    slottedInQuick = null;
+                                    inventory.MoveItemToInventory(inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType]);
+                                    inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
                                 }
-                                inventory.RemoveItem(itemInSlot);
+                                else if (inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].itemInSlot != itemInSlot) {
+
+                                    //Debug.Log("Other item is equiped.");
+
+                                    inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].UseSlottedItem();
+                                    //print(inventory.currentEquipmentManager.gameObject.name);
+
+                                    inventory.MoveItemToInventory(inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType]);
+                                    inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
+
+                                    UseSlottedItem();
+                                    //print(inventory.currentEquipmentManager.gameObject.name);
+
+                                    inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].AddItemToSlot(itemInSlot);
+                                    if (slottedInQuick != null) {
+                                        inventory.currentEquipmentSlots.equipmentSlots[(int)itemInSlot.itemType].slottedInQuick = slottedInQuick;
+                                        slottedInQuick = null;
+                                    }
+                                    inventory.RemoveItem(itemInSlot);
+                                }
                             }
 
                             ClearSlot(this);
@@ -164,9 +166,9 @@ public class TopDownUIItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEn
                                 Instantiate(TopDownAudioManager.instance.spellUseAudio, Vector3.zero, Quaternion.identity);
                             }
 
-                            TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownRpgSpellcaster>().activeSpell = itemInSlot;
-                            TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownRpgSpellcaster>().spellItemSlot = this;
-                            TopDownCharacterManager.instance.activeCharacter.GetComponent<TopDownRpgSpellcaster>().castingSpell = true;
+                            TopDownCharacterManager.instance.controllingCharacter.GetComponent<TopDownRpgSpellcaster>().activeSpell = itemInSlot;
+                            TopDownCharacterManager.instance.controllingCharacter.GetComponent<TopDownRpgSpellcaster>().spellItemSlot = this;
+                            TopDownCharacterManager.instance.controllingCharacter.GetComponent<TopDownRpgSpellcaster>().castingSpell = true;
 
                             if (TopDownUIManager.instance.charInfoPanel.inventoryActive) {
                                 if (TopDownUIManager.instance.inventory.GetComponent<CanvasGroup>().alpha > 0) {
