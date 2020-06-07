@@ -101,9 +101,10 @@ public class TopDownEquipmentManagerEditor : Editor {
                 serializedObject.FindProperty("bodyTransform").objectReferenceValue = (Transform)EditorGUILayout.ObjectField("Body Parent:", td_target.bodyTransform, typeof(Transform), true);
                 serializedObject.FindProperty("headTransform").objectReferenceValue = (Transform)EditorGUILayout.ObjectField("Head Parent:", td_target.headTransform, typeof(Transform), true);
                 serializedObject.FindProperty("neckTransform").objectReferenceValue = (Transform)EditorGUILayout.ObjectField("Neck Parent:", td_target.neckTransform, typeof(Transform), true);
-                serializedObject.FindProperty("handsTransform").objectReferenceValue = (Transform)EditorGUILayout.ObjectField("Hands Parent:", td_target.handsTransform, typeof(Transform), true);
-                serializedObject.FindProperty("leggsTransform").objectReferenceValue = (Transform)EditorGUILayout.ObjectField("Leggs Parent:", td_target.leggsTransform, typeof(Transform), true);
-                serializedObject.FindProperty("helmTransform").objectReferenceValue = (Transform)EditorGUILayout.ObjectField("Helm Parent:", td_target.helmTransform, typeof(Transform), true);
+                serializedObject.FindProperty("handsLTransform").objectReferenceValue = (Transform)EditorGUILayout.ObjectField("Hand Left Parent:", td_target.handsLTransform, typeof(Transform), true);
+                serializedObject.FindProperty("handsRTransform").objectReferenceValue = (Transform)EditorGUILayout.ObjectField("Hand Right Parent:", td_target.handsRTransform, typeof(Transform), true);
+                serializedObject.FindProperty("leggsLTransform").objectReferenceValue = (Transform)EditorGUILayout.ObjectField("Legg Left Parent:", td_target.leggsLTransform, typeof(Transform), true);
+                serializedObject.FindProperty("leggsRTransform").objectReferenceValue = (Transform)EditorGUILayout.ObjectField("Legg Right Parent:", td_target.leggsRTransform, typeof(Transform), true);
 
                 EditorGUILayout.EndVertical();
                 GUILayout.FlexibleSpace();

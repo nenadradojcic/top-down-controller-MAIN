@@ -74,6 +74,7 @@ public class TopDownItemObject : ScriptableObject {
     public Mesh itemMesh;
     public GameObject itemGameObject;
     public string itemSkinnedMeshName; //Used for armor items
+    public GameObject instantiatedModel;
 
     public virtual void UseItem() {
         if (equipmentManager == null) {

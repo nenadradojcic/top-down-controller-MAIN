@@ -45,3 +45,4 @@ MonoBehaviour:
   itemGameObject: {fileID: 1917391421932174, guid: 1eb47ee7fb4e0224482d77ed61559671,
     type: 3}
   itemSkinnedMeshName: 
+  instantiatedModel: {fileID: 0}

@@ -39,7 +39,9 @@ MonoBehaviour:
   constitutionModifier: 0
   willpowerModifier: 0
   slotOfThisItem: {fileID: 0}
-  itemVisualisation: 0
+  itemVisualisation: 1
   itemMesh: {fileID: 0}
-  itemGameObject: {fileID: 0}
+  itemGameObject: {fileID: 1443614743384344, guid: 90fb214880065ca44be9cb53bcbd6780,
+    type: 3}
   itemSkinnedMeshName: 
+  instantiatedModel: {fileID: 0}

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using UnityEditor.Rendering;
 
 [CustomEditor(typeof(TopDownItemObject))]
 [DisallowMultipleComponent]
@@ -183,6 +184,12 @@ public class TopDownItemObjectEditor : Editor {
                         if (td_target.itemVisualisation == ItemVisualisation.InstantiateObject) {
                             td_target.itemGameObject = (GameObject)EditorGUILayout.ObjectField(string.Empty, td_target.itemGameObject, typeof(GameObject), true);
                             EditorGUILayout.HelpBox("Determines how will this item be visualised on character when equiped. \n(It will be instantiated under Shield Mount Point set in Equipment Manager.)", MessageType.Info);
+                        }
+                    }
+                    else if (td_target.itemType == ItemType.Head || td_target.itemType == ItemType.Chest || td_target.itemType == ItemType.Legs || td_target.itemType == ItemType.Neck) {
+                        if (td_target.itemVisualisation == ItemVisualisation.InstantiateObject) {
+                            td_target.itemGameObject = (GameObject)EditorGUILayout.ObjectField(string.Empty, td_target.itemGameObject, typeof(GameObject), true);
+                            EditorGUILayout.HelpBox("Determines how will this item be visualised on character when equiped. \n(It will be instantiated under Head Parent transform set in Equipment Manager.)", MessageType.Info);
                         }
                     }
                     if (td_target.itemVisualisation == ItemVisualisation.ReplaceMesh) {

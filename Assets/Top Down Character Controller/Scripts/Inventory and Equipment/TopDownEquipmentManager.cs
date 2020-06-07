@@ -52,11 +52,19 @@ public class TopDownEquipmentManager : MonoBehaviour {
 
     //Used for Instantiate Mesh equipment type
     public Transform bodyTransform;
+    public GameObject bodyInstantiatedModel;
     public Transform headTransform;
+    public GameObject headInstantiatedModel;
     public Transform neckTransform;
-    public Transform handsTransform;
-    public Transform leggsTransform;
-    public Transform helmTransform;
+    public GameObject neckInstantiatedModel;
+    public Transform handsLTransform;
+    public GameObject handsLInstantiatedModel;
+    public Transform handsRTransform;
+    public GameObject handsRInstantiatedModel;
+    public Transform leggsLTransform;
+    public GameObject leggsLInstantiatedModel;
+    public Transform leggsRTransform;
+    public GameObject leggsRInstantiatedModel;
     //Used for Replace Mesh equipment type
     public Mesh defaultBodyMesh; //We need to set this up so that we can revert to it back when unequiping armor.
     public Mesh defaultHandsMesh;
@@ -155,6 +163,50 @@ public class TopDownEquipmentManager : MonoBehaviour {
                 for (int i = 0; i < itemsOnCharacter.Length; i++) {
                     if (item.itemSkinnedMeshName == itemsOnCharacter[i].name) {
                         itemsOnCharacter[i].gameObject.SetActive(true);
+                    }
+                }
+            }
+            else if(characterEquipmentType == CharacterEquipementType.InstantiateMesh) {
+                if (item.itemGameObject != null) {
+                    if (item.itemType == ItemType.Chest) {
+                        GameObject itemGo = Instantiate(item.itemGameObject) as GameObject;
+                        for (int i = 0; i < itemGo.transform.childCount; i++) {
+                            itemGo.transform.GetChild(i).gameObject.layer = gameObject.layer;
+                        }
+
+                        itemGo.transform.SetParent(bodyTransform);
+                        bodyInstantiatedModel = itemGo;
+
+                        itemGo.transform.localPosition = Vector3.zero;
+                        itemGo.transform.localEulerAngles = Vector3.zero;
+                    }
+                    else if (item.itemType == ItemType.Head) {
+                        GameObject itemGo = Instantiate(item.itemGameObject) as GameObject;
+                        for (int i = 0; i < itemGo.transform.childCount; i++) {
+                            itemGo.transform.GetChild(i).gameObject.layer = gameObject.layer;
+                        }
+
+                        itemGo.transform.SetParent(headTransform);
+                        headInstantiatedModel = itemGo;
+
+                        itemGo.transform.localPosition = Vector3.zero;
+                        itemGo.transform.localEulerAngles = Vector3.zero;
+                    }
+                    else if (item.itemType == ItemType.Legs) {
+                    }
+                    else if (item.itemType == ItemType.Hands) {
+                    }
+                    else if (item.itemType == ItemType.Neck) {
+                        GameObject itemGo = Instantiate(item.itemGameObject) as GameObject;
+                        for (int i = 0; i < itemGo.transform.childCount; i++) {
+                            itemGo.transform.GetChild(i).gameObject.layer = gameObject.layer;
+                        }
+
+                        itemGo.transform.SetParent(neckTransform);
+                        neckInstantiatedModel = itemGo;
+
+                        itemGo.transform.localPosition = Vector3.zero;
+                        itemGo.transform.localEulerAngles = Vector3.zero;
                     }
                 }
             }
@@ -310,6 +362,32 @@ public class TopDownEquipmentManager : MonoBehaviour {
                     if (item.itemSkinnedMeshName == itemsOnCharacter[i].name) {
                         itemsOnCharacter[i].gameObject.SetActive(false);
                     }
+                }
+            }
+            else if (characterEquipmentType == CharacterEquipementType.InstantiateMesh) {
+                if (item.itemType == ItemType.Chest) {
+                    Destroy(headInstantiatedModel);
+                    headInstantiatedModel = null;
+                }
+                else if (item.itemType == ItemType.Head) {
+                    Destroy(headInstantiatedModel);
+                    headInstantiatedModel = null;
+                }
+                else if (item.itemType == ItemType.Legs) {
+                    Destroy(leggsLInstantiatedModel);
+                    Destroy(leggsRInstantiatedModel);
+                    leggsLInstantiatedModel = null;
+                    leggsRInstantiatedModel = null;
+                }
+                else if (item.itemType == ItemType.Hands) {
+                    Destroy(handsLInstantiatedModel);
+                    Destroy(handsRInstantiatedModel);
+                    handsLInstantiatedModel = null;
+                    handsRInstantiatedModel = null;
+                }
+                else if (item.itemType == ItemType.Neck) {
+                    Destroy(neckInstantiatedModel);
+                    neckInstantiatedModel = null;
                 }
             }
             else if (characterEquipmentType == CharacterEquipementType.ReplaceMesh) {

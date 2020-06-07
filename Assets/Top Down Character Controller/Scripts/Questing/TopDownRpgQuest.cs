@@ -12,9 +12,9 @@ public enum QuestState {
 
 public enum QuestType {
     NONE = 0,
-    KillTargets = 2,
-    GoToLocation = 3,
-    TalkToNpc = 4,
+    KillTargets = 1,
+    GoToLocation = 2,
+    TalkToNpc = 3,
 }
 
 public enum QuestEnding {

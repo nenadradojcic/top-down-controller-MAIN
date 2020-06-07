@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 5e245219dc0611643b656f0833771272,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -6215,13 +6216,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 248740026}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.5699253, y: 0.41855034, z: 0.41855094, w: 0.56992626}
+  m_LocalPosition: {x: -0.275, y: 0.145, z: 0}
   m_LocalScale: {x: 0.9999999, y: 0.99999976, z: 0.99999976}
   m_Children: []
   m_Father: {fileID: 1931826738}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 72.587006}
 --- !u!1 &248980129
 GameObject:
   m_ObjectHideFlags: 0
@@ -34911,8 +34912,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1730370781}
+  m_Children: []
   m_Father: {fileID: 676121840}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35595,14 +35595,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324674170}
-  m_LocalRotation: {x: -0.00000008940696, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.947639e-15, y: -1.5691122, z: 0.0048397034}
+  m_LocalRotation: {x: 0.00000031292436, y: 1, z: 0.000000059604638, w: 0.00000032782552}
+  m_LocalPosition: {x: -0, y: 0.092, z: 0.805}
   m_LocalScale: {x: 1, y: 1, z: 0.9999999}
   m_Children:
   - {fileID: 1510091001}
   m_Father: {fileID: 1361063743}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
 --- !u!20 &1324674172
 Camera:
   m_ObjectHideFlags: 0
@@ -47104,7 +47104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676483447}
   m_LocalRotation: {x: -0.56098485, y: -0.4304601, z: -0.43045926, w: 0.5609857}
-  m_LocalPosition: {x: -0.664, y: 0.199, z: 0.125}
+  m_LocalPosition: {x: -0.664, y: 0.163, z: 0.125}
   m_LocalScale: {x: 0.9999999, y: 0.99999976, z: 0.99999976}
   m_Children: []
   m_Father: {fileID: 1931826738}
@@ -48413,72 +48413,6 @@ MonoBehaviour:
   itemIcon: {fileID: 288583791}
   slottedInQuick: {fileID: 0}
   equipmentType: 7
---- !u!1 &1730370779
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1730370781}
-  - component: {fileID: 1730370780}
-  m_Layer: 0
-  m_Name: Quest - KillDummyQuest01
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1730370780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1730370779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18aa95e15193df04aa9e3eb3e1b2bc47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questName: KillDummyQuest01
-  questDescription: Kill that npc over there.
-  questFinished: 0
-  questState: 0
-  questCategory: 
-  questType: 2
-  questTarget: {fileID: 0}
-  questTargets:
-  - {fileID: 1769154267}
-  questTargetsCards: []
-  questEnding: 2
-  questGiverDialog: {fileID: 0}
-  questFinishDialogType: 0
-  questFinishChoice: 
-  questFinishDialog: 
-  questStartEvents:
-    m_PersistentCalls:
-      m_Calls: []
-  questFinishEvents:
-    m_PersistentCalls:
-      m_Calls: []
-  questHub: {fileID: 0}
-  uiManager: {fileID: 0}
---- !u!4 &1730370781
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1730370779}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -55.871624, y: -0.06079466, z: -52.256607}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1302825208}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1730614485
 GameObject:
   m_ObjectHideFlags: 0
@@ -50225,11 +50159,19 @@ MonoBehaviour:
   td_characterCard: {fileID: 0}
   characterEquipmentType: 0
   bodyTransform: {fileID: 0}
+  bodyInstantiatedModel: {fileID: 0}
   headTransform: {fileID: 0}
+  headInstantiatedModel: {fileID: 0}
   neckTransform: {fileID: 0}
-  handsTransform: {fileID: 0}
-  leggsTransform: {fileID: 0}
-  helmTransform: {fileID: 0}
+  neckInstantiatedModel: {fileID: 0}
+  handsLTransform: {fileID: 0}
+  handsLInstantiatedModel: {fileID: 0}
+  handsRTransform: {fileID: 0}
+  handsRInstantiatedModel: {fileID: 0}
+  leggsLTransform: {fileID: 0}
+  leggsLInstantiatedModel: {fileID: 0}
+  leggsRTransform: {fileID: 0}
+  leggsRInstantiatedModel: {fileID: 0}
   defaultBodyMesh: {fileID: 0}
   defaultHandsMesh: {fileID: 0}
   defaultLeggsMesh: {fileID: 0}
@@ -50897,12 +50839,20 @@ MonoBehaviour:
   tcc_Interact: {fileID: 0}
   td_characterCard: {fileID: 0}
   characterEquipmentType: 0
-  bodyTransform: {fileID: 0}
-  headTransform: {fileID: 0}
-  neckTransform: {fileID: 0}
-  handsTransform: {fileID: 0}
-  leggsTransform: {fileID: 0}
-  helmTransform: {fileID: 0}
+  bodyTransform: {fileID: 1252407478}
+  bodyInstantiatedModel: {fileID: 0}
+  headTransform: {fileID: 1361063743}
+  headInstantiatedModel: {fileID: 0}
+  neckTransform: {fileID: 930650099}
+  neckInstantiatedModel: {fileID: 0}
+  handsLTransform: {fileID: 1984973665}
+  handsLInstantiatedModel: {fileID: 0}
+  handsRTransform: {fileID: 1698297020}
+  handsRInstantiatedModel: {fileID: 0}
+  leggsLTransform: {fileID: 133069614}
+  leggsLInstantiatedModel: {fileID: 0}
+  leggsRTransform: {fileID: 36849910}
+  leggsRInstantiatedModel: {fileID: 0}
   defaultBodyMesh: {fileID: 0}
   defaultHandsMesh: {fileID: 0}
   defaultLeggsMesh: {fileID: 0}
@@ -51083,9 +51033,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsToEquip:
-  - {fileID: 11400000, guid: 39c46836bb37eda4e893f1cd38414749, type: 2}
+  - {fileID: 11400000, guid: ca1add1c564bf2a4fa85a59e225c54ce, type: 2}
+  - {fileID: 11400000, guid: 103a8290a3477a44fb5eed899088e834, type: 2}
   itemsToPlaceInInventory:
   - {fileID: 11400000, guid: 5fccf894ec4c0c842ae7ce12b806fd0e, type: 2}
+  - {fileID: 11400000, guid: 0611a2eac862372488e975ca35eb38ca, type: 2}
+  - {fileID: 11400000, guid: 39c46836bb37eda4e893f1cd38414749, type: 2}
   itemsEquipped: []
   itemsInInventory: []
 --- !u!114 &1777540419
@@ -54075,7 +54028,7 @@ MonoBehaviour:
   choiceTwoEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1730370780}
+      - m_Target: {fileID: 0}
         m_MethodName: StartQuest
         m_Mode: 1
         m_Arguments:
@@ -54136,11 +54089,19 @@ MonoBehaviour:
   td_characterCard: {fileID: 0}
   characterEquipmentType: 0
   bodyTransform: {fileID: 0}
+  bodyInstantiatedModel: {fileID: 0}
   headTransform: {fileID: 0}
+  headInstantiatedModel: {fileID: 0}
   neckTransform: {fileID: 0}
-  handsTransform: {fileID: 0}
-  leggsTransform: {fileID: 0}
-  helmTransform: {fileID: 0}
+  neckInstantiatedModel: {fileID: 0}
+  handsLTransform: {fileID: 0}
+  handsLInstantiatedModel: {fileID: 0}
+  handsRTransform: {fileID: 0}
+  handsRInstantiatedModel: {fileID: 0}
+  leggsLTransform: {fileID: 0}
+  leggsLInstantiatedModel: {fileID: 0}
+  leggsRTransform: {fileID: 0}
+  leggsRInstantiatedModel: {fileID: 0}
   defaultBodyMesh: {fileID: 0}
   defaultHandsMesh: {fileID: 0}
   defaultLeggsMesh: {fileID: 0}
@@ -55955,13 +55916,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1991540502}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.063318074, y: -0.7042659, z: -0.7042665, w: 0.06331806}
+  m_LocalPosition: {x: -0.045, y: -0.0341, z: -0.0114}
   m_LocalScale: {x: 1, y: 1, z: 0.9999999}
   m_Children: []
   m_Father: {fileID: 1984973665}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -79.725006, y: -90.00001, z: -90.00001}
 --- !u!1 &1991542329
 GameObject:
   m_ObjectHideFlags: 0
