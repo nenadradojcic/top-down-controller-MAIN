@@ -77,9 +77,9 @@ public class TopDownItemObject : ScriptableObject {
     public GameObject instantiatedModel;
 
     public virtual void UseItem() {
-        if (equipmentManager == null) {
-            equipmentManager = TopDownUIInventory.instance.currentEquipmentManager;
-        }
+
+        equipmentManager = TopDownUIInventory.instance.currentEquipmentManager;
+
         if (equipmentManager.tcc_Main.tdcm_animator.GetBool("Attacking") == false) { //We want to be able to use items(equip/change them) only when we are not attacking
             if (equipmentManager.currentEquipment[(int)itemType] != this) { //If this item is not equipped
                 equipmentManager.EquipItem(this);
@@ -93,9 +93,9 @@ public class TopDownItemObject : ScriptableObject {
     }
 
     public virtual void UnuseItem() { //Used only for equipment
-        if (equipmentManager == null) {
-            equipmentManager = TopDownUIInventory.instance.currentEquipmentManager;
-        }
+
+        equipmentManager = TopDownUIInventory.instance.currentEquipmentManager;
+
         if (equipmentManager.tcc_Main.tdcm_animator.GetBool("Attacking") == false) {
             if (equipmentManager.currentEquipment[(int)itemType] == this) {
                 equipmentManager.UnequipItem(this);

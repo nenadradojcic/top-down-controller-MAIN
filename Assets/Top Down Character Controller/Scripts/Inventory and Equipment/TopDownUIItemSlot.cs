@@ -57,20 +57,11 @@ public class TopDownUIItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEn
     public void GrabItemInSlot() {
         inventory.holdingItem = itemInSlot;
 
-        /*
-        if (TopDownEquipmentManager.instance.currentEquipment[(int)itemInSlot.itemType] == itemInSlot) {
-            print("This is the same item. We should unequip it.");
-            itemInSlot.UnuseItem();
-        }
-        */
-
         inventory.holdingItemSlot.GetComponent<TopDownUIHoldingItemSlot>().itemIconImage.sprite = itemInSlot.itemIcon;
         inventory.holdingItemSlot.GetComponent<CanvasGroup>().alpha = 1f;
 
         inventory.previousSlot = this;
 
-        //inventory.RemoveItem(itemInSlot);
-        //ClearSlot(this);
         ClearTooltip();
     }
 
@@ -188,23 +179,45 @@ public class TopDownUIItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEn
             }
             else if (eventData.button == PointerEventData.InputButton.Left) {
                 if (inventory.holdingItem != null) {
-                    if (GetComponent<TopDownUIItemSlot>().slotType == SlotType.Equipment) {
-                        if (GetComponent<TopDownUIEquipmentSlot>().equipmentType == inventory.holdingItem.itemType) {
-                            if (GetComponent<TopDownUIEquipmentSlot>().itemInSlot != inventory.holdingItem) {
+                    if (GetComponent<TopDownUIItemSlot>().slotType == SlotType.Equipment) { //Is the slot we clicked on of Equipment type
+                        if (GetComponent<TopDownUIEquipmentSlot>().equipmentType == inventory.holdingItem.itemType) { //Is the item we are holding of the same type as the Equipment Slot (so we do not equip helm on weapon etc...)
+                            if (GetComponent<TopDownUIEquipmentSlot>().itemInSlot != inventory.holdingItem && GetComponent<TopDownUIEquipmentSlot>() != inventory.previousSlot) { //We do not want to swap the same item
+
+                                //If item we are trying to equip is two handed weapon, we want to check if there is a shield equipped and to deequip it
+                                if(inventory.holdingItem.weaponHoldingType == WeaponHoldingType.TwoHanded) {
+                                    if (inventory.currentEquipmentSlots.equipmentSlots[3].itemInSlot != null) {
+
+                                        inventory.currentEquipmentSlots.equipmentSlots[3].UseSlottedItem();
+
+                                        inventory.MoveItemToInventory(inventory.currentEquipmentSlots.equipmentSlots[3]);
+                                        ClearSlot(inventory.currentEquipmentSlots.equipmentSlots[3]);
+                                    }
+                                }
+                                
+                                //If item we are trying to equip is shield, we want to check if there is a two handed weapon equipped and to deequip it
+                                if (inventory.holdingItem.itemType == ItemType.Shield) {
+                                    if (inventory.currentEquipmentSlots.equipmentSlots[2].itemInSlot != null && inventory.currentEquipmentSlots.equipmentSlots[2].itemInSlot.weaponHoldingType == WeaponHoldingType.TwoHanded) {
+
+                                        inventory.currentEquipmentSlots.equipmentSlots[2].UseSlottedItem();
+
+                                        inventory.MoveItemToInventory(inventory.currentEquipmentSlots.equipmentSlots[2]);
+                                        ClearSlot(inventory.currentEquipmentSlots.equipmentSlots[2]);
+                                    }
+                                }
+                                
                                 TopDownItemObject tmpItem = inventory.currentEquipmentManager.currentEquipment[(int)inventory.holdingItem.itemType];
 
-                                if (inventory.previousSlot.slottedInQuick != null) {
+                                if (inventory.previousSlot.slottedInQuick != null) { //If item we are holding is slotted in Quick Slot, we want to keep the same Quick Slot reference
                                     slottedInQuick = inventory.previousSlot.slottedInQuick;
                                     inventory.previousSlot.slottedInQuick = null;
                                 }
-                                ClearSlot(inventory.previousSlot);
+                                ClearSlot(inventory.previousSlot); //Clear previous Slot
                                 inventory.previousSlot = null;
                                 if (itemInSlot != null) {
                                     inventory.currentEquipmentManager.UnequipItem(itemInSlot);
                                 }
                                 AddItemToSlot(inventory.holdingItem);
                                 UseSlottedItem();
-                                //print(inventory.currentEquipmentManager.gameObject.name);
 
                                 if (tmpItem != null) {
                                     inventory.holdingItem = tmpItem;
@@ -227,8 +240,55 @@ public class TopDownUIItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEn
                         }
                     }
                     else if (GetComponent<TopDownUIItemSlot>().slotType == SlotType.Inventory) {
-                        if (inventory.previousSlot.slotType != SlotType.Quickslot) { //WE NEED TO ADD DIFFERENT QUICKSLOT BARS FOR DIFFERENT CHARACTERS
-                            if (itemInSlot == null) {
+                        if (itemInSlot == null) {
+                            if (inventory.previousSlot != null) {
+                                if (inventory.currentEquipmentManager.currentEquipment[(int)inventory.previousSlot.itemInSlot.itemType] == inventory.previousSlot.itemInSlot) {
+                                    inventory.previousSlot.itemInSlot.UnuseItem();
+                                }
+                                if (inventory.previousSlot.slottedInQuick != null) {
+                                    inventory.previousSlot.slottedInQuick.originalSlot = this;
+                                    slottedInQuick = inventory.previousSlot.slottedInQuick;
+                                    inventory.previousSlot.slottedInQuick = null;
+                                }
+                                ClearSlot(inventory.previousSlot);
+                                inventory.previousSlot = null;
+                            }
+                            AddItemToSlot(inventory.holdingItem);
+                            inventory.holdingItem = null;
+                            inventory.holdingItemSlot.GetComponent<TopDownUIHoldingItemSlot>().itemIconImage.sprite = null;
+                            inventory.holdingItemSlot.GetComponent<CanvasGroup>().alpha = 0f;
+                        }
+                        else {
+                            if (itemInSlot == inventory.holdingItem && GetComponent<TopDownUIItemSlot>() == inventory.previousSlot) { //This is the same item, remove holding item (we must check if it is the same slot, because we can have multiple same items in inventory)
+                                inventory.holdingItem = null;
+                                inventory.holdingItemSlot.GetComponent<TopDownUIHoldingItemSlot>().itemIconImage.sprite = null;
+                                inventory.holdingItemSlot.GetComponent<CanvasGroup>().alpha = 0f;
+                            }
+                            else {
+                                if (inventory.previousSlot != null) {
+                                    if (inventory.previousSlot.slottedInQuick != null) {
+                                        inventory.previousSlot.slottedInQuick.originalSlot = this;
+                                        slottedInQuick = inventory.previousSlot.slottedInQuick;
+                                        inventory.previousSlot.slottedInQuick = null;
+                                    }
+
+                                    TopDownItemObject tmpItemToGrab = itemInSlot;
+
+                                    ClearSlot(inventory.previousSlot);
+                                    inventory.previousSlot = null;
+
+                                    AddItemToSlot(inventory.holdingItem);
+
+                                    inventory.holdingItem = tmpItemToGrab;
+
+                                    inventory.holdingItemSlot.GetComponent<TopDownUIHoldingItemSlot>().itemIconImage.sprite = tmpItemToGrab.itemIcon;
+                                    inventory.holdingItemSlot.GetComponent<CanvasGroup>().alpha = 1f;
+
+                                    ClearTooltip();
+                                }
+                                /*
+                                TopDownItemObject tmpItem = inventory.holdingItem;
+
                                 if (inventory.previousSlot != null) {
                                     if (inventory.currentEquipmentManager.currentEquipment[(int)inventory.previousSlot.itemInSlot.itemType] == inventory.previousSlot.itemInSlot) {
                                         inventory.previousSlot.itemInSlot.UnuseItem();
@@ -241,26 +301,12 @@ public class TopDownUIItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEn
                                     ClearSlot(inventory.previousSlot);
                                     inventory.previousSlot = null;
                                 }
-                                AddItemToSlot(inventory.holdingItem);
-                                inventory.holdingItem = null;
-                                inventory.holdingItemSlot.GetComponent<TopDownUIHoldingItemSlot>().itemIconImage.sprite = null;
-                                inventory.holdingItemSlot.GetComponent<CanvasGroup>().alpha = 0f;
+
+                                GrabItemInSlot();
+
+                                AddItemToSlot(tmpItem);
+                                */
                             }
-                            else {
-                                if (itemInSlot == inventory.holdingItem) { //This is the same item, remove holding item
-                                    inventory.holdingItem = null;
-                                    inventory.holdingItemSlot.GetComponent<TopDownUIHoldingItemSlot>().itemIconImage.sprite = null;
-                                    inventory.holdingItemSlot.GetComponent<CanvasGroup>().alpha = 0f;
-                                }
-                                else {
-                                    print("We need to add some kind of notification that there is item in this slot already.");
-                                }
-                            }
-                        }
-                        else {
-                            inventory.holdingItem = null;
-                            inventory.holdingItemSlot.GetComponent<TopDownUIHoldingItemSlot>().itemIconImage.sprite = null;
-                            inventory.holdingItemSlot.GetComponent<CanvasGroup>().alpha = 0f;
                         }
                     }
                     else if (GetComponent<TopDownUIItemSlot>().slotType == SlotType.Quickslot) {
