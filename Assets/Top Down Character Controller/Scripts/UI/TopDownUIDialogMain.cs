@@ -115,13 +115,14 @@ public class TopDownUIDialogMain : MonoBehaviour {
     }
 
     private IEnumerator SetCameraPosition() {
-
         cameraBasic.cameraFreeze = true;
         GameObject camPos = new GameObject();
         camPos.transform.SetParent(TopDownCharacterManager.instance.controllingCharacter.transform);
         camPos.transform.localPosition = cameraDialogPos;
         camPos.transform.SetParent(null);
-        cameraBasic.transform.localPosition = camPos.transform.position;
+        if (cameraBasic.transform.localPosition != camPos.transform.position) {
+            cameraBasic.transform.localPosition = camPos.transform.position;
+        }
         Destroy(camPos);
 
         yield return new WaitForEndOfFrame();
@@ -144,60 +145,60 @@ public class TopDownUIDialogMain : MonoBehaviour {
             dialogChoices[0].dialogTxt.text = dialog.welcomeDialog;
 
             for (int i = 0; i < dialogChoices.Length; i++) {
-                if ((i - 1) < dialog.numberOfChoices) {
-                    if (i == 1) {
-                        dialogChoices[i - 1].GetComponent<Button>().interactable = true;
-                        dialogChoices[i - 1].choiceTxt.text = dialog.choiceOne;
+                if (i < dialog.numberOfChoices) {
+                    if (i == 0) {
+                        dialogChoices[i].GetComponent<Button>().interactable = true;
+                        dialogChoices[i].choiceTxt.text = dialog.choiceOne;
 
-                        dialogChoices[i - 1].dialog = dialog.choiceOneDialog;
-                        dialogChoices[i - 1].type = dialog.choiceOneType;
-                        dialogChoices[i - 1].remove = dialog.removeOnChoiceOne;
-                        dialogChoices[i - 1].branch = dialog.branchOneDialog;
-                        dialogChoices[i - 1].response = dialog.typeOneResponse;
-                        dialogChoices[i - 1].events = dialog.choiceOneEvent;
-                        dialogChoices[i - 1].index = i;
+                        dialogChoices[i].dialog = dialog.choiceOneDialog;
+                        dialogChoices[i].type = dialog.choiceOneType;
+                        dialogChoices[i].remove = dialog.removeOnChoiceOne;
+                        dialogChoices[i].branch = dialog.branchOneDialog;
+                        dialogChoices[i].response = dialog.typeOneResponse;
+                        dialogChoices[i].events = dialog.choiceOneEvent;
+                        dialogChoices[i].index = i;
+                    }
+                    if (i == 1) {
+                        dialogChoices[i].GetComponent<Button>().interactable = true;
+                        dialogChoices[i].choiceTxt.text = dialog.choiceTwo;
+
+                        dialogChoices[i].dialog = dialog.choiceTwoDialog;
+                        dialogChoices[i].type = dialog.choiceTwoType;
+                        dialogChoices[i].remove = dialog.removeOnChoiceTwo;
+                        dialogChoices[i].branch = dialog.branchTwoDialog;
+                        dialogChoices[i].response = dialog.typeTwoResponse;
+                        dialogChoices[i].events = dialog.choiceTwoEvent;
+                        dialogChoices[i].index = 2;
                     }
                     if (i == 2) {
-                        dialogChoices[i - 1].GetComponent<Button>().interactable = true;
-                        dialogChoices[i - 1].choiceTxt.text = dialog.choiceTwo;
+                        dialogChoices[i].GetComponent<Button>().interactable = true;
+                        dialogChoices[i].choiceTxt.text = dialog.choiceThree;
 
-                        dialogChoices[i - 1].dialog = dialog.choiceTwoDialog;
-                        dialogChoices[i - 1].type = dialog.choiceTwoType;
-                        dialogChoices[i - 1].remove = dialog.removeOnChoiceTwo;
-                        dialogChoices[i - 1].branch = dialog.branchTwoDialog;
-                        dialogChoices[i - 1].response = dialog.typeTwoResponse;
-                        dialogChoices[i - 1].events = dialog.choiceTwoEvent;
-                        dialogChoices[i - 1].index = 2;
+                        dialogChoices[i].dialog = dialog.choiceThreeDialog;
+                        dialogChoices[i].type = dialog.choiceThreeType;
+                        dialogChoices[i].remove = dialog.removeOnChoiceThree;
+                        dialogChoices[i].branch = dialog.branchThreeDialog;
+                        dialogChoices[i].response = dialog.typeThreeResponse;
+                        dialogChoices[i].events = dialog.choiceThreeEvent;
+                        dialogChoices[i].index = 3;
                     }
                     if (i == 3) {
-                        dialogChoices[i - 1].GetComponent<Button>().interactable = true;
-                        dialogChoices[i - 1].choiceTxt.text = dialog.choiceThree;
+                        dialogChoices[i].GetComponent<Button>().interactable = true;
+                        dialogChoices[i].choiceTxt.text = dialog.choiceFour;
 
-                        dialogChoices[i - 1].dialog = dialog.choiceThreeDialog;
-                        dialogChoices[i - 1].type = dialog.choiceThreeType;
-                        dialogChoices[i - 1].remove = dialog.removeOnChoiceThree;
-                        dialogChoices[i - 1].branch = dialog.branchThreeDialog;
-                        dialogChoices[i - 1].response = dialog.typeThreeResponse;
-                        dialogChoices[i - 1].events = dialog.choiceThreeEvent;
-                        dialogChoices[i - 1].index = 3;
-                    }
-                    if (i == 4) {
-                        dialogChoices[i - 1].GetComponent<Button>().interactable = true;
-                        dialogChoices[i - 1].choiceTxt.text = dialog.choiceFour;
-
-                        dialogChoices[i - 1].dialog = dialog.choiceFourDialog;
-                        dialogChoices[i - 1].type = dialog.choiceFourType;
-                        dialogChoices[i - 1].remove = dialog.removeOnChoiceFour;
-                        dialogChoices[i - 1].branch = dialog.branchFourDialog;
-                        dialogChoices[i - 1].response = dialog.typeFourResponse;
-                        dialogChoices[i - 1].events = dialog.choiceFourEvent;
-                        dialogChoices[i - 1].index = 4;
+                        dialogChoices[i].dialog = dialog.choiceFourDialog;
+                        dialogChoices[i].type = dialog.choiceFourType;
+                        dialogChoices[i].remove = dialog.removeOnChoiceFour;
+                        dialogChoices[i].branch = dialog.branchFourDialog;
+                        dialogChoices[i].response = dialog.typeFourResponse;
+                        dialogChoices[i].events = dialog.choiceFourEvent;
+                        dialogChoices[i].index = 4;
                     }
                 }
                 else {
-                    dialogChoices[i - 1].GetComponent<Button>().interactable = false;
-                    dialogChoices[i - 1].choiceTxt.text = string.Empty;
-                    dialogChoices[i - 1].index = 0;
+                    dialogChoices[i].GetComponent<Button>().interactable = false;
+                    dialogChoices[i].choiceTxt.text = string.Empty;
+                    dialogChoices[i].index = 0;
                 }
             }
         }
@@ -215,7 +216,7 @@ public class TopDownUIDialogMain : MonoBehaviour {
             else {
                 dialogChoices[i].GetComponent<Button>().interactable = false;
                 dialogChoices[i].GetComponentInChildren<Text>().text = string.Empty;
-                dialogChoices[i - 1].index = 0;
+                dialogChoices[i].index = 0;
             }
         }
     }

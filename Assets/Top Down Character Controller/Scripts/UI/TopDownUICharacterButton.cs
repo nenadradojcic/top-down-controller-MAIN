@@ -24,6 +24,7 @@ public class TopDownUICharacterButton : MonoBehaviour {
     public TopDownCameraBasic cameraBasic;
 
     public TopDownUIManager uiManager;
+    public TopDownUIInventory uiInventory;
 
     private void Start() {
         if(characterInSlot != null) {
@@ -33,6 +34,8 @@ public class TopDownUICharacterButton : MonoBehaviour {
 
         characterManager = TopDownCharacterManager.instance;
         uiManager = TopDownUIManager.instance;
+        uiInventory = TopDownUIInventory.instance;
+
         cameraBasic = GameObject.FindObjectOfType<TopDownCameraBasic>();
     }
 
@@ -127,6 +130,13 @@ public class TopDownUICharacterButton : MonoBehaviour {
                 if (characterInSlot.GetComponent<TopDownCharacterCard>().enemyFocus != null) {
                     characterInSlot.GetComponent<TopDownControllerInteract>().SetFocus(characterInSlot.GetComponent<TopDownCharacterCard>().enemyFocus);
                 }
+            }
+
+            //We also need to reset holding item of our Invetory because we changed character
+            if(uiInventory != null) {
+                uiInventory.holdingItem = null;
+                uiInventory.holdingItemSlot.GetComponent<TopDownUIHoldingItemSlot>().itemIconImage.sprite = null;
+                uiInventory.holdingItemSlot.GetComponent<CanvasGroup>().alpha = 0f;
             }
         }
     }

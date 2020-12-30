@@ -152,6 +152,8 @@ public class TopDownAIEditorWindow : EditorWindow {
                     ai.hostile = false;
                 }
 
+                Selection.activeObject = charObject.gameObject;
+
                 aiModel.SetActive(false);
             }
         }

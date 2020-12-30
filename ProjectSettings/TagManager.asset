@@ -10,8 +10,6 @@ TagManager:
   - Walkable
   - NPC
   - Chest
-  - Water
-  - Horse
   layers:
   - Default
   - TransparentFX
@@ -33,7 +31,7 @@ TagManager:
   - 
   - 
   - 
-  - Animal
+  - 
   - 
   - 
   - 

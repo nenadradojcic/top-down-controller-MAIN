@@ -20,6 +20,8 @@ public class TopDownRpgQuestEditor : Editor
 
     public override void OnInspectorGUI() {
 
+        serializedObject.Update();
+
         GUIStyle boldCenteredLabel = new GUIStyle(EditorStyles.boldLabel) { alignment = TextAnchor.MiddleCenter };
         EditorStyles.textField.wordWrap = true;
 
@@ -42,6 +44,7 @@ public class TopDownRpgQuestEditor : Editor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("questCategory"), true);
         EditorGUILayout.PropertyField(serializedObject.FindProperty("questType"), true);
 
+
         if (td_target.questType == QuestType.KillTargets) {
             EditorGUILayout.PropertyField(serializedObject.FindProperty("questTargets"), true);
         }
@@ -63,8 +66,14 @@ public class TopDownRpgQuestEditor : Editor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("questState"), true);
         EditorGUI.EndDisabledGroup();
 
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("questStartEvents"), true);
+
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("questFinishEvents"), true);
+
         EditorGUILayout.EndVertical();
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();
+
+        serializedObject.ApplyModifiedProperties();
     }
 }

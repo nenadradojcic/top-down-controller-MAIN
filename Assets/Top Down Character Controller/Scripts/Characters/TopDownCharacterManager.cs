@@ -89,6 +89,15 @@ public class TopDownCharacterManager : MonoBehaviour {
                                     newCharacter.GetComponent<TopDownCharacterCard>().characterInventory.equipmentSlots[(int)startUpItems.itemsEquipped[s].itemType].AddItemToSlot(tmp);
                                 }
                             }
+
+                            if (startUpItems.itemsToPlaceInInventory.Length > 0) {
+                                for (int inv = 0; inv < startUpItems.itemsToPlaceInInventory.Length; inv++) {
+                                    td_Inventory.AddItemJustAsset(startUpItems.itemsToPlaceInInventory[inv]);
+                                    startUpItems.itemsInInventory.Add(startUpItems.itemsToPlaceInInventory[inv]);
+                                }
+
+                                startUpItems.itemsToPlaceInInventory = null;
+                            }
                         }
 
                         td_Inventory.currentEquipmentSlots = lastSlots;

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd492a7b55154e40815366df7b806b8, type: 3}
   m_Name: Dummy Character
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 41c6f94d80f9e034a9c63dcf97d30f5c, type: 3}
-  name: The Dummy
-  health: 20
-  energy: 20
-  voiceSet: {fileID: 11400000, guid: c84e5576471c49c45bb164e8dce9b9bd, type: 2}
+  icon: {fileID: 21300000, guid: 13b81888ead0af746b8b49c1fe3a97a3, type: 3}
+  name: Tommy
+  health: 50
+  energy: 50
+  voiceSet: {fileID: 0}

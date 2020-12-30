@@ -364,8 +364,8 @@ public class TopDownControllerInteract : MonoBehaviour {
         }
         else if (focusObject.tag == npcTag) {
             tdcc_NavMeshAgent.stoppingDistance = enemyStopDistance;
-            if (focusedTarget.GetComponent<TopDownInteractible>()) {
-                focusedTarget.GetComponent<TopDownInteractible>().OnFocused(transform);
+            if (focusedTarget.GetComponentInChildren<TopDownUIDialog>()) {
+                focusedTarget.GetComponentInChildren<TopDownUIDialog>().OnFocused(transform);
             }
         }
         else {

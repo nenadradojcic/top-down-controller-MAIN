@@ -31,6 +31,8 @@ public class TopDownAI : MonoBehaviour {
     public float distToStartPos;
     public Vector3 startPos;
 
+    public TopDownUIDialog aiDialog;
+
     private void Start() {
         tdc_Main = GetComponent<TopDownControllerMain>();
         td_EquipmentManager = GetComponent<TopDownEquipmentManager>();

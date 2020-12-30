@@ -77,7 +77,7 @@ public class TopDownRpgQuest : MonoBehaviour {
     }
 
     public void StartQuest() {
-        if (questHub != null && questFinished == false) {
+        if (questHub != null && questState != QuestState.Started && questFinished == false) {
 
             this.enabled = true;
 
@@ -96,7 +96,7 @@ public class TopDownRpgQuest : MonoBehaviour {
     }
 
     public void StartQuest(TopDownUIDialog dialog) {
-        if(questHub != null && questFinished == false) {
+        if(questHub != null && questState != QuestState.Started && questFinished == false) {
 
             this.enabled = true;
             if (dialog != null) {

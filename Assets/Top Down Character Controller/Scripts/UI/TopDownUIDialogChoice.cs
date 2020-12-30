@@ -24,27 +24,32 @@ public class TopDownUIDialogChoice : MonoBehaviour {
     }
 
     public void ShowChoiceDialog() {
+
+        TopDownUIDialog dialogInUse = dialogMain.dialogInUse;
+
         dialogTxt.text = dialog;
         if (events != null) {
             events.Invoke();
         }
 
-        if (type == DialogType.BranchDialog) {
-            StartCoroutine(SetupBranchingDialog());
-        }
-        else if (type == DialogType.CloseDialog) {
-            TopDownUIDialogMain.instance.CloseDialogPerType("[Exit]");
-        }
-        else if(type == DialogType.ImmediateClose) {
-            CloseTheDialog();
-        }
-        else if (type == DialogType.CombatDialog) {
-            if (dialogMain.dialogInUse.GetComponent<TopDownAI>()) {
-                dialogMain.dialogInUse.GetComponent<TopDownAI>().TurnHostile();
-            }
-            CloseTheDialog();
-        }
-        else {
+        switch(type) {
+            case DialogType.BranchDialog:
+                StartCoroutine(SetupBranchingDialog());
+                break;
+            case DialogType.CloseDialog:
+                TopDownUIDialogMain.instance.CloseDialogPerType("[Exit]");
+                break;
+            case DialogType.ImmediateClose:
+                CloseTheDialog();
+                break;
+            case DialogType.CombatDialog:
+                if (dialogInUse.GetComponent<TopDownAI>()) {
+                    dialogInUse.GetComponent<TopDownAI>().TurnHostile();
+                }
+                CloseTheDialog();
+                break;
+            default:
+
             if(remove == true) {
                 TopDownUIDialogChoice[] choice = dialogMain.dialogChoices;
 
@@ -72,63 +77,84 @@ public class TopDownUIDialogChoice : MonoBehaviour {
                                 choice[i + 1].response = string.Empty;
                                 choice[i + 1].events = null;
 
-                                if(i == 0) {
-                                    dialogMain.dialogInUse.choiceOne = choice[i].choiceTxt.text;
-                                    dialogMain.dialogInUse.choiceOneDialog = choice[i].dialog;
-                                    dialogMain.dialogInUse.choiceOneType = choice[i].type;
-                                    dialogMain.dialogInUse.removeOnChoiceOne = choice[i].remove;
-                                    dialogMain.dialogInUse.branchOneDialog = choice[i].branch;
-                                    dialogMain.dialogInUse.typeOneResponse = choice[i].response;
-                                    dialogMain.dialogInUse.choiceOneEvent = choice[i].events;
-                                }
-                                if (i == 1) {
-                                    dialogMain.dialogInUse.choiceTwo = choice[i].choiceTxt.text;
-                                    dialogMain.dialogInUse.choiceTwoDialog = choice[i].dialog;
-                                    dialogMain.dialogInUse.choiceTwoType = choice[i].type;
-                                    dialogMain.dialogInUse.removeOnChoiceTwo = choice[i].remove;
-                                    dialogMain.dialogInUse.branchTwoDialog = choice[i].branch;
-                                    dialogMain.dialogInUse.typeTwoResponse = choice[i].response;
-                                    dialogMain.dialogInUse.choiceTwoEvent = choice[i].events;
+                                switch (i) {
+                                   case 0:
+                                        dialogInUse.choiceOne = choice[i].choiceTxt.text;
+                                        dialogInUse.choiceOneDialog = choice[i].dialog;
+                                        dialogInUse.choiceOneType = choice[i].type;
+                                        dialogInUse.removeOnChoiceOne = choice[i].remove;
+                                        dialogInUse.branchOneDialog = choice[i].branch;
+                                        dialogInUse.typeOneResponse = choice[i].response;
+                                        dialogInUse.choiceOneEvent = choice[i].events;
 
-                                    dialogMain.dialogInUse.choiceThree = string.Empty;
-                                    dialogMain.dialogInUse.choiceThreeDialog = string.Empty;
-                                    dialogMain.dialogInUse.choiceThreeType = DialogType.None;
-                                    dialogMain.dialogInUse.removeOnChoiceThree = false;
-                                    dialogMain.dialogInUse.branchThreeDialog = choice[i].branch;
-                                    dialogMain.dialogInUse.typeThreeResponse = string.Empty;
-                                    dialogMain.dialogInUse.choiceThreeEvent = null;
-                                }
-                                if (i == 2) {
-                                    dialogMain.dialogInUse.choiceThree = choice[i].choiceTxt.text;
-                                    dialogMain.dialogInUse.choiceThreeDialog = choice[i].dialog;
-                                    dialogMain.dialogInUse.choiceThreeType = choice[i].type;
-                                    dialogMain.dialogInUse.removeOnChoiceThree = choice[i].remove;
-                                    dialogMain.dialogInUse.branchThreeDialog = choice[i].branch;
-                                    dialogMain.dialogInUse.typeThreeResponse = choice[i].response;
-                                    dialogMain.dialogInUse.choiceThreeEvent = choice[i].events;
+                                        dialogInUse.choiceTwo = string.Empty;
+                                        dialogInUse.choiceTwoDialog = string.Empty;
+                                        dialogInUse.choiceTwoType = DialogType.None;
+                                        dialogInUse.removeOnChoiceTwo = false;
+                                        dialogInUse.branchTwoDialog = choice[i].branch;
+                                        dialogInUse.typeTwoResponse = string.Empty;
+                                        dialogInUse.choiceTwoEvent = null;
+                                        break;
+                                    case 1:
+                                        dialogInUse.choiceTwo = choice[i].choiceTxt.text;
+                                        dialogInUse.choiceTwoDialog = choice[i].dialog;
+                                        dialogInUse.choiceTwoType = choice[i].type;
+                                        dialogInUse.removeOnChoiceTwo = choice[i].remove;
+                                        dialogInUse.branchTwoDialog = choice[i].branch;
+                                        dialogInUse.typeTwoResponse = choice[i].response;
+                                        dialogInUse.choiceTwoEvent = choice[i].events;
 
-                                    dialogMain.dialogInUse.choiceFour = string.Empty;
-                                    dialogMain.dialogInUse.choiceFourDialog = string.Empty;
-                                    dialogMain.dialogInUse.choiceFourType = DialogType.None;
-                                    dialogMain.dialogInUse.removeOnChoiceFour = false;
-                                    dialogMain.dialogInUse.branchFourDialog = choice[i].branch;
-                                    dialogMain.dialogInUse.typeFourResponse = string.Empty;
-                                    dialogMain.dialogInUse.choiceFourEvent = null;
-                                }
-                                if (i == 3) {
-                                    dialogMain.dialogInUse.choiceFour = choice[i].choiceTxt.text;
-                                    dialogMain.dialogInUse.choiceFourDialog = choice[i].dialog;
-                                    dialogMain.dialogInUse.choiceFourType = choice[i].type;
-                                    dialogMain.dialogInUse.removeOnChoiceFour = choice[i].remove;
-                                    dialogMain.dialogInUse.branchFourDialog = choice[i].branch;
-                                    dialogMain.dialogInUse.typeFourResponse = choice[i].response;
-                                    dialogMain.dialogInUse.choiceFourEvent = choice[i].events;
+                                        dialogInUse.choiceThree = string.Empty;
+                                        dialogInUse.choiceThreeDialog = string.Empty;
+                                        dialogInUse.choiceThreeType = DialogType.None;
+                                        dialogInUse.removeOnChoiceThree = false;
+                                        dialogInUse.branchThreeDialog = choice[i].branch;
+                                        dialogInUse.typeThreeResponse = string.Empty;
+                                        dialogInUse.choiceThreeEvent = null;
+                                        break;
+                                    case 2:
+                                        dialogInUse.choiceThree = choice[i].choiceTxt.text;
+                                        dialogInUse.choiceThreeDialog = choice[i].dialog;
+                                        dialogInUse.choiceThreeType = choice[i].type;
+                                        dialogInUse.removeOnChoiceThree = choice[i].remove;
+                                        dialogInUse.branchThreeDialog = choice[i].branch;
+                                        dialogInUse.typeThreeResponse = choice[i].response;
+                                        dialogInUse.choiceThreeEvent = choice[i].events;
+
+                                        dialogInUse.choiceFour = string.Empty;
+                                        dialogInUse.choiceFourDialog = string.Empty;
+                                        dialogInUse.choiceFourType = DialogType.None;
+                                        dialogInUse.removeOnChoiceFour = false;
+                                        dialogInUse.branchFourDialog = choice[i].branch;
+                                        dialogInUse.typeFourResponse = string.Empty;
+                                        dialogInUse.choiceFourEvent = null;
+                                        break;
+                                    case 3:
+                                        dialogInUse.choiceFour = string.Empty;
+                                        dialogInUse.choiceFourDialog = string.Empty;
+                                        dialogInUse.choiceFourType = DialogType.None;
+                                        dialogInUse.removeOnChoiceFour = false;
+                                        dialogInUse.branchFourDialog = choice[i].branch;
+                                        dialogInUse.typeFourResponse = string.Empty;
+                                        dialogInUse.choiceFourEvent = null;
+                                        dialogInUse.choiceFour = string.Empty;
+                                        break;
+                                    /*case 4:
+                                        dialogInUse.choiceFour = string.Empty;
+                                        dialogInUse.choiceFourDialog = string.Empty;
+                                        dialogInUse.choiceFourType = DialogType.None;
+                                        dialogInUse.removeOnChoiceFour = false;
+                                        dialogInUse.branchFourDialog = choice[i].branch;
+                                        dialogInUse.typeFourResponse = string.Empty;
+                                        dialogInUse.choiceFourEvent = null;
+                                        break;*/
                                 }
                             }
                         }
                     }
                 }
             }
+                break;
         }
     }
 

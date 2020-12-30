@@ -220,6 +220,8 @@ public class TopDownSetupCharacterEditorWindow : EditorWindow {
 
                 characterModel.SetActive(false);
 
+                Selection.activeObject = charObject.gameObject;
+
                 Debug.LogFormat("New Character has been set up. You need to adjust weapon and shield mount and holster points for better visual.");
             }
             #endregion

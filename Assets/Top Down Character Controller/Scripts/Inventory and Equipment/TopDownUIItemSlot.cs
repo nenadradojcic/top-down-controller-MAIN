@@ -74,9 +74,9 @@ public class TopDownUIItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEn
                 if (itemInSlot != null && inventory.holdingItem == null) {
                     if (GetComponent<TopDownUIItemSlot>().slotType != SlotType.Quickslot) {
                         if (itemInSlot.isItem == true) {
-                            //If item we are trying to equip is two handed weapon, we want to check if there is a shield equipped and to deequip it
-                            if (itemInSlot.weaponHoldingType == WeaponHoldingType.TwoHanded) {
-                                if (inventory.currentEquipmentSlots.equipmentSlots[3].itemInSlot != null) {
+                            //If item we are trying to equip is two handed or ranged weapon, we want to check if there is a shield equipped and to deequip it
+                            if (itemInSlot.weaponHoldingType == WeaponHoldingType.TwoHanded || itemInSlot.weaponType == WeaponType.Ranged) {
+                                if (inventory.currentEquipmentSlots.equipmentSlots[3].itemInSlot) {
 
                                     inventory.currentEquipmentSlots.equipmentSlots[3].UseSlottedItem();
                                     //print(inventory.currentEquipmentManager.gameObject.name);
@@ -88,7 +88,8 @@ public class TopDownUIItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEn
 
                             //If item we are trying to equip is shield, we want to check if there is a two handed weapon equipped and to deequip it
                             if (itemInSlot.itemType == ItemType.Shield) {
-                                if (inventory.currentEquipmentSlots.equipmentSlots[2].itemInSlot != null && inventory.currentEquipmentSlots.equipmentSlots[2].itemInSlot.weaponHoldingType == WeaponHoldingType.TwoHanded) {
+                                if (inventory.currentEquipmentSlots.equipmentSlots[2].itemInSlot != null && (inventory.currentEquipmentSlots.equipmentSlots[2].itemInSlot.weaponHoldingType == WeaponHoldingType.TwoHanded ||
+                                    inventory.currentEquipmentSlots.equipmentSlots[2].itemInSlot.weaponType == WeaponType.Ranged)) {
 
                                     inventory.currentEquipmentSlots.equipmentSlots[2].UseSlottedItem();
                                     //print(inventory.currentEquipmentManager.gameObject.name);
